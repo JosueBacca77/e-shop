@@ -1,0 +1,54 @@
+.header{
+    background-color: var(--azul);
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 100%;
+}
+
+.title{
+    position: relative;
+    padding: 0;
+    margin: 0;
+    top:30%;
+    left: 10%;
+    font-size: 3em;
+    color: var(--blanco);
+    font-family: bold;
+}
+
+.titlecontainer{
+    background-color: var(--azul);
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.inputs{
+    background-color: var(--azul);
+    grid-row: 1;
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.busc{
+    flex-grow: 1;
+}
+
+ul{
+    flex-grow: 3;
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    float: right;
+}
+
+ul li {
+    margin: 0 0.5rem;
+    display: block;
+    position: relative;
+    float: left;
+    text-align: center;
+    color: var(--blanco);
+}
+
