@@ -1,20 +1,17 @@
-import './Nav.css';
-import SearchAppBar from "./Search";
+import './Menu.css';
+import SearchAppBar from "../Search";
 import {rubros} from "../../constants";
 import NavBarItem from "./NavBarItem/NavBarItem";
 
-const NavBar =()=> {
+
+const Menu =()=> {
 
     return(
         <header>
             <div className='header'>
-                <div className='titlecontainer'>
-                    <p className='title'>electronic-Shop</p>
-                </div>
+                <p className='title'>electronic-Shop</p>
                 <div className='inputs'>
-                    <div className='busc'>
-                        <SearchAppBar />
-                    </div>
+                    <SearchAppBar />
                     <nav >
                         <ul>
                             {rubros.map(rubro => (
@@ -28,4 +25,4 @@ const NavBar =()=> {
     )
 }
 
-export default NavBar;
+export default Menu;
