@@ -1,0 +1,17 @@
+.subtitle{
+    color: var(--blanco);
+    font-size: 2em;
+    margin: 0 0 5% 0;
+    text-align: left;
+}
+
+.home{
+    padding: 10% 5% 3% 5%;
+}
+
+.articles{
+    display: grid;
+    grid-template-rows: 50% 50%;
+    grid-template-columns: 33% 33% 33%;
+    grid-gap: 15px;
+}

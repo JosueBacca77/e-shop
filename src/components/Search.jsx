@@ -3,6 +3,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import {IconBadge} from "./Icons/Icon";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -71,6 +73,7 @@ export default function SearchAppBar() {
                             inputProps={{ "aria-label": "search" }}
                         />
                     </div>
+                    <IconBadge count={4} icon={<ShoppingCartIcon className='iconWhite' />} />
                 </Toolbar>
         </div>
     );
