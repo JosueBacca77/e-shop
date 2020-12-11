@@ -1,9 +1,8 @@
 import '../CardsArticle/CartdArticle.css'
-import {temporalArticles} from "../../constants";
 import CardArticle from "../CardsArticle/CardArticle";
 import back from '../Images/back-ground.jpg';
 
-const Home =()=> {
+const Home =({articles})=> {
     return(
         <div className='container' style={{
             backgroundImage: `url(${`${back}`})`,
@@ -12,7 +11,7 @@ const Home =()=> {
             <div className='home'>
                 <h1 className='subtitle'>Lo más buscado</h1>
                 <div className='articles'>
-                    {temporalArticles.map(article => (
+                    {articles.map(article => (
                         <article>
                             {CardArticle(article.name, article.description, article.image)}
                         </article>

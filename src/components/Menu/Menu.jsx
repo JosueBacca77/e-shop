@@ -1,10 +1,9 @@
 import './Menu.css';
 import SearchAppBar from "../Search";
-import {rubros} from "../../constants";
 import NavBarItem from "./NavBarItem/NavBarItem";
 
 
-const Menu =()=> {
+const Menu =({rubros})=> {
 
     return(
         <header>
