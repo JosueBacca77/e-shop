@@ -34,32 +34,38 @@ const temporalArticles = [
     {
         name: 'Acometida',
         image: acometida,
-        description: 'Cable acometida negro, precio por metro'
+        description: 'Cable acometida negro, precio por metro',
+        stock: 10
     },
     {
         name: 'Scot',
         image: spot3,
-        description: 'Spot fijo de 3 luces'
+        description: 'Spot fijo de 3 luces',
+        stock: 5
     },
     {
         name: 'Llave luz',
         image: llaveluz,
-        description: 'Dos llaves y un enchufe'
+        description: 'Dos llaves y un enchufe',
+        stock: 9
     },
     {
         name: 'Guantes',
         image: guantes,
-        description: 'Guantes para electricista'
+        description: 'Guantes para electricista',
+        stock: 2
     },
     {
         name: 'Lámpara',
         image: lampara,
-        description: 'Lámpara bajo consumo 200W'
+        description: 'Lámpara bajo consumo 200W',
+        stock: 6
     },
     {
         name: 'Cable desnudo',
         image: cabledes,
-        description: 'Cable desnudo, caja por 100 métros'
+        description: 'Cable desnudo, caja por 100 métros',
+        stock: 8
     },
 ]
 

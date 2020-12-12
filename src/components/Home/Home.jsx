@@ -1,5 +1,5 @@
 import '../CardsArticle/CartdArticle.css'
-import CardArticle from "../CardsArticle/CardArticle";
+import Article from "../CardsArticle/Article";
 import back from '../Images/back-ground.jpg';
 
 const Home =({articles})=> {
@@ -13,7 +13,7 @@ const Home =({articles})=> {
                 <div className='articles'>
                     {articles.map(article => (
                         <article>
-                            {CardArticle(article.name, article.description, article.image)}
+                            {Article(article)}
                         </article>
                     ))}
                 </div>
