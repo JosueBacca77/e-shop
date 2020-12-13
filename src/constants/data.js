@@ -1,9 +1,9 @@
-import acometida from './components/Images/acometida.jpg'
-import llaveluz from './components/Images/llaveluz.jpeg'
-import spot3 from './components/Images/spot3.jpg'
-import guantes from './components/Images/guantes de seguridad.jpg'
-import lampara from './components/Images/lamparabajocons.jpg'
-import cabledes from './components/Images/cable-desnudo.png'
+import acometida from '../components/Images/acometida.jpg'
+import llaveluz from '../components/Images/llaveluz.jpeg'
+import spot3 from '../components/Images/spot3.jpg'
+import guantes from '../components/Images/guantes de seguridad.jpg'
+import lampara from '../components/Images/lamparabajocons.jpg'
+import cabledes from '../components/Images/cable-desnudo.png'
 
 
 const rubros = [

@@ -7,10 +7,13 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
-import ArrowDropDownCircleSharpIcon from "@material-ui/icons/ArrowDropDownCircleSharp";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+import {infoStrings} from "../../constants/strings";
+import {ErrorLabel} from "../Labels";
+import Counter from "../Counter";
 
-const CardArticle =({article,count,add,substract})=> {
+
+const CardArticle =({article,count,add,substract,stockOut})=> {
 
     const useStyles = makeStyles({
         root: {
@@ -20,19 +23,21 @@ const CardArticle =({article,count,add,substract})=> {
         media: {
             height: 300,
         },
-        actions:{
-            display: "inline-block",
-            float: 'right',
-        },
-        addcart:{
+        icon:{
             color: "blue"
-        }
+        },
+        actions:{
+            display: "flex",
+            justifyContent: "space-between",
+        },
+        addToCart:{
+            float: "right",
+        },
     });
 
     const classes = useStyles();
 
     return(
-
         <Card className={classes.root}>
             <CardActionArea>
                 <CardMedia
@@ -50,17 +55,24 @@ const CardArticle =({article,count,add,substract})=> {
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions className={classes.actions}>
-                <IconButton color="inherit" >
-                    <ArrowDropDownCircleSharpIcon onClick={substract} />
-                </IconButton>
-                <IconButton color="inherit" >
-                    <AddShoppingCartIcon className={classes.addcart} onClick={add}/>
-                </IconButton>
-                <div>
-                    {count}
+            <CardActions className={classes.actions} >
+                <Counter
+                    add={add}
+                    substract={substract}
+                    count={count}
+                />
+                <div className={classes.addToCart}>
+                    <IconButton color="inherit" className={classes.addToCart}>
+                        <AddShoppingCartIcon className={classes.icon} />
+                    </IconButton>
                 </div>
             </CardActions>
+            {stockOut
+                ?
+                <ErrorLabel
+                    text={infoStrings.stockOut}
+                />
+                :null}
         </Card>
     )
 }
