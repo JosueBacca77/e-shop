@@ -1,6 +1,7 @@
 import '../CardsArticle/CartdArticle.css'
-import Article from "../CardsArticle/Article";
 import back from '../Images/back-ground.jpg';
+import CardArticle from "../CardsArticle/CardArticle";
+import React from "react";
 
 const Home =({articles})=> {
     return(
@@ -13,7 +14,9 @@ const Home =({articles})=> {
                 <div className='articles'>
                     {articles.map(article => (
                         <article>
-                            {Article(article)}
+                            {<CardArticle
+                                article={article}
+                            />}
                         </article>
                     ))}
                 </div>

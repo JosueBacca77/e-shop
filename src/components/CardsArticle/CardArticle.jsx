@@ -11,9 +11,12 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import {infoStrings} from "../../constants/strings";
 import {ErrorLabel} from "../Labels";
 import Counter from "../Counter";
+import {useState} from "react";
 
 
-const CardArticle =({article,count,add,substract,stockOut})=> {
+const CardArticle =({article})=> {
+
+    const [stop, setStop] = useState(false);
 
     const useStyles = makeStyles({
         root: {
@@ -57,9 +60,8 @@ const CardArticle =({article,count,add,substract,stockOut})=> {
             </CardActionArea>
             <CardActions className={classes.actions} >
                 <Counter
-                    add={add}
-                    substract={substract}
-                    count={count}
+                    limit={article.stock}
+                    setStop={setStop}
                 />
                 <div className={classes.addToCart}>
                     <IconButton color="inherit" className={classes.addToCart}>
@@ -67,7 +69,7 @@ const CardArticle =({article,count,add,substract,stockOut})=> {
                     </IconButton>
                 </div>
             </CardActions>
-            {stockOut
+            {stop
                 ?
                 <ErrorLabel
                     text={infoStrings.stockOut}
