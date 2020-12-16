@@ -1,19 +1,14 @@
 import IconButton from "@material-ui/core/IconButton";
 import RemoveIcon from "@material-ui/icons/Remove";
 import AddIcon from "@material-ui/icons/Add";
-import React, {useState} from "react";
+import React from "react";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
-const Counter = ({limit,setStop}) => {
-
-    const [count, setCount] = useState(0)
+const Counter = ({limit,count,setCount}) => {
 
     const handleAdd =()=>{
         if (count < limit){
             setCount(count+1)
-        }
-        if (count === limit){
-            setStop(true)
         }
     }
 
@@ -21,12 +16,14 @@ const Counter = ({limit,setStop}) => {
         if (count>0){
             setCount(count-1)
         }
-        setStop(false)
     }
 
     const useStyles = makeStyles({
         icon:{
             color: "blue"
+        },
+        iconDiabled:{
+            color: "lightgray"
         },
     });
 
@@ -34,12 +31,14 @@ const Counter = ({limit,setStop}) => {
 
     return(
         <div>
-            <IconButton color="inherit" >
-                <RemoveIcon className={classes.icon} onClick={handleSubstract} />
+            <IconButton color="inherit" disabled={count===0} >
+                <RemoveIcon className={count===0?classes.iconDiabled:classes.icon}
+                            onClick={handleSubstract}
+                />
             </IconButton>
             <span>{count}</span>
-            <IconButton color="inherit" >
-                <AddIcon className={classes.icon} onClick={handleAdd}/>
+            <IconButton color="inherit" disabled={count===limit}>
+                <AddIcon className={count===limit?classes.iconDiabled:classes.icon} onClick={handleAdd}/>
             </IconButton>
         </div>
     )

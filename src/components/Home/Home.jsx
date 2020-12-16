@@ -3,6 +3,7 @@ import back from '../Images/back-ground.jpg';
 import CardArticle from "../CardsArticle/CardArticle";
 import React from "react";
 
+
 const Home =({articles})=> {
     return(
         <div className='container' style={{

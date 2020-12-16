@@ -8,15 +8,17 @@ import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import {infoStrings} from "../../constants/strings";
-import {ErrorLabel} from "../Labels";
+import {articlesAdded, infoStrings} from "../../constants/strings";
+import {CorrectLabel, ErrorLabel} from "../Labels";
 import Counter from "../Counter";
 import {useState} from "react";
+import DeleteIcon from '@material-ui/icons/Delete';
 
 
 const CardArticle =({article})=> {
 
-    const [stop, setStop] = useState(false);
+    const [count, setCount] = useState(0)
+    const [added, setAdded] = useState(false)
 
     const useStyles = makeStyles({
         root: {
@@ -29,16 +31,28 @@ const CardArticle =({article})=> {
         icon:{
             color: "blue"
         },
+        deleteIcon:{
+          color: "red"
+        },
         actions:{
             display: "flex",
             justifyContent: "space-between",
         },
-        addToCart:{
+        actionToCart:{
             float: "right",
         },
     });
 
     const classes = useStyles();
+
+    const handleAddCart =()=>{
+        setAdded(true)
+    }
+
+    const handleDelete =()=>{
+        setCount(0)
+        setAdded(false)
+    }
 
     return(
         <Card className={classes.root}>
@@ -59,17 +73,34 @@ const CardArticle =({article})=> {
                 </CardContent>
             </CardActionArea>
             <CardActions className={classes.actions} >
-                <Counter
-                    limit={article.stock}
-                    setStop={setStop}
-                />
-                <div className={classes.addToCart}>
-                    <IconButton color="inherit" className={classes.addToCart}>
-                        <AddShoppingCartIcon className={classes.icon} />
-                    </IconButton>
-                </div>
+                {added
+                    ?
+                    <>
+                        <CorrectLabel
+                            text={articlesAdded(count)}
+                        />
+                        <div>
+                            <IconButton color="inherit" className={classes.actionToCart}>
+                                <DeleteIcon className={classes.deleteIcon} onClick={handleDelete}/>
+                            </IconButton>
+                        </div>
+                    </>
+                    :
+                    <>
+                        <Counter
+                            limit={article.stock}
+                            count={count}
+                            setCount={setCount}
+                        />
+                        <div>
+                            <IconButton color="inherit" className={classes.actionToCart}>
+                                <AddShoppingCartIcon className={classes.icon} onClick={handleAddCart}/>
+                            </IconButton>
+                        </div>
+                    </>
+                }
             </CardActions>
-            {stop
+            {count===article.stock && !added
                 ?
                 <ErrorLabel
                     text={infoStrings.stockOut}
