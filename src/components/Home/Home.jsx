@@ -1,4 +1,3 @@
-import '../CardsArticle/CartdArticle.css'
 import back from '../Images/back-ground.jpg';
 import CardArticle from "../CardsArticle/CardArticle";
 import React, {useEffect, useState} from "react";
