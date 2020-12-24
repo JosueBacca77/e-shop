@@ -4,6 +4,7 @@
 
 .home{
     padding: 10% 5% 3% 5%;
+
 }
 
 .article{
@@ -37,6 +38,7 @@
 .mainimage{
     height: 650px;
     width: 650px;
+    border: 1px solid black;
 }
 
 .detailArticle{
@@ -81,5 +83,3 @@ p{
     display: flex;
     justify-content: center;
 }
-
-

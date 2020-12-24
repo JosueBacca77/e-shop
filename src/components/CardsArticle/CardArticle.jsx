@@ -12,6 +12,7 @@ import {CorrectLabel, ErrorLabel} from "../Labels";
 import Counter from "../Counter";
 import {useState} from "react";
 import DeleteIcon from '@material-ui/icons/Delete';
+import GetPlural from "../../Utils";
 
 
 const CardArticle =({article})=> {
@@ -58,7 +59,7 @@ const CardArticle =({article})=> {
             <CardActionArea>
                 <CardMedia
                     className={classes.media}
-                    image={article.image}
+                    image={article.images[0]}
                     title={article.name}
                 />
                 <CardContent>
@@ -76,7 +77,7 @@ const CardArticle =({article})=> {
                     ?
                     <>
                         <CorrectLabel
-                            text={articlesAdded(count)}
+                            text={articlesAdded(count, article.unit,GetPlural(article.unit))}
                         />
                         <div>
                             <IconButton color="inherit" className={classes.actionToCart}>

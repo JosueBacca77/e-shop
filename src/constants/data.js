@@ -43,7 +43,7 @@ const temporalArticles = [
     },
     {
         name: 'Acometida',
-        images: acometida,
+        images: [acometida],
         description: 'Cable acometida negro, precio por metro',
         price: 35.99,
         unit: 'metro',
@@ -51,7 +51,7 @@ const temporalArticles = [
     },
     {
         name: 'Scot',
-        images: spot3,
+        images: [spot3],
         description: 'Spot fijo de 3 luces',
         price: 120.59,
         unit: 'unidad',
@@ -59,7 +59,7 @@ const temporalArticles = [
     },
     {
         name: 'Llave luz',
-        images: llaveluz,
+        images: [llaveluz],
         description: 'Dos llaves y un enchufe',
         price: 130.00,
         unit: 'unidad',
@@ -67,7 +67,7 @@ const temporalArticles = [
     },
     {
         name: 'Lámpara',
-        images: lampara,
+        images: [lampara],
         description: 'Lámpara bajo consumo 200W',
         price: 89.99,
         unit: 'unidad',
@@ -75,7 +75,7 @@ const temporalArticles = [
     },
     {
         name: 'Cable desnudo',
-        images: cabledes,
+        images: [cabledes],
         description: 'Cable desnudo, caja por 100 métros',
         price: 325.00,
         unit: 'metros',

@@ -1,16 +1,18 @@
 const infoStrings = {
-    stockOut: 'Ha agotado el stock del producto'
+    stockOut: 'Ha excedido el stock del producto'
 }
 
-const articlesAdded =(count)=>{
+const articlesAdded =(count,unit,pluralUnit)=>{
     if (count <= 0){
         return ""
     }
-    if (count===1){
-        return `Ha agregado ${count} unidad al carrito!`
+    if (count=="1"){
+        console.log("es 1")
+        console.log(unit)
+        return `Ha agregado ${count} ${unit} al carrito!`
     }
     else{
-        return `Ha agregado ${count} unidades al carrito!`
+        return `Ha agregado ${count} ${pluralUnit} al carrito!`
     }
 }
 
