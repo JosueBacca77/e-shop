@@ -108,7 +108,6 @@ const ArticleDetail =({article})=> {
                                         variant="outlined"
                                         margin="normal"
                                         label={`${GetPlural(article.unit)} a agregar al carrito`}
-                                        autoFocus
                                         onChange={handleChangeCount}
                                     />
 

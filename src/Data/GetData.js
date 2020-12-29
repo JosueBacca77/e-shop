@@ -1,4 +1,4 @@
-import {headings, temporalArticles} from '../constants/data'
+import {headings, temporalArticles} from './data'
 
 
 const getArticleById =(id)=>{

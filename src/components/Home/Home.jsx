@@ -1,7 +1,8 @@
 import back from '../Images/back-ground.jpg';
 import React, {useEffect, useState} from "react";
-import {temporalArticles} from "../../constants/data";
+import {temporalArticles} from "../../Data/data";
 import './Home.css'
+import '../../General.css'
 import {LinearIndeterminate} from "../Progress";
 import ArticleList from "../ArticleList";
 
@@ -26,7 +27,7 @@ const Home =()=> {
         <div className={articles.length>0?null:'container'} style={{
             backgroundImage: `url(${`${back}`})`,
         }}>
-            <div className='home'>
+            <div className='main-view'>
             {articles.length>0
                 ?
                 <ArticleList

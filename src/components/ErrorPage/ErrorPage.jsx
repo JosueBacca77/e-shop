@@ -1,5 +1,4 @@
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
-import React from "react";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const ErrorPage =({text})=>{
@@ -14,7 +13,7 @@ const ErrorPage =({text})=>{
     const classes = useStyles();
 
     return(
-        <div className='home'>
+        <div className='main-view'>
             <h1 className='title-not-found'>
                 <p>{text}</p>
                 <p ><SentimentVeryDissatisfiedIcon className={classes.icon} color='secondary' /></p>

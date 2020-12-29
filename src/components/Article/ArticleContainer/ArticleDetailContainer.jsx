@@ -41,7 +41,7 @@ const ArticleDetailContainer =()=>{
         <div className={ waiting ===false ?null:'container'} style={{
             backgroundImage: `url(${`${back}`})`,
         }}>
-            <div className='home'>
+            <div className='main-view'>
                 {
                     waiting ===true
                     ?
