@@ -1,3 +1,8 @@
+# electronic-Shop Project
+
+This is an e-Commerce where you can find electric articles,
+electrical installations resources, and a lot of kinds of products. 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +73,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# Author
+
+Josue Bacca
+email: josuemanuelbacca@gmail.com
+

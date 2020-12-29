@@ -1,13 +1,13 @@
 import './ArticleDetail.css'
-import back from "../components/Images/back-ground.jpg";
+import back from "../Images/back-ground.jpg";
 import React, {useState} from "react";
-import GetPlural from "../Utils";
+import GetPlural from "../../Utils";
 import TextField from "@material-ui/core/TextField";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import IconButton from "@material-ui/core/IconButton";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import {CorrectLabel, ErrorLabel} from "../components/Labels";
-import {articlesAdded, infoStrings} from "../constants/strings";
+import {CorrectLabel, ErrorLabel} from "../../components/Labels";
+import {articlesAdded, infoStrings} from "../../constants/strings";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 

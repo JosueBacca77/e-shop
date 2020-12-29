@@ -2,6 +2,12 @@ const infoStrings = {
     stockOut: 'Ha excedido el stock del producto'
 }
 
+const errorStrings = {
+    pageNotFound: 'Página no encontrada',
+    articleNotFound: 'Artículo no encontrado',
+    headingNotFound: 'Rubro no encontrado',
+}
+
 const articlesAdded =(count,unit,pluralUnit)=>{
     if (count <= 0){
         return ""
@@ -16,4 +22,4 @@ const articlesAdded =(count,unit,pluralUnit)=>{
     }
 }
 
-export {infoStrings,articlesAdded}
+export {infoStrings,articlesAdded,errorStrings}

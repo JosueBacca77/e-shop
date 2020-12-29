@@ -1,9 +1,9 @@
 import back from '../Images/back-ground.jpg';
-import CardArticle from "../CardsArticle/CardArticle";
 import React, {useEffect, useState} from "react";
 import {temporalArticles} from "../../constants/data";
 import './Home.css'
 import {LinearIndeterminate} from "../Progress";
+import ArticleList from "../ArticleList";
 
 
 const Home =()=> {
@@ -18,7 +18,7 @@ const Home =()=> {
     const getArticles = new Promise((resolve, reject) => {
         //reemplazar por llamada a backend
         setTimeout(() => {
-            resolve(temporalArticles);
+            resolve(temporalArticles.slice(0,6));
         }, 2000)
     })
 
@@ -29,18 +29,10 @@ const Home =()=> {
             <div className='home'>
             {articles.length>0
                 ?
-                <>
-                    <h1 className='subtitle'>Lo más buscado</h1>
-                    <div className='articles'>
-                        {articles.map(article => (
-                                <article>
-                                    {<CardArticle
-                                        article={article}
-                                    />}
-                                </article>
-                            ))}
-                    </div>
-                </>
+                <ArticleList
+                    articles={articles}
+                    title='Lo más buscado'
+                />
                 :
                 <LinearIndeterminate />
             }

@@ -13,6 +13,7 @@ import Counter from "../Counter";
 import {useState} from "react";
 import DeleteIcon from '@material-ui/icons/Delete';
 import GetPlural from "../../Utils";
+import {Link} from "react-router-dom";
 
 
 const CardArticle =({article})=> {
@@ -41,6 +42,9 @@ const CardArticle =({article})=> {
         actionToCart:{
             float: "right",
         },
+        name:{
+            color: "blue"
+        }
     });
 
     const classes = useStyles();
@@ -63,9 +67,11 @@ const CardArticle =({article})=> {
                     title={article.name}
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        {article.name}
-                    </Typography>
+                    <Link to={'/detail/'+article.id} >
+                        <Typography gutterBottom variant="h5" component="h2" className={classes.name} >
+                            {article.name}
+                        </Typography>
+                    </Link>
 
                     <Typography variant="body2" color="textSecondary" component="p" >
                         {article.description}
