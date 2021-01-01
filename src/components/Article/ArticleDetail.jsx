@@ -9,6 +9,8 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import {CorrectLabel, ErrorLabel} from "../../components/Labels";
 import {articlesAdded, infoStrings} from "../../constants/strings";
 import DeleteIcon from "@material-ui/icons/Delete";
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import {useHistory} from "react-router-dom";
 
 
 const ArticleDetail =({article})=> {
@@ -38,16 +40,26 @@ const ArticleDetail =({article})=> {
         setAdded(false)
     }
 
+    let history = useHistory();
+
+    const handleGoCart =()=>{
+        history.push("/cart")
+    }
+
     const useStyles = makeStyles({
         icon:{
             color: "blue"
         },
         cancelIcon:{
-            color: "red"
+            color: "red",
+            marginRight: 10,
         },
         actionToCart:{
             float: "right",
         },
+        cartIcon:{
+            color: "blue"
+        }
     });
 
     const classes = useStyles();
@@ -129,7 +141,9 @@ const ArticleDetail =({article})=> {
 
                                         <IconButton color="inherit" className={classes.actionToCart}>
                                             <DeleteIcon className={classes.cancelIcon} onClick={handleDelete}/>
+                                            <ShoppingCartIcon className={classes.cartIcon} onClick={handleGoCart}/>
                                         </IconButton>
+
                                     </>
                                     :null
                             }

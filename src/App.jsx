@@ -8,6 +8,7 @@ import {BrowserRouter,Switch, Route} from 'react-router-dom'
 import Heading from "./components/Headings/Heading";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 import {errorStrings} from "./constants/strings";
+import Cart from "./components/Cart/Cart";
 
 
 function App() {
@@ -27,6 +28,9 @@ function App() {
               </Route>
               <Route path='/detail/:id'>
                   <ArticleDetailContainer />
+              </Route>
+              <Route path='/cart'>
+                  <Cart />
               </Route>
               <Route path='*'>
                   <ErrorPage text={errorStrings.pageNotFound}/>
