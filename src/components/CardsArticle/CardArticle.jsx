@@ -7,19 +7,22 @@ import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import {articlesAdded, infoStrings} from "../../constants/strings";
-import {CorrectLabel, ErrorLabel} from "../Labels";
+import {articlesAdded, infoStrings} from "../General/constants/strings";
+import {CorrectLabel, ErrorLabel} from "../General/Labels";
 import Counter from "../Counter";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import DeleteIcon from '@material-ui/icons/Delete';
-import GetPlural from "../../Utils";
-import {Link} from "react-router-dom";
+import {GetPlural, VerifyContains} from "../../Utils";
+import {Link, useHistory} from "react-router-dom";
+import {Store} from "../../Store";
 
 
 const CardArticle =({article})=> {
 
     const [count, setCount] = useState(0)
     const [added, setAdded] = useState(false)
+    const [data, setData] = useContext(Store)
+    console.log(data)
 
     const useStyles = makeStyles({
         root: {
@@ -49,13 +52,24 @@ const CardArticle =({article})=> {
 
     const classes = useStyles();
 
-    const handleAddCart =()=>{
-        setAdded(true)
-    }
+    let history = useHistory();
 
-    const handleDelete =()=>{
-        setCount(0)
-        setAdded(false)
+    const handleAddCart =()=>{
+        if(count>0 && count <= article.stock ) {
+            setAdded(true)
+            //si no esta en el cart lo agrego
+            if (!VerifyContains(data, article)) {
+                setData([...data, {...article, 'count': parseInt(count)}])
+            } else {
+                //si esta sumo las unidades
+                data.map(art => {
+                    if (art.id == article.id) {
+                        art.count = parseInt(art.count) + parseInt(count)
+                    }
+                })
+            }
+            history.push("/cart")
+        }
     }
 
     return(
@@ -79,19 +93,7 @@ const CardArticle =({article})=> {
                 </CardContent>
             </CardActionArea>
             <CardActions className={classes.actions} >
-                {added
-                    ?
-                    <>
-                        <CorrectLabel
-                            text={articlesAdded(count, article.unit,GetPlural(article.unit))}
-                        />
-                        <div>
-                            <IconButton color="inherit" className={classes.actionToCart}>
-                                <DeleteIcon className={classes.deleteIcon} onClick={handleDelete}/>
-                            </IconButton>
-                        </div>
-                    </>
-                    :
+                {
                     <>
                         <Counter
                             limit={article.stock}

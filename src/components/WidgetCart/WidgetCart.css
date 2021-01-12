@@ -1,0 +1,18 @@
+.widgetCart {
+    height: 80vh;
+    width: 40%;
+    position: fixed;
+    bottom: 0;
+    background: var(--blanco);
+    z-index: 2;
+    box-shadow: -0.3rem 0 0.3rem rgba(0, 0, 0, 0.2);
+    transition: right 0.5s;
+}
+
+.close {
+    right: -40%;
+}
+
+.open {
+    right: 0;
+}

@@ -1,0 +1,74 @@
+.item{
+    background-color: var(--blanco);
+    border-radius: 5px;
+    padding-left: 1%;
+    margin-bottom: 5%;
+}
+
+.name{
+    color: var(--azul);
+}
+
+
+.descrip{
+    grid-row: 1;
+    grid-column: 1;
+}
+
+.count{
+    display: inline-block;
+    grid-row: 1;
+    grid-column: 2;
+    margin-right: 20px;
+}
+
+.content{
+    display: grid;
+    grid-template-columns: 92% 8%;
+    color: black;
+}
+
+.numberCircle {
+    display:inline-block;
+    line-height:0px;
+
+    border-radius:50%;
+    border:6px solid var(--azul);
+
+    font-size:32px;
+    background-color: var(--azul);
+    margin-bottom: 3px;
+    margin-top: 0;
+    text-align: right;
+
+}
+
+.numberCircle span {
+    display:inline-block;
+
+    padding-top:50%;
+    padding-bottom:50%;
+
+    margin-left:8px;
+    margin-right:8px;
+    color: var(--blanco);
+    text-align: right;
+    margin-top: 0;
+}
+
+.number-price{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.price{
+    display: inline-block;
+}
+
+.delete{
+    color: var(--rojo)
+}
+
+.edit{
+    color: var(--azul)
+}

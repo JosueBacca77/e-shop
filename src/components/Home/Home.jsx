@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import {temporalArticles} from "../../Data/data";
 import './Home.css'
 import '../../General.css'
-import {LinearIndeterminate} from "../Progress";
+import {LinearIndeterminate} from "../General/Progress";
 import ArticleList from "../ArticleList";
 
 

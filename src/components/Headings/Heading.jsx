@@ -1,11 +1,11 @@
 import back from '../Images/back-ground.jpg';
 import React, {useEffect, useState} from "react";
-import {LinearIndeterminate} from "../Progress";
+import {LinearIndeterminate} from "../General/Progress";
 import {useParams} from 'react-router-dom'
 import {getArticlesByHeading,getHeadingNameById} from "../../Data/GetData";
 import ArticleList from "../ArticleList";
-import ErrorPage from "../ErrorPage/ErrorPage";
-import {errorStrings} from "../../constants/strings";
+import ErrorPage from "../General/ErrorPage/ErrorPage";
+import {errorStrings} from "../General/constants/strings";
 
 
 const Heading =()=> {

@@ -4,7 +4,7 @@ import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import {IconBadge} from "./Icons/Icon";
+import {IconBadge} from "./General/Icons/Icon";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function SearchAppBar() {
+export default function SearchAppBar({cart, action}) {
     const classes = useStyles();
 
     return (
@@ -73,7 +73,7 @@ export default function SearchAppBar() {
                             inputProps={{ "aria-label": "search" }}
                         />
                     </div>
-                    <IconBadge count={4} icon={<ShoppingCartIcon className='iconWhite' />} />
+                    <IconBadge count={cart.length} icon={<ShoppingCartIcon className='iconWhite' />} action={action}/>
                 </Toolbar>
         </div>
     );

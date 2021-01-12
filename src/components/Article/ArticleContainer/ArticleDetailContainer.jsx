@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
 import ArticleDetail from "../ArticleDetail";
-import {LinearIndeterminate} from "../../Progress";
+import {LinearIndeterminate} from "../../General/Progress";
 import back from "../../Images/back-ground.jpg";
 import {getArticleById} from "../../../Data/GetData";
 import {useParams} from 'react-router-dom'
-import {errorStrings} from "../../../constants/strings";
-import ErrorPage from "../../ErrorPage/ErrorPage";
+import {errorStrings} from "../../General/constants/strings";
+import ErrorPage from "../../General/ErrorPage/ErrorPage";
 
 
 const ArticleDetailContainer =()=>{
