@@ -13,8 +13,6 @@ const articlesAdded =(count,unit,pluralUnit)=>{
         return ""
     }
     if (count=="1"){
-        console.log("es 1")
-        console.log(unit)
         return `Ha agregado ${count} ${unit} al carrito!`
     }
     else{

@@ -6,8 +6,7 @@ import React, {useContext, useState} from "react";
 import '../../General.css'
 import ModifyCountCart from "../ModifyCountCart";
 import {Store} from "../../Store";
-import {getArticleById} from "../../Data/GetData";
-import {GetTotalCart} from "./Utils";
+import {Acumulator} from "../../Utils";
 
 
 
@@ -20,23 +19,21 @@ const ItemCart =({article, onDelete})=> {
     const [data, setData] = useContext(Store)
 
     const handleAddCart =()=> {
-/*        setData(
-            data.map(art => {
-                if (art.id == article.id){
-                    art.count = parseInt(countAdded)
+            setData(
+                {
+                    'items':data.items= data.items.map(art => {
+
+                        if (art.id == article.id) {
+                            return  {...art,'count':parseInt(countAdded)}
+                            //art.count = parseInt(art.count) + parseInt(countAdded)
+                        }else{
+                            return {...art}
+                        }
+                    })
                 }
-            })
-        )*/
-        setData(
-            {
-                'items': data.map(art => {
-                    if (art.id == article.id){
-                        art.count = parseInt(art.count) + parseInt(countAdded)
-                    }
-                }),
-                'total': GetTotalCart(data.items)
-            }
-        )
+
+            )
+        setData({...data,'total':data.items.reduce(Acumulator,0).toFixed(2)})
 
     }
 
@@ -49,7 +46,7 @@ const ItemCart =({article, onDelete})=> {
     }
 
     return(
-        <article className='item'>
+        <article key={article.id} className='item'>
             <section className='head'>
                 <h2 className='subtitle name'>{article.name}</h2>
                 <section className='right-content' >
@@ -89,7 +86,7 @@ const ItemCart =({article, onDelete})=> {
                     <span className='numberCircle '>
                         <span>
                             {
-                                data.find(item=>item.id == article.id).count
+                                data.items.find(item=>item.id == article.id).count
                             }
                         </span>
                     </span>

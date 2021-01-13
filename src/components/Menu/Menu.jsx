@@ -32,7 +32,7 @@ const Menu =({headings})=> {
                         <a className='title'>electronic-Shop</a>
                     </Link>
                     <div className='inputs'>
-                        <SearchAppBar cart={data} action={goCart} />
+                        <SearchAppBar action={goCart} />
                         <nav >
                             <ul>
                                 {headings.map(rubro => (

@@ -4,7 +4,9 @@ import back from "../Images/back-ground.jpg";
 import {Store} from "../../Store/index";
 import ItemCart from "./ItemCart";
 import lightGreen from "@material-ui/core/colors/lightGreen";
-import {GetTotalCart} from "./Utils";
+import {Acumulator} from "../../Utils";
+
+
 
 const Cart =()=>{
 
@@ -12,10 +14,16 @@ const Cart =()=>{
 
     const onDelete =(item)=>{
         setData(
-        data.filter((it, index, arr)=>{
-            return it.id !== item.id;
-        })
-    )
+            {...data,
+                'items':data.items=
+                    data.items.filter((it, index, arr)=>{
+                    return it.id !== item.id;
+                })
+            }
+            )
+
+        //setData({...data,'total':data.items.reduce(Acumulator,0)})
+        setData({...data,'total':data.items.reduce(Acumulator,0).toFixed(2)})
     }
 
     return(
@@ -24,7 +32,7 @@ const Cart =()=>{
         }}>
             <div className='main-view'>
                 {
-                    data.length === 0
+                    data.items.length === 0
                         ?
                         <h1 className='subtitle'>El carrito está vacío por el momento...</h1>
                         :
@@ -32,7 +40,7 @@ const Cart =()=>{
                         <div className='head'>
                             <h1 className='subtitle'>Mi Carrito</h1>
                             <span className='right-content' style={{'color': lightGreen['A700']}}>
-                                {`$  ${GetTotalCart(data.items)}`}
+                                {`$  ${data.total}`}
                             </span>
                         </div>
                         {

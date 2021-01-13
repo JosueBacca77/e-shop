@@ -7,12 +7,11 @@ import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import {articlesAdded, infoStrings} from "../General/constants/strings";
-import {CorrectLabel, ErrorLabel} from "../General/Labels";
+import { infoStrings} from "../General/constants/strings";
+import {ErrorLabel} from "../General/Labels";
 import Counter from "../Counter";
 import {useContext, useState} from "react";
-import DeleteIcon from '@material-ui/icons/Delete';
-import {GetPlural, VerifyContains} from "../../Utils";
+import {Acumulator ,VerifyContains} from "../../Utils";
 import {Link, useHistory} from "react-router-dom";
 import {Store} from "../../Store";
 
@@ -22,7 +21,7 @@ const CardArticle =({article})=> {
     const [count, setCount] = useState(0)
     const [added, setAdded] = useState(false)
     const [data, setData] = useContext(Store)
-    console.log(data)
+
 
     const useStyles = makeStyles({
         root: {
@@ -58,15 +57,21 @@ const CardArticle =({article})=> {
         if(count>0 && count <= article.stock ) {
             setAdded(true)
             //si no esta en el cart lo agrego
-            if (!VerifyContains(data, article)) {
-                setData([...data, {...article, 'count': parseInt(count)}])
-            } else {
+            if (VerifyContains(data.items,article)){
                 //si esta sumo las unidades
-                data.map(art => {
-                    if (art.id == article.id) {
-                        art.count = parseInt(art.count) + parseInt(count)
-                    }
-                })
+                setData(
+                    data.items= data.items.map(art => {
+                        if (art.id == article.id) {
+                            art.count = parseInt(art.count) + parseInt(count)
+                        }
+                    })
+                )
+                setData(data.total=data.items.reduce(Acumulator,0).toFixed(2))
+            }else{
+                //si no esta lo sumo al cart
+                setData(data.items.push({...article,'count':parseInt(count)}))
+                //ahora actualizo total
+                setData({...data,'total':data.items.reduce(Acumulator,0).toFixed(2)})
             }
             history.push("/cart")
         }

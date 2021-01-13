@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import Toolbar from "@material-ui/core/Toolbar";
 import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import {IconBadge} from "./General/Icons/Icon";
+import {Store} from "../Store";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -53,8 +54,10 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function SearchAppBar({cart, action}) {
+export default function SearchAppBar({action}) {
     const classes = useStyles();
+
+    const [data, setData] = useContext(Store);
 
     return (
         <div className={classes.root}>
@@ -73,7 +76,7 @@ export default function SearchAppBar({cart, action}) {
                             inputProps={{ "aria-label": "search" }}
                         />
                     </div>
-                    <IconBadge count={cart.length} icon={<ShoppingCartIcon className='iconWhite' />} action={action}/>
+                    <IconBadge count={data.items.length} icon={<ShoppingCartIcon className='iconWhite' />} action={action}/>
                 </Toolbar>
         </div>
     );
