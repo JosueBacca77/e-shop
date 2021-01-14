@@ -3,9 +3,7 @@ import '../../General.css'
 import back from "../Images/back-ground.jpg";
 import {Store} from "../../Store/index";
 import ItemCart from "./ItemCart";
-import lightGreen from "@material-ui/core/colors/lightGreen";
-import {Acumulator} from "../../Utils";
-
+import {DeleteItemCart, UpdateTotalCart} from "../../Store/ManageContext";
 
 
 const Cart =()=>{
@@ -13,17 +11,8 @@ const Cart =()=>{
     const [data, setData] = useContext(Store);
 
     const onDelete =(item)=>{
-        setData(
-            {...data,
-                'items':data.items=
-                    data.items.filter((it, index, arr)=>{
-                    return it.id !== item.id;
-                })
-            }
-            )
-
-        //setData({...data,'total':data.items.reduce(Acumulator,0)})
-        setData({...data,'total':data.items.reduce(Acumulator,0).toFixed(2)})
+        DeleteItemCart(item.id,data,setData)
+        UpdateTotalCart(data,setData)
     }
 
     return(
@@ -32,14 +21,14 @@ const Cart =()=>{
         }}>
             <div className='main-view'>
                 {
-                    data.items.length === 0
+                    data.items !== undefined && data.items.length === 0
                         ?
                         <h1 className='subtitle'>El carrito está vacío por el momento...</h1>
                         :
                         <>
                         <div className='head'>
                             <h1 className='subtitle'>Mi Carrito</h1>
-                            <span className='right-content' style={{'color': lightGreen['A700']}}>
+                            <span className='right-content general-price' >
                                 {`$  ${data.total}`}
                             </span>
                         </div>

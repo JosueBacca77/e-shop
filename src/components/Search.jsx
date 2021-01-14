@@ -76,7 +76,13 @@ export default function SearchAppBar({action}) {
                             inputProps={{ "aria-label": "search" }}
                         />
                     </div>
-                    <IconBadge count={data.items.length} icon={<ShoppingCartIcon className='iconWhite' />} action={action}/>
+                    {
+                        data.items !== undefined
+                        ?
+                            <IconBadge count={data.items.length} icon={<ShoppingCartIcon className='iconWhite' onClick={action} />}  />
+                            :
+                            null
+                    }
                 </Toolbar>
         </div>
     );

@@ -19,10 +19,6 @@ const Menu =({headings})=> {
         setShowWidgetCart(!showWidgetCart);
     }
 
-    const goCart=()=>{
-        history.push("/cart")
-    }
-
     return(
         <>
             <header>
@@ -32,12 +28,13 @@ const Menu =({headings})=> {
                         <a className='title'>electronic-Shop</a>
                     </Link>
                     <div className='inputs'>
-                        <SearchAppBar action={goCart} />
+                        <SearchAppBar action={openWidgetCart}/>
                         <nav >
                             <ul>
                                 {headings.map(rubro => (
                                     <NavBarItem name={rubro.name} url={rubro.url} />
                                 ))}
+                                {<NavBarItem name='Mi Carrito' url='/cart' />}
                             </ul>
                         </nav>
                     </div>

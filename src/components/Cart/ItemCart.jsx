@@ -6,7 +6,7 @@ import React, {useContext, useState} from "react";
 import '../../General.css'
 import ModifyCountCart from "../ModifyCountCart";
 import {Store} from "../../Store";
-import {Acumulator} from "../../Utils";
+import {ReplaceItemCart, UpdateTotalCart} from "../../Store/ManageContext";
 
 
 
@@ -19,22 +19,10 @@ const ItemCart =({article, onDelete})=> {
     const [data, setData] = useContext(Store)
 
     const handleAddCart =()=> {
-            setData(
-                {
-                    'items':data.items= data.items.map(art => {
-
-                        if (art.id == article.id) {
-                            return  {...art,'count':parseInt(countAdded)}
-                            //art.count = parseInt(art.count) + parseInt(countAdded)
-                        }else{
-                            return {...art}
-                        }
-                    })
-                }
-
-            )
-        setData({...data,'total':data.items.reduce(Acumulator,0).toFixed(2)})
-
+        //reemplazo cantidad del item
+        ReplaceItemCart(article.id,countAdded,data,setData)
+        //actualizo total carrito
+        UpdateTotalCart(data,setData)
     }
 
     const handleChangeCount =(e)=> {

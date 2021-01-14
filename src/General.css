@@ -22,11 +22,15 @@
 .right-content{
     grid-column: 2;
     font-size: 2rem;
-    font-weight: bold;
     text-align: right;
 }
 .add-to-cart{
     display: flex;
     justify-content: center;
+}
+
+.general-price{
+    color: var(--verde);
+    font-weight: bold;
 }
 

@@ -11,9 +11,10 @@ import { infoStrings} from "../General/constants/strings";
 import {ErrorLabel} from "../General/Labels";
 import Counter from "../Counter";
 import {useContext, useState} from "react";
-import {Acumulator ,VerifyContains} from "../../Utils";
+import {VerifyContains} from "../../Utils";
 import {Link, useHistory} from "react-router-dom";
 import {Store} from "../../Store";
+import {AddItemToCart, ModifyCountItem, UpdateTotalCart} from "../../Store/ManageContext";
 
 
 const CardArticle =({article})=> {
@@ -56,22 +57,17 @@ const CardArticle =({article})=> {
     const handleAddCart =()=>{
         if(count>0 && count <= article.stock ) {
             setAdded(true)
-            //si no esta en el cart lo agrego
+            //si esta en el cart sumo unidades
             if (VerifyContains(data.items,article)){
                 //si esta sumo las unidades
-                setData(
-                    data.items= data.items.map(art => {
-                        if (art.id == article.id) {
-                            art.count = parseInt(art.count) + parseInt(count)
-                        }
-                    })
-                )
-                setData(data.total=data.items.reduce(Acumulator,0).toFixed(2))
+                ModifyCountItem(article.id, count,data,setData)
+                //actualizo total carrito
+                UpdateTotalCart(data,setData)
             }else{
                 //si no esta lo sumo al cart
-                setData(data.items.push({...article,'count':parseInt(count)}))
-                //ahora actualizo total
-                setData({...data,'total':data.items.reduce(Acumulator,0).toFixed(2)})
+                AddItemToCart(article,count,data,setData)
+                //actualizo total carrito
+                UpdateTotalCart(data,setData)
             }
             history.push("/cart")
         }
