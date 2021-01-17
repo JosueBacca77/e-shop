@@ -6,11 +6,13 @@ import {getArticleById} from "../../../Data/GetData";
 import {useParams} from 'react-router-dom'
 import {errorStrings} from "../../General/constants/strings";
 import ErrorPage from "../../General/ErrorPage/ErrorPage";
+import {getFireStore} from "../../../Data";
 
 
 const ArticleDetailContainer =()=>{
 
     const {id} = useParams();
+    const db = getFireStore()
     const [waiting,setWaiting] = useState(true)
     const [article, setArticle] = useState( {
         name: '',
@@ -21,22 +23,27 @@ const ArticleDetailContainer =()=>{
         stock: ''
     })
 
-    useEffect(() => {
-        getArticles
-            .then(
-                function(art){
-                    setArticle(art);
+    const getArticle =()=>{
+        db.collection('Articles').doc(id).get()
+            .then(function(doc) {
+                if (doc.exists) {
+                    setArticle(doc.data());
+                    console.log("doc.data")
+                    console.log(doc.data())
                     setWaiting(false)
-                } );
+                } else {
+                    console.log("El artículo no existe");
+                }
+            }).catch(function(error) {
+            console.log("Error en búsqueda de artículo: ", error);
+        });
+    }
+
+    useEffect(() => {
+        getArticle()
     }, []);
 
 
-    const getArticles = new Promise((resolve, reject) => {
-        //reemplazar por llamada a backend
-        setTimeout(() => {
-            resolve(getArticleById(id));
-        }, 2000)
-    })
     return(
         <div className={ waiting ===false ?null:'container'} style={{
             backgroundImage: `url(${`${back}`})`,
@@ -52,14 +59,12 @@ const ArticleDetailContainer =()=>{
                 {
                       article.name !== undefined && waiting === false
                         ?
-                        <ArticleDetail
-                            article={article}
-                        />
+                        <ArticleDetail article={article} />
                         :
                           null
                 }
                 {
-                    waiting === false && article.name ===undefined
+                    waiting === false && article.name === undefined
                     ?
                         <ErrorPage text={errorStrings.articleNotFound}/>
                         :null

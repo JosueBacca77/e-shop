@@ -55,7 +55,7 @@ const CardArticle =({article})=> {
     let history = useHistory();
 
     const handleAddCart =()=>{
-        if(count>0 && count <= article.stock ) {
+        if(count>0 && count <= article.data.stock ) {
             setAdded(true)
             //si esta en el cart sumo unidades
             if (VerifyContains(data.items,article)){
@@ -78,18 +78,18 @@ const CardArticle =({article})=> {
             <CardActionArea>
                 <CardMedia
                     className={classes.media}
-                    image={article.images[0]}
-                    title={article.name}
+                   // image={article.images[0]}
+                    title={article.data.name}
                 />
                 <CardContent>
                     <Link to={'/detail/'+article.id} >
                         <Typography gutterBottom variant="h5" component="h2" className={classes.name} >
-                            {article.name}
+                            {article.data.name}
                         </Typography>
                     </Link>
 
                     <Typography variant="body2" color="textSecondary" component="p" >
-                        {article.description}
+                        {article.data.description}
                     </Typography>
                 </CardContent>
             </CardActionArea>
@@ -97,7 +97,7 @@ const CardArticle =({article})=> {
                 {
                     <>
                         <Counter
-                            limit={article.stock}
+                            limit={article.data.stock}
                             count={count}
                             setCount={setCount}
                         />
@@ -109,7 +109,7 @@ const CardArticle =({article})=> {
                     </>
                 }
             </CardActions>
-            {count===article.stock && !added
+            {count===article.data.stock && !added
                 ?
                 <ErrorLabel
                     text={infoStrings.stockOut}

@@ -1,6 +1,6 @@
 import './ArticleDetail.css'
 import back from "../Images/back-ground.jpg";
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {GetPlural, VerifyContains} from "../../Utils";
 import {useHistory} from "react-router-dom";
 import {Store} from "../../Store";
@@ -10,9 +10,12 @@ import {AddItemToCart, ModifyCountItem, UpdateTotalCart} from "../../Store/Manag
 
 const ArticleDetail =({article})=> {
 
+    console.log("article en detail")
+    console.log(article)
+
     let history = useHistory();
 
-    const [selectedImage, setSelectedImage] = useState(article.images[0])
+    //const [selectedImage, setSelectedImage] = useState(article.images[0])
 
     const [added, setAdded] = useState(false)
 
@@ -21,7 +24,7 @@ const ArticleDetail =({article})=> {
     const [data, setData] = useContext(Store)
 
     const handleChangeImage =(image)=> {
-        setSelectedImage(image)
+        //setSelectedImage(image)
     }
 
     const handleAddCart =()=> {
@@ -55,11 +58,11 @@ const ArticleDetail =({article})=> {
         }}>
             <article className='article'>
                 <div className='info'>
-                    <section className='images'>
+                    {/*<section className='images'>
                         <ul>
-                            {article.images.length >0
+                            {article.data.images.length >0
                                 ?
-                                article.images.map(ima => (
+                                article.data.images.map(ima => (
                                     <li>
                                         <img className={selectedImage==ima
                                             ?'selectedImage':'image'}
@@ -76,7 +79,7 @@ const ArticleDetail =({article})=> {
                             src={selectedImage}
                             alt='hola'
                             className='mainimage'/>
-                    </section>
+                    </section>*/}
                     <section className='detailArticle'>
                         <h1 className='articleName'>
                             {article.name}
