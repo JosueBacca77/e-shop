@@ -19,10 +19,12 @@ const ItemCart =({article, onDelete})=> {
     const [data, setData] = useContext(Store)
 
     const handleAddCart =()=> {
-        //reemplazo cantidad del item
-        ReplaceItemCart(article.id,countAdded,data,setData)
-        //actualizo total carrito
-        UpdateTotalCart(data,setData)
+        if(countAdded <= article.data.stock){
+            //reemplazo cantidad del item
+            ReplaceItemCart(article.id,countAdded,data,setData)
+            //actualizo total carrito
+            UpdateTotalCart(data,setData)
+        }
     }
 
     const handleChangeCount =(e)=> {
@@ -36,7 +38,7 @@ const ItemCart =({article, onDelete})=> {
     return(
         <article key={article.id} className='item'>
             <section className='head'>
-                <h2 className='subtitle name'>{article.name}</h2>
+                <h2 className='subtitle name'>{article.data.name}</h2>
                 <section className='right-content' >
                     {
                         adding
@@ -64,10 +66,10 @@ const ItemCart =({article, onDelete})=> {
             <div className='content'>
                 <div className='descrip'>
                     <div>
-                        {article.description}
+                        {article.data.description}
                     </div>
                     <div className='price'>
-                        <span> $  </span><span className='number-price'>{article.price}</span>
+                        <span> $  </span><span className='number-price'>{article.data.price}</span>
                     </div>
                 </div>
                 <div className='count'>

@@ -1,4 +1,3 @@
-import back from '../Images/back-ground.jpg';
 import React, {useEffect, useState} from "react";
 import './Home.css'
 import '../../General.css'
@@ -32,17 +31,9 @@ const Home =()=> {
         getArticles();
     }, []);
 
-
-/*    const getArticles = new Promise((resolve, reject) => {
-        //reemplazar por llamada a backend
-        setTimeout(() => {
-            resolve(temporalArticles.slice(0,6));
-        }, 2000)
-    })*/
-
     return(
         <div className={articles.length>0?null:'container'} style={{
-            backgroundImage: `url(${`${back}`})`,
+            backgroundImage: `url(${`${'/Images/back-ground.jpg'}`})`,
         }}>
             <div className='main-view'>
             {articles.length>0

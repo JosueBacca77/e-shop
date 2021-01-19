@@ -15,6 +15,6 @@ const VerifyContains =(data,item)=>{
     }
 }
 
-const Acumulator = (acc, obj)=> { return acc + obj.price * obj.count };
+const Acumulator = (acc, obj)=> { return acc + obj.data.price * obj.count };
 
 export {GetPlural, VerifyContains,Acumulator};

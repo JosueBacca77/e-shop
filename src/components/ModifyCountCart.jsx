@@ -8,7 +8,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import {ErrorLabel} from "./General/Labels";
 import {infoStrings} from "./General/constants/strings";
 
-const ModifyCountCart =({article,handleChangeCount,handleAddCart,handleClose=null,countAdded})=>{
+const ModifyCountCart =({article,handleChangeCount,handleAddCart,handleClose,countAdded})=>{
 
     const useStyles = makeStyles({
         icon:{
@@ -52,7 +52,7 @@ const ModifyCountCart =({article,handleChangeCount,handleAddCart,handleClose=nul
             }
         </article>
         <div style={{'marginRight':'10%'}}>
-            {countAdded>article.stock
+            {countAdded>article.data.stock
                 ?
                 <ErrorLabel
                     text={infoStrings.stockOut}

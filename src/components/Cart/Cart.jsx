@@ -1,6 +1,5 @@
 import React, {useContext} from "react";
 import '../../General.css'
-import back from "../Images/back-ground.jpg";
 import {Store} from "../../Store/index";
 import ItemCart from "./ItemCart";
 import {DeleteItemCart, UpdateTotalCart} from "../../Store/ManageContext";
@@ -17,7 +16,7 @@ const Cart =()=>{
 
     return(
         <div className='container' style={{
-            backgroundImage: `url(${`${back}`})`,
+            backgroundImage: `url(${`${'/Images/back-ground.jpg'}`})`,
         }}>
             <div className='main-view'>
                 {

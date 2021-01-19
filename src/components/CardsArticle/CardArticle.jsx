@@ -22,6 +22,8 @@ const CardArticle =({article})=> {
     const [count, setCount] = useState(0)
     const [added, setAdded] = useState(false)
     const [data, setData] = useContext(Store)
+    console.log('el article')
+    console.log(article)
 
 
     const useStyles = makeStyles({
@@ -78,7 +80,7 @@ const CardArticle =({article})=> {
             <CardActionArea>
                 <CardMedia
                     className={classes.media}
-                   // image={article.images[0]}
+                    image={`/Images/${article.data.images[0]}`}
                     title={article.data.name}
                 />
                 <CardContent>

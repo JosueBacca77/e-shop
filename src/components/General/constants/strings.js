@@ -6,6 +6,7 @@ const errorStrings = {
     pageNotFound: 'Página no encontrada',
     articleNotFound: 'Artículo no encontrado',
     headingNotFound: 'Rubro no encontrado',
+    headingArticlesNotFound: 'No se han encontrado artículos pertenecientes a este rubro',
 }
 
 const articlesAdded =(count,unit,pluralUnit)=>{

@@ -2,22 +2,48 @@ import './Menu.css';
 import SearchAppBar from "../Search";
 import NavBarItem from "./NavBarItem/NavBarItem";
 import {Link, useHistory} from "react-router-dom";
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {Store} from "../../Store";
 import WidgetCart from "../WidgetCart/WidgetCart";
+import {getFireStore} from "../../Data";
 
 
-const Menu =({headings})=> {
+const Menu =()=> {
 
     let history = useHistory();
 
     const [data, setData] = useContext(Store);
+
+    const db = getFireStore()
+
+    const [headings, setHeadings] = useState([])
 
     const [showWidgetCart, setShowWidgetCart] = useState(false);
 
     const openWidgetCart = () => {
         setShowWidgetCart(!showWidgetCart);
     }
+
+    const getHeadings = () =>{
+        db.collection('Headings').get()
+            .then(heads => {
+                let arr = [];
+                heads.forEach(head => {
+                    arr.push({
+                        id: head.id,
+                        data: head.data()
+                    })
+                })
+                setHeadings(arr)
+                console.log('headings')
+                console.log(arr)
+            })
+            .catch(error => console.log(`Error en la búsqueda de rubros, ${error}`))
+    }
+
+    useEffect(() => {
+        getHeadings()
+    }, []);
 
     return(
         <>
@@ -29,14 +55,19 @@ const Menu =({headings})=> {
                     </Link>
                     <div className='inputs'>
                         <SearchAppBar action={openWidgetCart}/>
-                        <nav >
-                            <ul>
-                                {headings.map(rubro => (
-                                    <NavBarItem name={rubro.name} url={rubro.url} />
-                                ))}
-                                {<NavBarItem name='Mi Carrito' url='/cart' />}
-                            </ul>
-                        </nav>
+                        {
+                            headings.length >0
+                            ?<nav >
+                                    <ul>
+                                        {headings.map(rubro => (
+                                            <NavBarItem name={rubro.data.name} url={`/heading/${rubro.data.name}`} />
+                                        ))}
+                                        {<NavBarItem name='Mi Carrito' url='/cart' />}
+                                    </ul>
+                                </nav>
+                                :null
+                        }
+
                     </div>
                 </div>
             </header>

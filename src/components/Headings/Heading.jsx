@@ -1,61 +1,55 @@
-import back from '../Images/back-ground.jpg';
 import React, {useEffect, useState} from "react";
 import {LinearIndeterminate} from "../General/Progress";
 import {useParams} from 'react-router-dom'
-import {getArticlesByHeading,getHeadingNameById} from "../../Data/GetData";
 import ArticleList from "../ArticleList";
 import ErrorPage from "../General/ErrorPage/ErrorPage";
 import {errorStrings} from "../General/constants/strings";
+import {getFireStore} from "../../Data";
+
 
 
 const Heading =()=> {
 
     const [waiting,setWaiting] = useState(true)
-    const {id} = useParams();
+    const {name} = useParams();
+    const db = getFireStore()
     const [articles, setArticles] = useState([])
-    const [name, setName] = useState("")
 
     useEffect(() => {
-        setName("")
-        setArticles([])
-        setWaiting(true)
-        getName.then(name => setName(name));
-        getHeading
-            .then(
-                function(art){
-                    setArticles(art);
-                    setWaiting(false)
-                } );
-    }, [id]);
+        getHeadingArticles();
 
-    const getName = new Promise((resolve, reject) => {
-        //reemplazar por llamada a backend
-        setTimeout(() => {
-            resolve(getHeadingNameById(id));
-        }, 1000)
-    })
+    }, [name]);
 
-    const getHeading = new Promise((resolve, reject) => {
-        //reemplazar por llamada a backend
-        setTimeout(() => {
-            resolve(getArticlesByHeading(id));
-        }, 2000)
-    })
+    const getHeadingArticles = () =>{
+        db.collection('Articles').where('stock','>',0).where('heading','==',name).get()
+            .then(arts => {
+                let arr = [];
+                arts.forEach(art => {
+                    arr.push({
+                        id: art.id,
+                        data: art.data()
+                    })
+                })
+                setArticles(arr)
+                setWaiting(false)
+            })
+            .catch(error => console.log(`Error en la búsqueda de productos del rubro: ${name} , ${error}`))
+    }
 
     return(
-        <div className={ waiting ===false ?null:'container'} style={{
-            backgroundImage: `url(${`${back}`})`,
+        <div className={ waiting === false ?null:'container'} style={{
+            backgroundImage: `url(${`${'/Images/back-ground.jpg'}`})`,
         }}>
             <div className='main-view'>
                 {
-                    waiting ===true
+                    waiting === true
                         ?
                         <LinearIndeterminate />
                         :
                         null
                 }
                 {
-                    articles.length>0 && waiting ===false
+                    articles.length>0 && waiting === false
                         ?
                         <ArticleList
                             articles={articles}
@@ -65,9 +59,9 @@ const Heading =()=> {
                         null
                 }
                 {
-                    waiting === false && name ===''
+                    waiting === false && articles.length ===0
                         ?
-                        <ErrorPage text={errorStrings.headingNotFound}/>
+                        <ErrorPage text={errorStrings.headingArticlesNotFound}/>
                         :null
                 }
             </div>

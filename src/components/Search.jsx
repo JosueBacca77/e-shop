@@ -77,7 +77,7 @@ export default function SearchAppBar({action}) {
                         />
                     </div>
                     {
-                        data.items !== undefined
+                        data.items.length >0
                         ?
                             <IconBadge count={data.items.length} icon={<ShoppingCartIcon className='iconWhite' onClick={action} />}  />
                             :

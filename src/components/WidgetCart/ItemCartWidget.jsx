@@ -12,10 +12,10 @@ const ItemCartWidget =({article})=>{
             <div className='content-widget'>
                 <div className='descrip'>
                     <div>
-                        {article.name}
+                        {article.data.name}
                     </div>
                     <div className='price'>
-                        <span> $  </span><span className='number-price'>{article.price}</span>
+                        <span> $  </span><span className='number-price'>{article.data.price}</span>
                     </div>
                 </div>
                 <div className='count-widget'>

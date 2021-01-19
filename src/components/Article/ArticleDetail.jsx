@@ -1,6 +1,5 @@
 import './ArticleDetail.css'
-import back from "../Images/back-ground.jpg";
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useState} from "react";
 import {GetPlural, VerifyContains} from "../../Utils";
 import {useHistory} from "react-router-dom";
 import {Store} from "../../Store";
@@ -15,7 +14,7 @@ const ArticleDetail =({article})=> {
 
     let history = useHistory();
 
-    //const [selectedImage, setSelectedImage] = useState(article.images[0])
+    const [selectedImage, setSelectedImage] = useState(article.data.images[0])
 
     const [added, setAdded] = useState(false)
 
@@ -24,11 +23,11 @@ const ArticleDetail =({article})=> {
     const [data, setData] = useContext(Store)
 
     const handleChangeImage =(image)=> {
-        //setSelectedImage(image)
+        setSelectedImage(image)
     }
 
     const handleAddCart =()=> {
-        if(countAdded>0 && countAdded <= article.stock ){
+        if(countAdded>0 && countAdded <= article.data.stock ){
             setAdded(true)
             //si esta en el cart sumo las unidades
             if (VerifyContains(data.items,article)){
@@ -54,11 +53,11 @@ const ArticleDetail =({article})=> {
         <div
             className='container'
             style={{
-                backgroundImage: `url(${`${back}`})`,
+                backgroundImage: `url(${`${'/Images/back-ground.jpg'}`})`,
         }}>
             <article className='article'>
                 <div className='info'>
-                    {/*<section className='images'>
+                    <section className='images'>
                         <ul>
                             {article.data.images.length >0
                                 ?
@@ -66,7 +65,7 @@ const ArticleDetail =({article})=> {
                                     <li>
                                         <img className={selectedImage==ima
                                             ?'selectedImage':'image'}
-                                             src={ima} alt='hola'
+                                             src={`/Images/${ima}`} alt='hola'
                                              onClick={()=>handleChangeImage(ima)}
                                         />
                                     </li>
@@ -76,24 +75,24 @@ const ArticleDetail =({article})=> {
                     </section>
                     <section >
                         <img
-                            src={selectedImage}
-                            alt='hola'
+                            src={`/Images/${selectedImage}`}
+                            alt={article.data.name}
                             className='mainimage'/>
-                    </section>*/}
+                    </section>
                     <section className='detailArticle'>
                         <h1 className='articleName'>
-                            {article.name}
+                            {article.data.name}
                         </h1>
                         <div className='price'>
-                            <h2>{`$ ${article.price}`}</h2>
-                            <span>{`c/${article.unit}`}</span>
+                            <h2>{`$ ${article.data.price}`}</h2>
+                            <span>{`c/${article.data.unit}`}</span>
                         </div>
                         <p>
-                            {article.description}
+                            {article.data.description}
                         </p>
                         <div className='price'>
                             <p>Stock disponible:</p>
-                            <span style={{'fontWeight':'bold'}}>{`${article.stock} ${GetPlural(article.unit)}`}</span>
+                            <span style={{'fontWeight':'bold'}}>{`${article.data.stock} ${GetPlural(article.data.unit)}`}</span>
                         </div>
                         <br/>
 

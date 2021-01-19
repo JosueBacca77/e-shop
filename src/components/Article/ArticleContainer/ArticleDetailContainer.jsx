@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from "react";
 import ArticleDetail from "../ArticleDetail";
 import {LinearIndeterminate} from "../../General/Progress";
-import back from "../../Images/back-ground.jpg";
-import {getArticleById} from "../../../Data/GetData";
 import {useParams} from 'react-router-dom'
 import {errorStrings} from "../../General/constants/strings";
 import ErrorPage from "../../General/ErrorPage/ErrorPage";
@@ -15,21 +13,30 @@ const ArticleDetailContainer =()=>{
     const db = getFireStore()
     const [waiting,setWaiting] = useState(true)
     const [article, setArticle] = useState( {
-        name: '',
-        images: [],
-        description: '',
-        price: '',
-        unit: '',
-        stock: ''
+        id: '',
+        data:{
+            name: '',
+            images: [],
+            description: '',
+            price: '',
+            unit: '',
+            stock: ''
+        },
+        count: 0
     })
 
     const getArticle =()=>{
         db.collection('Articles').doc(id).get()
             .then(function(doc) {
                 if (doc.exists) {
-                    setArticle(doc.data());
-                    console.log("doc.data")
-                    console.log(doc.data())
+                    console.log('doc')
+                    console.log(doc)
+                    setArticle(
+                        {
+                            id: doc.id,
+                            data: doc.data()
+                        }
+                    );
                     setWaiting(false)
                 } else {
                     console.log("El artículo no existe");
@@ -46,25 +53,25 @@ const ArticleDetailContainer =()=>{
 
     return(
         <div className={ waiting ===false ?null:'container'} style={{
-            backgroundImage: `url(${`${back}`})`,
+            backgroundImage: `url(${`${'/Images/back-ground.jpg'}`})`,
         }}>
             <div className='main-view'>
                 {
-                    waiting ===true
+                    waiting === true
                     ?
                         <LinearIndeterminate />
                         :
                         null
                 }
                 {
-                      article.name !== undefined && waiting === false
+                      article.data.name !== undefined && waiting === false
                         ?
                         <ArticleDetail article={article} />
                         :
                           null
                 }
                 {
-                    waiting === false && article.name === undefined
+                    waiting === false && article.data.name === undefined
                     ?
                         <ErrorPage text={errorStrings.articleNotFound}/>
                         :null

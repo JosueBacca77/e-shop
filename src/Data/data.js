@@ -1,24 +1,24 @@
-import acometida from '../components/Images/acometida.jpg'
-import acometida2 from '../components/Images/acometida2.png'
-import acometida3 from '../components/Images/acometida3.jpg'
-import llaveluz from '../components/Images/llaveluz.jpeg'
-import spot3 from '../components/Images/spot3.jpg'
-import guantes from '../components/Images/guantes de seguridad.jpg'
-import lampara from '../components/Images/lamparabajocons.jpg'
-import lampara2 from '../components/Images/lampara2.jpg'
-import lampara3 from '../components/Images/lampara3.jpg'
-import cabledes from '../components/Images/cable-desnudo.png'
-import g2 from '../components/Images/g2.jpeg'
-import g3 from '../components/Images/g3.jpeg'
-import gafa1 from '../components/Images/gafas1.jpg'
-import gafa2 from '../components/Images/gafas2.jpg'
-import gafa3 from '../components/Images/gafas3.jpg'
-import gafan1 from '../components/Images/gafanegra.jpg'
-import gafan2 from '../components/Images/gafanegra2.jpg'
-import gafan3 from '../components/Images/gafanegra3.jpeg'
-import spot3_2 from '../components/Images/spot3-2.jpeg'
-import spot3_3 from '../components/Images/spot3-3.jpg'
-import llavenegra from '../components/Images/llavenegra.jpg'
+/*import acometida from '../../public/Images/acometida.jpg'
+import acometida2 from '../../public/Images/acometida2.png'
+import acometida3 from '../../public/Images/acometida3.jpg'
+import llaveluz from '../../public/Images/llaveluz.jpeg'
+import spot3 from '../../public/Images/spot3.jpg'
+import guantes from '../../public/Images/g1.jpg'
+import lampara from '../../public/Images/lamparabajocons.jpg'
+import lampara2 from '../../public/Images/lampara2.jpg'
+import lampara3 from '../../public/Images/lampara3.jpg'
+import cabledes from '../../public/Images/cable-desnudo.png'
+import g2 from '../../public/Images/g2.jpeg'
+import g3 from '../../public/Images/g3.jpeg'
+import gafa1 from '../../public/Images/gafas1.jpg'
+import gafa2 from '../../public/Images/gafas2.jpg'
+import gafa3 from '../../public/Images/gafas3.jpg'
+import gafan1 from '../../public/Images/gafanegra.jpg'
+import gafan2 from '../../public/Images/gafanegra2.jpg'
+import gafan3 from '../../public/Images/gafanegra3.jpeg'
+import spot3_2 from '../../public/Images/spot3-2.jpeg'
+import spot3_3 from '../../public/Images/spot3-3.jpg'
+import llavenegra from '../../public/Images/llavenegra.jpg'
 
 
 const headings = [
@@ -138,4 +138,4 @@ const temporalArticles = [
     },
 ]
 
-export {headings, temporalArticles}
+export {headings, temporalArticles}*/
