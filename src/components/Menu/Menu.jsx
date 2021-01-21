@@ -1,18 +1,13 @@
 import './Menu.css';
 import SearchAppBar from "../Search";
 import NavBarItem from "./NavBarItem/NavBarItem";
-import {Link, useHistory} from "react-router-dom";
-import {useContext, useEffect, useState} from "react";
-import {Store} from "../../Store";
+import {Link} from "react-router-dom";
+import {useEffect, useState} from "react";
 import WidgetCart from "../WidgetCart/WidgetCart";
 import {getFireStore} from "../../Data";
 
 
 const Menu =()=> {
-
-    let history = useHistory();
-
-    const [data, setData] = useContext(Store);
 
     const db = getFireStore()
 

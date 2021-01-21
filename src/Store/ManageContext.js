@@ -1,5 +1,11 @@
 import {Acumulator} from "../Utils";
 
+const initialStore ={
+    items: [],
+    total: 0
+}
+
+
 const ModifyCountItem=(id,count,data,set)=>{
     set({...data,
         'items':  data.items.map(art => {
@@ -46,6 +52,10 @@ const DeleteItemCart =(id,data,set)=>{
         })
 }
 
+const ClearCart =(set)=>{
+    set({items: [], total: 0})
+}
 
 
-export {ModifyCountItem,UpdateTotalCart,AddItemToCart,ReplaceItemCart,DeleteItemCart}
+
+export {initialStore,ModifyCountItem,UpdateTotalCart,AddItemToCart,ReplaceItemCart,DeleteItemCart,ClearCart}

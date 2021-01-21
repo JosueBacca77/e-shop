@@ -19,7 +19,7 @@ const WidgetCart = ({show}) => {
                                 )
                             }
                         </div>
-                        <section className='total-cart-widget general-price'>
+                        <section className='total-cart-widget important-data'>
                             <span >{`$ ${data.total}`}</span>
                         </section>
                     </div>

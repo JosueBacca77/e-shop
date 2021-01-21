@@ -9,9 +9,6 @@ import {AddItemToCart, ModifyCountItem, UpdateTotalCart} from "../../Store/Manag
 
 const ArticleDetail =({article})=> {
 
-    console.log("article en detail")
-    console.log(article)
-
     let history = useHistory();
 
     const [selectedImage, setSelectedImage] = useState(article.data.images[0])

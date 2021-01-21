@@ -2,8 +2,8 @@ import firebasse from 'firebase/app'
 import '@firebase/firestore'
 
 const app = firebasse.initializeApp({
-    apiKey: "AIzaSyB_Pa5RW2TcPfl9S6hCyjdOrrimp2OS0uk",
-    authDomain: "electronic-shop-5d783.firebaseapp.com",
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
     projectId: "electronic-shop-5d783",
     storageBucket: "electronic-shop-5d783.appspot.com",
     messagingSenderId: "582474805810",
