@@ -5,10 +5,13 @@ import './BuyForm.css'
 import {validations} from "../../Validations";
 import { useForm } from "react-hook-form";
 import {Store} from "../../Store";
+import {useHistory} from "react-router-dom";
+import {getFireStore} from "../../Data";
 
 
 const BuyForm =({buy})=>{
 
+    let history = useHistory();
     const [dataCont] = useContext(Store);
 
     const {register, handleSubmit, errors} = useForm();
@@ -24,6 +27,10 @@ const BuyForm =({buy})=>{
         data.date = Date.now()
         setCompleted(true)
         buy(data,setSalesId)
+    }
+
+    if (dataCont.items.length==0 && !completed){
+        history.push("/")
     }
 
     return(

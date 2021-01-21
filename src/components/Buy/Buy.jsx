@@ -1,8 +1,9 @@
 import React, {useContext} from "react";
 import BuyForm from "./BuyForm";
 import {getFireStore} from "../../Data";
-import {ClearCart, initialStore} from "../../Store/ManageContext";
+import {ClearCart} from "../../Store/ManageContext";
 import {Store} from "../../Store";
+
 
 const Buy =()=> {
 
@@ -12,7 +13,6 @@ const Buy =()=> {
     const buy =(data,setId)=> {
         db.collection('sales').add(data)
             .then(({id})=>{
-                console.log(id)
                 setId(id)
                 ClearCart(setDataCont)
             })
