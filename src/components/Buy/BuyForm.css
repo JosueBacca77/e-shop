@@ -1,3 +1,10 @@
+.buy-data{
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: 60% 40%%;
+    grid-gap: 5px;
+}
+
 .fields{
     display: grid;
     grid-template-columns: 50% 50%;
@@ -6,6 +13,8 @@
 
 .form{
     background-color: var(--blanco);
+    padding: 10px;
+    border-radius: 20px;
 }
 
 .field{
