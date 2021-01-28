@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SearchAppBar({action}) {
     const classes = useStyles();
 
-    const [data, setData] = useContext(Store);
+    const [data] = useContext(Store);
 
     return (
         <div className={classes.root}>

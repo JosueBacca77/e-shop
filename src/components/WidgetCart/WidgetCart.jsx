@@ -4,7 +4,7 @@ import {Store} from '../../Store/index';
 import ItemCartWidget from "./ItemCartWidget";
 
 const WidgetCart = ({show}) => {
-    const [data, setData] = useContext(Store);
+    const [data] = useContext(Store);
 
     return (
         <>
@@ -15,7 +15,7 @@ const WidgetCart = ({show}) => {
                         <div className='items-cart-widget'>
                             {
                                 data.items.map(article =>
-                                    <ItemCartWidget article={article} />
+                                    <ItemCartWidget article={article} key={article.id}/>
                                 )
                             }
                         </div>

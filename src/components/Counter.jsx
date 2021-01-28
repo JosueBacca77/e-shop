@@ -31,14 +31,14 @@ const Counter = ({limit,count,setCount}) => {
 
     return(
         <div>
-            <IconButton color="inherit" disabled={count===0} >
+            <IconButton color="inherit" disabled={count===0} onClick={handleSubstract} >
                 <RemoveIcon className={count===0?classes.iconDiabled:classes.icon}
-                            onClick={handleSubstract}
+
                 />
             </IconButton>
             <span>{count}</span>
-            <IconButton color="inherit" disabled={count===limit}>
-                <AddIcon className={count===limit?classes.iconDiabled:classes.icon} onClick={handleAdd}/>
+            <IconButton color="inherit" disabled={count===limit} onClick={handleAdd}>
+                <AddIcon className={count===limit?classes.iconDiabled:classes.icon} />
             </IconButton>
         </div>
     )

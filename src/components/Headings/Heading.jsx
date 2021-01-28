@@ -17,7 +17,6 @@ const Heading =()=> {
 
     useEffect(() => {
         getHeadingArticles();
-
     }, [name]);
 
     const getHeadingArticles = () =>{

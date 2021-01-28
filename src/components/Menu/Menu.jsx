@@ -38,7 +38,7 @@ const Menu =()=> {
 
     useEffect(() => {
         getHeadings()
-    }, []);
+    },[]);
 
     return(
         <>
@@ -55,9 +55,9 @@ const Menu =()=> {
                             ?<nav >
                                     <ul>
                                         {headings.map(rubro => (
-                                            <NavBarItem name={rubro.data.name} url={`/heading/${rubro.data.name}`} />
+                                            <NavBarItem key={rubro.id} name={rubro.data.name} url={`/heading/${rubro.data.name}`} />
                                         ))}
-                                        {<NavBarItem name='Mi Carrito' url='/cart' />}
+                                        {<NavBarItem key={'cart'} name='Mi Carrito' url='/cart' />}
                                     </ul>
                                 </nav>
                                 :null

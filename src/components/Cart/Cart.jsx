@@ -43,6 +43,7 @@ const Cart =()=>{
                         {
                             data.items.map(article =>
                             <ItemCart
+                                key={article.id}
                                 article={article}
                                 onDelete={onDelete}
                             />

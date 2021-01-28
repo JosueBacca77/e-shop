@@ -39,14 +39,14 @@ const ModifyCountCart =({article,handleChangeCount,handleAddCart,handleClose,cou
                 onChange={handleChangeCount}
             />
 
-            <IconButton color="inherit" className={classes.actionToCart}>
-                <AddShoppingCartIcon className={classes.icon} onClick={handleAddCart}/>
+            <IconButton color="inherit" className={classes.actionToCart} onClick={handleAddCart}>
+                <AddShoppingCartIcon className={classes.icon} />
             </IconButton>
             {
                 handleClose !== null
                 ?
-                    <IconButton color="inherit" className={classes.actionToCart}>
-                        <CloseIcon style={{'color':'black'}} onClick={handleClose}/>
+                    <IconButton color="inherit" className={classes.actionToCart} onClick={handleClose}>
+                        <CloseIcon style={{'color':'black'}}/>
                     </IconButton>
                     :null
             }

@@ -48,7 +48,7 @@ const ArticleDetailContainer =()=>{
 
     useEffect(() => {
         getArticle()
-    }, []);
+    },[]);
 
 
     return(

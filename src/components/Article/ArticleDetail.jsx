@@ -59,7 +59,7 @@ const ArticleDetail =({article})=> {
                             {article.data.images.length >0
                                 ?
                                 article.data.images.map(ima => (
-                                    <li>
+                                    <li key={ima}>
                                         <img className={selectedImage==ima
                                             ?'selectedImage':'image'}
                                              src={`/Images/${ima}`} alt='hola'

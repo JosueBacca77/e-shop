@@ -29,7 +29,7 @@ const Home =()=> {
 
     useEffect(() => {
         getArticles();
-    }, []);
+    },[]);
 
     return(
         <div className={articles.length>0?null:'container'} style={{

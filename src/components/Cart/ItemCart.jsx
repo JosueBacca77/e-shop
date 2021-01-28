@@ -52,11 +52,11 @@ const ItemCart =({article, onDelete})=> {
                             />
                             :
                             <>
-                            <IconButton >
-                                <EditIcon className='edit' onClick={()=> setAdding(true)}/>
+                            <IconButton onClick={()=> setAdding(true)}>
+                                <EditIcon className='edit' />
                             </IconButton>
-                            <IconButton >
-                                <DeleteIcon className='delete' onClick={()=>onDelete(article)} />
+                            <IconButton onClick={()=>onDelete(article)}>
+                                <DeleteIcon className='delete'  />
                             </IconButton>
                             </>
                     }

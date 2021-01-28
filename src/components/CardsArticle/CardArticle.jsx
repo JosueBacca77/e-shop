@@ -104,8 +104,8 @@ const CardArticle =({article})=> {
                             setCount={setCount}
                         />
                         <div>
-                            <IconButton color="inherit" className={classes.actionToCart}>
-                                <AddShoppingCartIcon className={classes.icon} onClick={handleAddCart}/>
+                            <IconButton color="inherit" className={classes.actionToCart} onClick={handleAddCart}>
+                                <AddShoppingCartIcon className={classes.icon} />
                             </IconButton>
                         </div>
                     </>
