@@ -17,4 +17,24 @@ const VerifyContains =(data,item)=>{
 
 const Acumulator = (acc, obj)=> { return acc + obj.data.price * obj.count };
 
-export {GetPlural, VerifyContains,Acumulator};
+const GetFeeValue =(total,count) => {return (total/GetCountFeesValue(count)).toFixed(2)}
+
+const GetCountFeesValue =(count) => {
+    switch (count) {
+        case "one":
+            return 1
+        case "three":
+            return 3
+        case "six":
+            return 6
+        case "nine":
+            return 9
+        case "twelve":
+            return 12
+        default:
+            return 1
+    }
+}
+
+
+export {GetPlural, VerifyContains,Acumulator,GetFeeValue,GetCountFeesValue};

@@ -7,6 +7,7 @@ const errorStrings = {
     articleNotFound: 'Artículo no encontrado',
     headingNotFound: 'Rubro no encontrado',
     headingArticlesNotFound: 'No se han encontrado artículos pertenecientes a este rubro',
+    insufficientStock: 'El stock de los siguientes productos es insuficiente para la cantidad solicitada',
 }
 
 const articlesAdded =(count,unit,pluralUnit)=>{

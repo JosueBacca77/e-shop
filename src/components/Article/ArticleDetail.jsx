@@ -62,7 +62,7 @@ const ArticleDetail =({article})=> {
                                     <li key={ima}>
                                         <img className={selectedImage==ima
                                             ?'selectedImage':'image'}
-                                             src={`/Images/${ima}`} alt='hola'
+                                             src={`/Images/${ima}`} alt={ima}
                                              onClick={()=>handleChangeImage(ima)}
                                         />
                                     </li>

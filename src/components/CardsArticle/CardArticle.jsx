@@ -22,9 +22,6 @@ const CardArticle =({article})=> {
     const [count, setCount] = useState(0)
     const [added, setAdded] = useState(false)
     const [data, setData] = useContext(Store)
-    console.log('el article')
-    console.log(article)
-
 
     const useStyles = makeStyles({
         root: {

@@ -1,24 +1,27 @@
 .buy-data{
-    grid-row: 1;
     display: grid;
-    grid-template-columns: 60% 40%%;
-    grid-gap: 5px;
+    grid-template-columns: 70% 30%;
 }
 
 .fields{
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 40% 40%;
     grid-template-rows: 25% 25% 25% 25%;
+    grid-column: 1;
+}
+
+.pay{
+    grid-column: 2;
 }
 
 .form{
     background-color: var(--blanco);
-    padding: 10px;
     border-radius: 20px;
+    padding: 10px;
 }
 
 .field{
-    margin: 4%;
+    margin: 10px;
 }
 
 .name{
@@ -54,4 +57,8 @@
 .button{
     display: flex;
     justify-content: center;
+}
+
+.total{
+    font-size: 2rem;
 }
