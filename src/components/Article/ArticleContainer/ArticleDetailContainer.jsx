@@ -52,9 +52,11 @@ const ArticleDetailContainer =()=>{
 
 
     return(
-        <div className={ waiting ===false ?null:'container'} style={{
-            backgroundImage: `url(${`${'/Images/back-ground.jpg'}`})`,
-        }}>
+        <div
+            style={{
+                backgroundImage: `url(${`${'/Images/back-ground.jpg'}`})`,
+            }}
+        >
             <div className='main-view'>
                 {
                     waiting === true

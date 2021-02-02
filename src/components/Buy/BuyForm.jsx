@@ -1,6 +1,5 @@
 import TextField from "@material-ui/core/TextField";
 import React, {useContext, useState} from "react";
-import {Button} from "@material-ui/core";
 import './BuyForm.css'
 import {validations} from "../../Validations";
 import {useForm} from "react-hook-form";
@@ -13,6 +12,7 @@ import Radio from "@material-ui/core/Radio";
 import {GetCountFeesValue, GetFeeValue} from "../../Utils";
 import {LinearIndeterminate} from "../General/Progress";
 import ErrorStock from "./ErrorStock";
+import {GreenButton} from "../General/Buttons";
 
 
 
@@ -179,10 +179,11 @@ const BuyForm =({buy})=>{
                                 </section>
                             </article>
 
-                            <div className='button'>
-                                <Button variant="contained" type='submit'>
-                                    Finalizar compra
-                                </Button>
+                            <div className='center'>
+                                <GreenButton
+                                    text='Finalizar compra'
+                                    type='submit'
+                                />
                             </div>
 
                         </form>
@@ -214,9 +215,7 @@ const BuyForm =({buy})=>{
                                         }
                                     </div>
                         }
-
                     </div>
-
             }
         </>
     )

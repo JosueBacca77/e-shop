@@ -7,16 +7,11 @@
     z-index: 2;
     box-shadow: -0.3rem 0 0.3rem rgba(0, 0, 0, 0.2);
     transition: right 0.5s;
-
 }
 
 .items-cart-widget{
     overflow-y: scroll;
     height: 67vh;
-}
-
-.total-widget{
-
 }
 
 .close {

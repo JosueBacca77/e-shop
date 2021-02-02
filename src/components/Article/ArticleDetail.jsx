@@ -47,64 +47,57 @@ const ArticleDetail =({article})=> {
     }
 
     return(
-        <div
-            className='container'
-            style={{
-                backgroundImage: `url(${`${'/Images/back-ground.jpg'}`})`,
-        }}>
-            <article className='article'>
-                <div className='info'>
-                    <section className='images'>
-                        <ul>
-                            {article.data.images.length >0
-                                ?
-                                article.data.images.map(ima => (
-                                    <li key={ima}>
-                                        <img className={selectedImage==ima
-                                            ?'selectedImage':'image'}
-                                             src={`/Images/${ima}`} alt={ima}
-                                             onClick={()=>handleChangeImage(ima)}
-                                        />
-                                    </li>
-                                ))
-                                :null}
-                        </ul>
-                    </section>
-                    <section >
-                        <img
-                            src={`/Images/${selectedImage}`}
-                            alt={article.data.name}
-                            className='mainimage'/>
-                    </section>
-                    <section className='detailArticle'>
-                        <h1 className='articleName'>
-                            {article.data.name}
-                        </h1>
-                        <div className='price'>
-                            <h2>{`$ ${article.data.price}`}</h2>
-                            <span>{`c/${article.data.unit}`}</span>
-                        </div>
-                        <p>
-                            {article.data.description}
-                        </p>
-                        <div className='price'>
-                            <p>Stock disponible:</p>
-                            <span style={{'fontWeight':'bold'}}>{`${article.data.stock} ${GetPlural(article.data.unit)}`}</span>
-                        </div>
-                        <br/>
+        <article className='article'>
+            <div className='info'>
+                <section className='images'>
+                    <ul>
+                        {article.data.images.length >0
+                            ?
+                            article.data.images.map(ima => (
+                                <li key={ima}>
+                                    <img className={selectedImage==ima
+                                        ?'selectedImage':'image'}
+                                         src={`/Images/${ima}`} alt={ima}
+                                         onClick={()=>handleChangeImage(ima)}
+                                    />
+                                </li>
+                            ))
+                            :null}
+                    </ul>
+                </section>
+                <section >
+                    <img
+                        src={`/Images/${selectedImage}`}
+                        alt={article.data.name}
+                        className='mainimage'/>
+                </section>
+                <section className='detailArticle'>
+                    <h1 className='articleName'>
+                        {article.data.name}
+                    </h1>
+                    <div className='price'>
+                        <h2>{`$ ${article.data.price}`}</h2>
+                        <span>{`c/${article.data.unit}`}</span>
+                    </div>
+                    <p>
+                        {article.data.description}
+                    </p>
+                    <div className='price'>
+                        <p>Stock disponible:</p>
+                        <span style={{'fontWeight':'bold'}}>{`${article.data.stock} ${GetPlural(article.data.unit)}`}</span>
+                    </div>
+                    <br/>
 
-                        <ModifyCountCart
-                            article={article}
-                            handleChangeCount={handleChangeCount}
-                            handleAddCart={handleAddCart}
-                            countAdded={countAdded}
-                        />
+                    <ModifyCountCart
+                        article={article}
+                        handleChangeCount={handleChangeCount}
+                        handleAddCart={handleAddCart}
+                        countAdded={countAdded}
+                    />
 
-                    </section>
-                </div>
-            </article>
-
-        </div>
+                </section>
+            </div>
+        </article>
     )
 }
 

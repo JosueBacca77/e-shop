@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import './Home.css'
-import '../../General.css'
+import './../../General.css'
 import {LinearIndeterminate} from "../General/Progress";
 import ArticleList from "../ArticleList";
 import {getFireStore} from "../../Data";
@@ -32,10 +32,7 @@ const Home =()=> {
     },[]);
 
     return(
-        <div className={articles.length>0?null:'container'} style={{
-            backgroundImage: `url(${`${'/Images/back-ground.jpg'}`})`,
-        }}>
-            <div className='main-view'>
+        <div className='main-view'>
             {articles.length>0
                 ?
                 <ArticleList
@@ -45,7 +42,6 @@ const Home =()=> {
                 :
                 <LinearIndeterminate />
             }
-            </div>
         </div>
     )
 }

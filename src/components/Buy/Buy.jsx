@@ -73,12 +73,8 @@ const Buy =()=> {
     }
 
     return(
-        <div className='container' style={{
-            backgroundImage: `url(${`${'/Images/back-ground.jpg'}`})`,
-        }}>
-            <div className='main-view'>
-                <BuyForm buy={buy}/>
-            </div>
+        <div className='main-view'>
+            <BuyForm buy={buy}/>
         </div>
     )
 }

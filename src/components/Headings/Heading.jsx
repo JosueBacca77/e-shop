@@ -5,6 +5,7 @@ import ArticleList from "../ArticleList";
 import ErrorPage from "../General/ErrorPage/ErrorPage";
 import {errorStrings} from "../General/constants/strings";
 import {getFireStore} from "../../Data";
+import './../../General.css'
 
 
 
@@ -36,34 +37,32 @@ const Heading =()=> {
     }
 
     return(
-        <div className={ waiting === false ?null:'container'} style={{
-            backgroundImage: `url(${`${'/Images/back-ground.jpg'}`})`,
-        }}>
-            <div className='main-view'>
-                {
-                    waiting === true
-                        ?
-                        <LinearIndeterminate />
-                        :
-                        null
-                }
-                {
-                    articles.length>0 && waiting === false
-                        ?
-                        <ArticleList
-                            articles={articles}
-                            title={name}
-                        />
-                        :
-                        null
-                }
-                {
-                    waiting === false && articles.length ===0
-                        ?
-                        <ErrorPage text={errorStrings.headingArticlesNotFound}/>
-                        :null
-                }
-            </div>
+        <div className='main-view'>
+            {
+                waiting === true
+                    ?
+                    <LinearIndeterminate />
+
+                    :
+                    null
+            }
+            {
+                articles.length>0 && waiting === false
+                    ?
+                    <ArticleList
+                        articles={articles}
+                        title={name}
+                    />
+
+                    :
+                    null
+            }
+            {
+                waiting === false && articles.length ===0
+                    ?
+                    <ErrorPage text={errorStrings.headingArticlesNotFound}/>
+                    :null
+            }
         </div>
     )
 }

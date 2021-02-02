@@ -9,7 +9,7 @@ import ErrorPage from "./components/General/ErrorPage/ErrorPage";
 import {errorStrings} from "./components/General/constants/strings";
 import Cart from "./components/Cart/Cart";
 import {Store} from "./Store/index"
-import {useState} from "react";
+import React, {useState} from "react";
 import Buy from "./components/Buy/Buy";
 import {initialStore} from "./Store/ManageContext";
 
@@ -23,6 +23,13 @@ function App() {
           <BrowserRouter>
 
               <Menu />
+
+              <div
+                  className='default-background'
+                  style={{
+                      backgroundImage: `url(${`${'/Images/back-ground.jpg'}`})`,
+                  }}
+              >
 
               <Switch>
 
@@ -51,6 +58,7 @@ function App() {
                   </Route>
 
               </Switch>
+              </div>
 
           </BrowserRouter>
       </Store.Provider >

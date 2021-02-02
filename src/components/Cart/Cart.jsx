@@ -3,9 +3,8 @@ import '../../General.css'
 import {Store} from "../../Store/index";
 import ItemCart from "./ItemCart";
 import {DeleteItemCart, UpdateTotalCart} from "../../Store/ManageContext";
-import { Button } from '@material-ui/core';
-import './Cart.css'
 import {useHistory} from "react-router-dom";
+import {GreenButton} from "../General/Buttons";
 
 
 const Cart =()=>{
@@ -24,16 +23,13 @@ const Cart =()=>{
     }
 
     return(
-        <div className='container' style={{
-            backgroundImage: `url(${`${'/Images/back-ground.jpg'}`})`,
-        }}>
-            <div className='main-view'>
-                {
-                    data.items !== undefined && data.items.length === 0
-                        ?
-                        <h1 className='subtitle'>El carrito está vacío por el momento...</h1>
-                        :
-                        <>
+        <div className='main-view'>
+            {
+                data.items !== undefined && data.items.length === 0
+                    ?
+                    <h1 className='subtitle'>El carrito está vacío por el momento...</h1>
+                    :
+                    <>
                         <div className='head'>
                             <h1 className='subtitle'>Mi Carrito</h1>
                             <span className='right-content important-data' >
@@ -42,22 +38,22 @@ const Cart =()=>{
                         </div>
                         {
                             data.items.map(article =>
-                            <ItemCart
-                                key={article.id}
-                                article={article}
-                                onDelete={onDelete}
-                            />
+                                <ItemCart
+                                    key={article.id}
+                                    article={article}
+                                    onDelete={onDelete}
+                                />
                             )
                         }
 
-                        <div className='buy'>
-                            <Button variant="contained" onClick={handleGoBuy}>
-                                Realizar compra
-                            </Button>
+                        <div className='center'>
+                            <GreenButton
+                                text='Comprar'
+                                onClick={handleGoBuy}
+                            />
                         </div>
-                        </>
-                }
-            </div>
+                    </>
+            }
         </div>
     )
 }

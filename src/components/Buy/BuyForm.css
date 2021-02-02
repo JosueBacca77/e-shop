@@ -54,11 +54,6 @@
     grid-column: 2;
 }
 
-.button{
-    display: flex;
-    justify-content: center;
-}
-
 .total{
     font-size: 2rem;
 }

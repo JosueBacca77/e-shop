@@ -30,7 +30,7 @@ const ModifyCountCart =({article,handleChangeCount,handleAddCart,handleClose,cou
 
     return(
         <>
-        <article className='add-to-cart'>
+        <article className='center'>
             <TextField
                 type='number'
                 variant="outlined"
@@ -52,7 +52,7 @@ const ModifyCountCart =({article,handleChangeCount,handleAddCart,handleClose,cou
             }
         </article>
         <div style={{'marginRight':'10%'}}>
-            {countAdded>article.data.stock
+            {countAdded>=article.data.stock
                 ?
                 <ErrorLabel
                     text={infoStrings.stockOut}

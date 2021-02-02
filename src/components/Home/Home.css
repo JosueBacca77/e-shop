@@ -1,7 +1,3 @@
-.container{
-    height: 1000px;
-}
-
 .articles{
     display: grid;
     grid-template-rows: 50% 50%;

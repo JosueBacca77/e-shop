@@ -1,5 +1,5 @@
 const infoStrings = {
-    stockOut: 'Ha excedido el stock del producto'
+    stockOut: 'Ha agotado el stock del producto'
 }
 
 const errorStrings = {

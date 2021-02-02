@@ -54,7 +54,7 @@ const CardArticle =({article})=> {
     let history = useHistory();
 
     const handleAddCart =()=>{
-        if(count>0 && count <= article.data.stock ) {
+        if(count>0 && count < article.data.stock ) {
             setAdded(true)
             //si esta en el cart sumo unidades
             if (VerifyContains(data.items,article)){

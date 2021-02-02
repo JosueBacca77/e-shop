@@ -24,10 +24,6 @@
     font-size: 2rem;
     text-align: right;
 }
-.add-to-cart{
-    display: flex;
-    justify-content: center;
-}
 
 .important-data{
     color: var(--verde);
@@ -38,5 +34,18 @@
     color: var(--rojo);
     font-size: 1.5rem;
     font-weight: bold;
+}
+
+.submit-button{
+    color: #64dd17;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+}
+
+.default-background{
+    min-height: 700px;
 }
 
