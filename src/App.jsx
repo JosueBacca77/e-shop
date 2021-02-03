@@ -12,6 +12,7 @@ import {Store} from "./Store/index"
 import React, {useState} from "react";
 import Buy from "./components/Buy/Buy";
 import {initialStore} from "./Store/ManageContext";
+import Footer from "./components/General/Footer";
 
 
 function App() {
@@ -31,33 +32,35 @@ function App() {
                   }}
               >
 
-              <Switch>
+                  <Switch>
 
-                  <Route exact path='/'>
-                      <Home articles={temporalArticles} />
-                  </Route>
+                      <Route exact path='/'>
+                          <Home articles={temporalArticles} />
+                      </Route>
 
-                  <Route path="/heading/:name?">
-                      <Heading />
-                  </Route>
+                      <Route path="/heading/:name?">
+                          <Heading />
+                      </Route>
 
-                  <Route path='/detail/:id'>
-                      <ArticleDetailContainer />
-                  </Route>
+                      <Route path='/detail/:id'>
+                          <ArticleDetailContainer />
+                      </Route>
 
-                  <Route path='/cart'>
-                      <Cart />
-                  </Route>
+                      <Route path='/cart'>
+                          <Cart />
+                      </Route>
 
-                  <Route path='/buy'>
-                      <Buy />
-                  </Route>
+                      <Route path='/buy'>
+                          <Buy />
+                      </Route>
 
-                  <Route path='*'>
-                      <ErrorPage text={errorStrings.pageNotFound}/>
-                  </Route>
+                      <Route path='*'>
+                          <ErrorPage text={errorStrings.pageNotFound}/>
+                      </Route>
 
-              </Switch>
+                  </Switch>
+
+                  <Footer />
               </div>
 
           </BrowserRouter>

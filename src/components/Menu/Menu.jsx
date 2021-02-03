@@ -30,8 +30,6 @@ const Menu =()=> {
                     })
                 })
                 setHeadings(arr)
-                console.log('headings')
-                console.log(arr)
             })
             .catch(error => console.log(`Error en la búsqueda de rubros, ${error}`))
     }
@@ -43,7 +41,7 @@ const Menu =()=> {
     return(
         <>
             <header>
-                <div className='header'>
+                <div className='header blue-background'>
 
                     <Link to='/' >
                         <a className='title'>electronic-Shop</a>

@@ -1,5 +1,6 @@
 .main-view{
     padding: 10% 5% 3% 5%;
+    min-height: 700px;
 }
 
 .subtitle{
@@ -47,5 +48,16 @@
 
 .default-background{
     min-height: 700px;
+}
+
+.blue-background{
+    background-color: var(--azul);
+}
+
+.foot{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 

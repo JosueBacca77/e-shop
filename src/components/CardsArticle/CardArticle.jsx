@@ -86,10 +86,6 @@ const CardArticle =({article})=> {
                             {article.data.name}
                         </Typography>
                     </Link>
-
-                    <Typography variant="body2" color="textSecondary" component="p" >
-                        {article.data.description}
-                    </Typography>
                 </CardContent>
             </CardActionArea>
             <CardActions className={classes.actions} >
