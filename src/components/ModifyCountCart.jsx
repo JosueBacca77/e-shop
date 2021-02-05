@@ -8,7 +8,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import {ErrorLabel} from "./General/Labels";
 import {infoStrings} from "./General/constants/strings";
 
-const ModifyCountCart =({article,handleChangeCount,handleAddCart,handleClose,countAdded})=>{
+const ModifyCountCart =({article,handleChangeCount,handleAddCart,handleClose=null,countAdded})=>{
 
     const useStyles = makeStyles({
         icon:{

@@ -13,6 +13,7 @@ import {GetCountFeesValue, GetFeeValue} from "../../Utils";
 import {LinearIndeterminate} from "../General/Progress";
 import ErrorStock from "./ErrorStock";
 import {GreenButton} from "../General/Buttons";
+import {purchaseStates} from "../General/constants/strings";
 
 
 
@@ -31,6 +32,8 @@ const BuyForm =({buy})=>{
 
     const countFees = watch("countFees", "one")
 
+    const email = watch("email")
+
     const [completed, setCompleted] = useState(false)
     const [salesId, setSalesId] = useState('')
 
@@ -43,7 +46,7 @@ const BuyForm =({buy})=>{
         data.countFees = GetCountFeesValue(countFees)
         data.fee = GetFeeValue(dataCont.total,countFees)
         data.date = Date.now()
-        data.state = 'generated'
+        data.state = purchaseStates.generated
         setCompleted(true)
         buy(data,setSalesId,setWithoutStock,setApproved,setWaiting)
     }
@@ -97,32 +100,31 @@ const BuyForm =({buy})=>{
                                         name='email'
                                         inputRef={register({
                                             pattern: validations.email,
-                                            required: validations.req
+                                            required: validations.req,
                                         })}
                                         error={hasError("email")}
                                         helperText={hasError("email") && errors.email.message}
                                     />
                                     <TextField
-                                        type='number'
                                         variant="outlined"
                                         margin="normal"
-                                        label='DNI'
+                                        label='Confirmar Email'
                                         className='field dni'
-                                        name='dni'
+                                        name='confemail'
                                         inputRef={register({
-                                            maxLength: validations.max_dni,
-                                            minLength: validations.min_dni,
-                                            required: validations.req
+                                            pattern: validations.email,
+                                            required: validations.req,
+                                            validate: value => value === email || validations.email_no_match
                                         })}
-                                        error={hasError("dni")}
-                                        helperText={hasError("dni") && errors.dni.message}
+                                        error={hasError("confemail")}
+                                        helperText={hasError("confemail") && errors.confemail.message}
                                     />
                                     <TextField
                                         type='number'
                                         variant="outlined"
                                         margin="normal"
                                         label='Teléfono'
-                                        className='field tel'
+                                        className='field conf-email'
                                         name='phone'
                                         inputRef={register({
                                             maxLength: validations.max_phone,

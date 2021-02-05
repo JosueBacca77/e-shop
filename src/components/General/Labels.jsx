@@ -9,12 +9,4 @@ const ErrorLabel =({text})=>{
     )
 }
 
-const CorrectLabel =({text})=>{
-    return(
-        <Typography component="span" style={{'color':'green'}}>
-            {text}
-        </Typography>
-    )
-}
-
-export {ErrorLabel,CorrectLabel}
+export {ErrorLabel}

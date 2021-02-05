@@ -5,9 +5,12 @@ const infoStrings = {
 const errorStrings = {
     pageNotFound: 'Página no encontrada',
     articleNotFound: 'Artículo no encontrado',
-    headingNotFound: 'Rubro no encontrado',
     headingArticlesNotFound: 'No se han encontrado artículos pertenecientes a este rubro',
     insufficientStock: 'El stock de los siguientes productos es insuficiente para la cantidad solicitada',
+}
+
+const purchaseStates = {
+    generated: 'Generada'
 }
 
 const articlesAdded =(count,unit,pluralUnit)=>{
@@ -22,4 +25,4 @@ const articlesAdded =(count,unit,pluralUnit)=>{
     }
 }
 
-export {infoStrings,articlesAdded,errorStrings}
+export {infoStrings,articlesAdded,errorStrings,purchaseStates}

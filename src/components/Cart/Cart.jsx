@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import '../../General.css'
 import {Store} from "../../Store/index";
 import ItemCart from "./ItemCart";
@@ -21,6 +21,10 @@ const Cart =()=>{
     const handleGoBuy =()=>{
         history.push('/buy')
     }
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     return(
         <div className='main-view'>

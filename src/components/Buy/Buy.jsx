@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import BuyForm from "./BuyForm";
 import {getFireStore} from "../../Data";
 import {ClearCart} from "../../Store/ManageContext";
@@ -11,9 +11,15 @@ const Buy =()=> {
     const db = getFireStore()
     const [dataCont, setDataCont] = useContext(Store);
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     const validateStock =(ids,data,setId,setWithoutStock,setApproved,setWaiting)=> {
 
-        const GetArticles = new Promise((resolve,reject) => {
+        setWithoutStock([])
+
+        const GetArticles = new Promise((resolve) => {
             resolve(
                 db.collection('Articles').where(firebase.firestore.FieldPath.documentId(),'in',ids).get()
                     .then(arts => {

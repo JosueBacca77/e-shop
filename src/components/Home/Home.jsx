@@ -12,8 +12,16 @@ const Home =()=> {
 
     const data = getFireStore()
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
+    useEffect(() => {
+        getArticles();
+    },[]);
+
     const getArticles = () =>{
-        data.collection('Articles').where('stock','>',0).limit(6).get()
+        data.collection('Articles').limit(6).get()
             .then(arts => {
                 let arr = [];
                 arts.forEach(art => {
@@ -26,10 +34,6 @@ const Home =()=> {
             })
             .catch(error => console.log('Error en la búsqueda de productos de home: '+error))
     }
-
-    useEffect(() => {
-        getArticles();
-    },[]);
 
     return(
         <div className='main-view'>

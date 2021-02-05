@@ -11,6 +11,10 @@ a:visited {
     text-decoration: none;
 }
 
+#heading{
+    font-size: large;
+}
+
 #heading:hover {
     text-decoration: none;
     background-color: #303f9f;

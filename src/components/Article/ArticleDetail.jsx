@@ -87,14 +87,17 @@ const ArticleDetail =({article})=> {
                         <span style={{'fontWeight':'bold'}}>{`${article.data.stock} ${GetPlural(article.data.unit)}`}</span>
                     </div>
                     <br/>
-
-                    <ModifyCountCart
-                        article={article}
-                        handleChangeCount={handleChangeCount}
-                        handleAddCart={handleAddCart}
-                        countAdded={countAdded}
-                    />
-
+                    {
+                        article.data.stock >0
+                        ?
+                            <ModifyCountCart
+                                article={article}
+                                handleChangeCount={handleChangeCount}
+                                handleAddCart={handleAddCart}
+                                countAdded={countAdded}
+                            />
+                            :null
+                    }
                 </section>
             </div>
         </article>

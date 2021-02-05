@@ -25,12 +25,14 @@ const ArticleDetailContainer =()=>{
         count: 0
     })
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     const getArticle =()=>{
         db.collection('Articles').doc(id).get()
             .then(function(doc) {
                 if (doc.exists) {
-                    console.log('doc')
-                    console.log(doc)
                     setArticle(
                         {
                             id: doc.id,

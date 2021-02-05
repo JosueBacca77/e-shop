@@ -20,8 +20,12 @@ const Heading =()=> {
         getHeadingArticles();
     }, [name]);
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     const getHeadingArticles = () =>{
-        db.collection('Articles').where('stock','>',0).where('heading','==',name).get()
+        db.collection('Articles').where('heading','==',name).get()
             .then(arts => {
                 let arr = [];
                 arts.forEach(art => {

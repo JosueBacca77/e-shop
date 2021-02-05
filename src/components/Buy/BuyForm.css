@@ -6,7 +6,7 @@
 .fields{
     display: grid;
     grid-template-columns: 40% 40%;
-    grid-template-rows: 25% 25% 25% 25%;
+    grid-template-rows: 30% 30% 30% 30%;
     grid-column: 1;
 }
 
@@ -21,7 +21,7 @@
 }
 
 .field{
-    margin: 10px;
+    margin: 10px 40px;
 }
 
 .name{
@@ -44,7 +44,7 @@
     grid-column: 2;
 }
 
-.tel{
+.conf-email{
     grid-row: 3;
     grid-column: 1;
 }

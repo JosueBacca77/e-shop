@@ -11,7 +11,7 @@ const ErrorStock =({articles})=>{
                 {
                     articles.map(art=>(
                         <li key={art.id} >
-                            <p className='error-item'>{art.id}</p>
+                            <p className='error-item'>{art.data.name}</p>
                         </li>
                     ))
                 }

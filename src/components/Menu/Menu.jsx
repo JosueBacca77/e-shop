@@ -1,10 +1,11 @@
 import './Menu.css';
 import SearchAppBar from "../Search";
 import NavBarItem from "./NavBarItem/NavBarItem";
-import {Link} from "react-router-dom";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import WidgetCart from "../WidgetCart/WidgetCart";
 import {getFireStore} from "../../Data";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import {useHistory} from "react-router-dom";
 
 
 const Menu =()=> {
@@ -38,14 +39,19 @@ const Menu =()=> {
         getHeadings()
     },[]);
 
+    let history = useHistory();
+
+    const goHome =()=> {
+        history.push("/")
+    }
+
     return(
         <>
             <header>
                 <div className='header blue-background'>
-
-                    <Link to='/' >
-                        <a className='title'>electronic-Shop</a>
-                    </Link>
+                    <CardActionArea onClick={goHome}>
+                        <span className='title'>electronic-Shop</span>
+                    </CardActionArea>
                     <div className='inputs'>
                         <SearchAppBar action={openWidgetCart}/>
                         {

@@ -5,5 +5,6 @@ const validations={
     req:{value:true,message:"Dato requerido"},
     email:{value:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,message:"Formato de email incorrecto"},
     max_phone:{ value: 11, message: "El número no debe poseer más de 11 dígitos" },
+    email_no_match:"Las direcciones email no coinciden",
 }
 export {validations};

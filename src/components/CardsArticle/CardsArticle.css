@@ -1,0 +1,5 @@
+.without-stock{
+    background-color: var(--rojo);
+    color: var(--blanco);
+    height: 100px;
+}

@@ -7,6 +7,8 @@ import '../../General.css'
 import ModifyCountCart from "../ModifyCountCart";
 import {Store} from "../../Store";
 import {ReplaceItemCart, UpdateTotalCart} from "../../Store/ManageContext";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import {useHistory} from "react-router-dom";
 
 
 
@@ -35,53 +37,66 @@ const ItemCart =({article, onDelete})=> {
         setAdding(false)
     }
 
+    let history = useHistory();
+
+    const goDetail =()=> {
+        history.push("/detail"+article.id)
+    }
+
     return(
         <article key={article.id} className='item'>
-            <section className='head'>
-                <h2 className='subtitle name'>{article.data.name}</h2>
-                <section className='right-content' >
-                    {
-                        adding
-                        ?
-                            <ModifyCountCart
-                                article={article}
-                                handleChangeCount={handleChangeCount}
-                                handleAddCart={handleAddCart}
-                                handleClose={handleClose}
-                                countAdded={countAdded}
-                            />
-                            :
-                            <>
-                            <IconButton onClick={()=> setAdding(true)}>
-                                <EditIcon className='edit' />
-                            </IconButton>
-                            <IconButton onClick={()=>onDelete(article)}>
-                                <DeleteIcon className='delete'  />
-                            </IconButton>
-                            </>
-                    }
-                </section>
-            </section>
+                <section className='head'>
 
-            <div className='content'>
-                <div className='descrip'>
-                    <div>
-                        {article.data.description}
+                    <CardActionArea onClick={goDetail}>
+                        <h1 className='subtitle name' >
+                            {article.data.name}
+                        </h1>
+                    </CardActionArea>
+
+                    <section className='right-content' >
+                        {
+                            adding
+                            ?
+                                <ModifyCountCart
+                                    article={article}
+                                    handleChangeCount={handleChangeCount}
+                                    handleAddCart={handleAddCart}
+                                    handleClose={handleClose}
+                                    countAdded={countAdded}
+                                />
+                                :
+                                <>
+                                <IconButton onClick={()=> setAdding(true)}>
+                                    <EditIcon className='edit' />
+                                </IconButton>
+                                <IconButton onClick={()=>onDelete(article)}>
+                                    <DeleteIcon className='delete'  />
+                                </IconButton>
+                                </>
+                        }
+                    </section>
+                </section>
+
+
+                <div className='content'>
+                    <div className='descrip'>
+                        <div>
+                            {article.data.description}
+                        </div>
+                        <div className='price'>
+                            <span> $  </span><span className='number-price'>{article.data.price}</span>
+                        </div>
                     </div>
-                    <div className='price'>
-                        <span> $  </span><span className='number-price'>{article.data.price}</span>
-                    </div>
-                </div>
-                <div className='count'>
-                    <span className='numberCircle '>
-                        <span>
-                            {
-                                data.items.find(item=>item.id == article.id).count
-                            }
+                    <div className='count'>
+                        <span className='numberCircle '>
+                            <span>
+                                {
+                                    data.items.find(item=>item.id == article.id).count
+                                }
+                            </span>
                         </span>
-                    </span>
+                    </div>
                 </div>
-            </div>
 
         </article>
     )

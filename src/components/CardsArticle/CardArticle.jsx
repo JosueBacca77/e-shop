@@ -12,7 +12,7 @@ import {ErrorLabel} from "../General/Labels";
 import Counter from "../Counter";
 import {useContext, useState} from "react";
 import {VerifyContains} from "../../Utils";
-import {Link, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import {Store} from "../../Store";
 import {AddItemToCart, ModifyCountItem, UpdateTotalCart} from "../../Store/ManageContext";
 
@@ -46,6 +46,22 @@ const CardArticle =({article})=> {
         },
         name:{
             color: "blue"
+        },
+        iconDiabled:{
+            color: "lightgray"
+        },
+        without:{
+            color:"white",
+            fontSize: '1rem',
+            backgroundColor: 'red',
+            textAlign: "center",
+            fontWeight: "bold",
+            display: "inline-block",
+            padding: '2px'
+        },
+        price:{
+            display: "flex",
+            justifyContent: "space-between"
         }
     });
 
@@ -53,8 +69,12 @@ const CardArticle =({article})=> {
 
     let history = useHistory();
 
+    const goDetail =()=> {
+        history.push("/detail/"+article.id)
+    }
+
     const handleAddCart =()=>{
-        if(count>0 && count < article.data.stock ) {
+        if(count>0 && count <= article.data.stock ) {
             setAdded(true)
             //si esta en el cart sumo unidades
             if (VerifyContains(data.items,article)){
@@ -73,44 +93,66 @@ const CardArticle =({article})=> {
     }
 
     return(
-        <Card className={classes.root}>
-            <CardActionArea>
+        <>
+        <Card className={classes.root} >
+            <CardActionArea onClick={goDetail}>
                 <CardMedia
                     className={classes.media}
                     image={`/Images/${article.data.images[0]}`}
                     title={article.data.name}
                 />
                 <CardContent>
-                    <Link to={'/detail/'+article.id} >
-                        <Typography gutterBottom variant="h5" component="h2" className={classes.name} >
-                            {article.data.name}
+                    <Typography gutterBottom variant="h5" component="h2" className={classes.name} >
+                        {article.data.name}
+                    </Typography>
+
+                    <div className={classes.price}>
+                        <Typography variant="h5" className={classes.price} >
+                            {`$ ${article.data.price} `}
                         </Typography>
-                    </Link>
+                        {
+                            article.data.stock <= 0
+                                ?
+                                <div >
+                                    <span className={classes.without}>SIN STOCK</span>
+                                </div>
+                                :
+                                null
+                        }
+                    </div>
+
                 </CardContent>
             </CardActionArea>
             <CardActions className={classes.actions} >
-                {
-                    <>
-                        <Counter
-                            limit={article.data.stock}
-                            count={count}
-                            setCount={setCount}
-                        />
-                        <div>
-                            <IconButton color="inherit" className={classes.actionToCart} onClick={handleAddCart}>
-                                <AddShoppingCartIcon className={classes.icon} />
-                            </IconButton>
-                        </div>
-                    </>
-                }
+                <>
+                    <Counter
+                        limit={article.data.stock}
+                        count={count}
+                        setCount={setCount}
+                        disabled={article.data.stock<=0}
+                    />
+                    <div>
+                        <IconButton
+                                    className={classes.actionToCart}
+                                    onClick={handleAddCart}
+                                    disabled={article.data.stock<=0}
+                        >
+                            <AddShoppingCartIcon
+                                className={article.data.stock<=0?classes.iconDiabled:classes.icon}
+                                disabled={article.data.stock<=0}
+                            />
+                        </IconButton>
+                    </div>
+                </>
             </CardActions>
-            {count===article.data.stock && !added
+            {count===article.data.stock && article.data.stock>0 && !added
                 ?
                 <ErrorLabel
                     text={infoStrings.stockOut}
                 />
                 :null}
         </Card>
+        </>
     )
 }
 export default CardArticle;
