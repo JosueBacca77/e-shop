@@ -45,7 +45,7 @@ const articles = [
     {
         name: 'Cable desnudo',
         images: ['cable-desnudo.png'],
-        description: 'Cable desnudo, caja por 100 métros',
+        description: 'Cable desnudo',
         price: 325.00,
         unit: 'metro',
         stock: 8,
@@ -113,6 +113,78 @@ const articles = [
         unit: 'unidad',
         stock: 10,
         heading: 'Llaves'
+    },
+    {
+        name: 'Llave marrón',
+        images: ['llavemarron.jpg'],
+        description: 'Llave marrón claro con botones blancos',
+        price: 150.00,
+        unit: 'unidad',
+        stock: 7,
+        heading: 'Llaves'
+    },
+    {
+        name: 'Llave plateada',
+        images: ['llaveplateada.jpg'],
+        description: 'Llave plateada brillante PICKENS',
+        price: 156.00,
+        unit: 'unidad',
+        stock: 2,
+        heading: 'Llaves'
+    },
+    {
+        name: 'Cable tripolar',
+        images: ['tripolar.jpg','tripolar2.jpeg','tripolar3.jpg'],
+        description: 'Cable tripolar resistente',
+        price: 285.00,
+        unit: 'metro',
+        stock: 18,
+        heading: 'Cables'
+    },
+    {
+        name: 'Cable de red',
+        images: ['cablered.jpg','cablered2.jpeg','cablered3.jpeg'],
+        description: 'Delta AMPXL AM-PC-20 Cable UTP Cat5e con conectores RJ45 20 metros. Para Interiores',
+        price: 312.00,
+        unit: 'metro',
+        stock: 16,
+        heading: 'Cables'
+    },
+    {
+        name: 'Casco',
+        images: ['casco.jpeg','casco2.jpeg','casco3.jpeg'],
+        description: 'Casco albañil homologado CLIMAX 5-RS amarillo',
+        price: 140.00,
+        unit: 'unidad',
+        stock: 36,
+        heading: 'Accesorios'
+    },
+    {
+        name: 'Farol',
+        images: ['farol.jpg','farol2.jpeg'],
+        description: 'Farol para pared Hampton Bay, utiliza un foco CFL de 26 watts (no incluido), útil para iluminar espacios exteriores del hogar, como patios, cocheras, etc.',
+        price: 160.00,
+        unit: 'unidad',
+        stock: 6,
+        heading: 'Iluminación'
+    },
+    {
+        name: 'Linterna',
+        images: ['linterna.jpg','linterna2.jpg','linterna3.jpg'],
+        description: 'Xml-t6 Zoomable De Linterna Led Linterna Led Potente Linterna De Aluminio De Poderosos Linternas Para La Caza',
+        price: 128.00,
+        unit: 'unidad',
+        stock: 23,
+        heading: 'Iluminación'
+    },
+    {
+        name: 'Medidor',
+        images: ['metro3.jpg','metro2.png','metro.jpg'],
+        description: 'Flexómetro enrollable STANLEY de 5 a 16 m',
+        price: 128.00,
+        unit: 'unidad',
+        stock: 23,
+        heading: 'Iluminación'
     },
 ];
 

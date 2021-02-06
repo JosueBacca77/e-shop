@@ -1,7 +1,6 @@
 import './App.css';
 import Menu from './components/Menu/Menu'
 import Home from "./components/Home/Home";
-import {temporalArticles} from './Data/data';
 import ArticleDetailContainer from "./components/Article/ArticleContainer/ArticleDetailContainer";
 import {BrowserRouter,Switch, Route} from 'react-router-dom'
 import Heading from "./components/Headings/Heading";
@@ -35,7 +34,7 @@ function App() {
                   <Switch>
 
                       <Route exact path='/'>
-                          <Home articles={temporalArticles} />
+                          <Home />
                       </Route>
 
                       <Route path="/heading/:name?">
