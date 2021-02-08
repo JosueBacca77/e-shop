@@ -1,6 +1,7 @@
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import {useEffect} from "react";
+import {useLayoutEffect} from "react";
+
 
 const ErrorPage =({text})=>{
 
@@ -13,7 +14,7 @@ const ErrorPage =({text})=>{
 
     const classes = useStyles();
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         window.scrollTo(0, 0)
     }, [])
 

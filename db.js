@@ -45,7 +45,7 @@ const articles = [
     {
         name: 'Cable desnudo',
         images: ['cable-desnudo.png'],
-        description: 'Cable desnudo',
+        description: 'Cable de cobre desnudo, calibre 6, 7 hilos',
         price: 325.00,
         unit: 'metro',
         stock: 8,
@@ -63,7 +63,7 @@ const articles = [
     {
         name: 'Llave blanca',
         images: ['llaveluz.jpeg'],
-        description: 'Dos llaves y un enchufe',
+        description: 'Una llave y un enchufe',
         price: 130.00,
         unit: 'unidad',
         stock: 9,
@@ -81,7 +81,7 @@ const articles = [
     {
         name: 'Acometida',
         images: ['acometida.jpg', 'acometida2.png', 'acometida3.jpg'],
-        description: 'Cable acometida negro, precio por metro',
+        description: 'Cable trifasico acometida 12000',
         price: 35.99,
         unit: 'metro',
         stock: 10,
@@ -102,7 +102,7 @@ const articles = [
         description: 'Gafas polarizadas para electricista resistentes al calor, especiales para soldaduras',
         price: 500.00,
         unit: 'unidad',
-        stock: 8,
+        stock: 0,
         heading: 'Accesorios'
     },
     {
@@ -120,7 +120,7 @@ const articles = [
         description: 'Llave marrón claro con botones blancos',
         price: 150.00,
         unit: 'unidad',
-        stock: 7,
+        stock: 0,
         heading: 'Llaves'
     },
     {
@@ -135,10 +135,10 @@ const articles = [
     {
         name: 'Cable tripolar',
         images: ['tripolar.jpg','tripolar2.jpeg','tripolar3.jpg'],
-        description: 'Cable tripolar resistente',
+        description: 'Cable tripolar resistente al calor y a la humedad',
         price: 285.00,
         unit: 'metro',
-        stock: 18,
+        stock: 0,
         heading: 'Cables'
     },
     {
@@ -156,7 +156,7 @@ const articles = [
         description: 'Casco albañil homologado CLIMAX 5-RS amarillo',
         price: 140.00,
         unit: 'unidad',
-        stock: 36,
+        stock: 0,
         heading: 'Accesorios'
     },
     {
@@ -165,7 +165,7 @@ const articles = [
         description: 'Farol para pared Hampton Bay, utiliza un foco CFL de 26 watts (no incluido), útil para iluminar espacios exteriores del hogar, como patios, cocheras, etc.',
         price: 160.00,
         unit: 'unidad',
-        stock: 6,
+        stock: 0,
         heading: 'Iluminación'
     },
     {
@@ -179,12 +179,12 @@ const articles = [
     },
     {
         name: 'Medidor',
-        images: ['metro3.jpg','metro2.png','metro.jpg'],
+        images: ['metro.jpg','metro2.png','metro3.jpg'],
         description: 'Flexómetro enrollable STANLEY de 5 a 16 m',
         price: 128.00,
         unit: 'unidad',
         stock: 23,
-        heading: 'Iluminación'
+        heading: 'Accesorios'
     },
 ];
 

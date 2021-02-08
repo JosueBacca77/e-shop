@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext, useLayoutEffect} from "react";
 import BuyForm from "./BuyForm";
 import {getFireStore} from "../../Data";
 import {ClearCart} from "../../Store/ManageContext";
@@ -11,7 +11,7 @@ const Buy =()=> {
     const db = getFireStore()
     const [dataCont, setDataCont] = useContext(Store);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         window.scrollTo(0, 0)
     }, [])
 

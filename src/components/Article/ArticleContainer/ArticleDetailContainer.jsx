@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useLayoutEffect, useState} from "react";
 import ArticleDetail from "../ArticleDetail";
 import {LinearIndeterminate} from "../../General/Progress";
 import {useParams} from 'react-router-dom'
@@ -25,7 +25,7 @@ const ArticleDetailContainer =()=>{
         count: 0
     })
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         window.scrollTo(0, 0)
     }, [])
 

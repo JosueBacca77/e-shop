@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useLayoutEffect, useState} from "react";
 import {LinearIndeterminate} from "../General/Progress";
 import {useParams} from 'react-router-dom'
 import ArticleList from "../ArticleList";
@@ -20,7 +20,7 @@ const Heading =()=> {
         getHeadingArticles();
     }, [name]);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         window.scrollTo(0, 0)
     }, [])
 

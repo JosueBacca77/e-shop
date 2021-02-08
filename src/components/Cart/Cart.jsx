@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext, useLayoutEffect} from "react";
 import '../../General.css'
 import {Store} from "../../Store/index";
 import ItemCart from "./ItemCart";
@@ -22,7 +22,7 @@ const Cart =()=>{
         history.push('/buy')
     }
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         window.scrollTo(0, 0)
     }, [])
 

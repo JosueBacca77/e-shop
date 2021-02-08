@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useLayoutEffect, useState} from "react";
 import './Home.css'
 import './../../General.css'
 import {LinearIndeterminate} from "../General/Progress";
@@ -12,7 +12,7 @@ const Home =()=> {
 
     const data = getFireStore()
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         window.scrollTo(0, 0)
     }, [])
 
