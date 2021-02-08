@@ -76,10 +76,18 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 # Libraries
+firebase: v8.2.3: Permite la comunicación con Firebase, y por lo tanto, con la base de 
+datos del proyecto 
 
-Josue Bacca
-email: josuemanuelbacca@gmail.com
+material-ui/core v4.11.2: Librería que provee elementos de interfaz de usuario ya definidos, 
+con estilos determinados y la posibilidad de ser adaptados
 
+material-ui/icons v4.11.2: Librería que provee los iconos usados en el proyecto
+
+react-router-dom v5.2.0: Librería utilizada para implementar la navegación de la página web 
+
+react-hook-form v6.14.2: Librería que facilita y enriquece la validacíon y el tratamiento de
+formularios, permitiendo un manejo sólido y determinado de los mismos
 
 # Author
 
