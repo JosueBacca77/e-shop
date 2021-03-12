@@ -3,13 +3,16 @@
     border-radius: 5px;
     padding-left: 1%;
     margin-bottom: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    min-width: 700px;
 }
 
 .name{
     color: var(--azul);
     font-size: 3rem;
 }
-
 
 .descrip{
     grid-row: 1;
@@ -38,8 +41,9 @@
 
     font-size:32px;
     background-color: var(--azul);
-    margin-bottom: 3px;
-    margin-top: 0;
+/*    margin-bottom: 3px;
+    margin-top: 0;*/
+    margin:0 3px 3px 3px;
     text-align: right;
 
 }
@@ -72,4 +76,8 @@
 
 .edit{
     color: var(--azul)
+}
+
+.iconsItemCart{
+    display: flex;
 }

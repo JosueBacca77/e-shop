@@ -45,49 +45,48 @@ const ItemCart =({article, onDelete})=> {
 
     return(
         <article key={article.id} className='item'>
-                <section className='head'>
+            <section className='head space-around'>
+                <CardActionArea onClick={goDetail}>
+                    <h1 className='subtitle name' >
+                        {article.data.name}
+                    </h1>
+                </CardActionArea>
 
-                    <CardActionArea onClick={goDetail}>
-                        <h1 className='subtitle name' >
-                            {article.data.name}
-                        </h1>
-                    </CardActionArea>
-
-                    <section className='right-content' >
-                        {
-                            adding
+                <section className='right-content' >
+                    {
+                        adding
                             ?
-                                <ModifyCountCart
-                                    article={article}
-                                    handleChangeCount={handleChangeCount}
-                                    handleAddCart={handleAddCart}
-                                    handleClose={handleClose}
-                                    countAdded={countAdded}
-                                />
-                                :
-                                <>
+                            <ModifyCountCart
+                                article={article}
+                                handleChangeCount={handleChangeCount}
+                                handleAddCart={handleAddCart}
+                                handleClose={handleClose}
+                                countAdded={countAdded}
+                            />
+                            :
+                            <div className='iconsItemCart'>
                                 <IconButton onClick={()=> setAdding(true)}>
                                     <EditIcon className='edit' />
                                 </IconButton>
                                 <IconButton onClick={()=>onDelete(article)}>
                                     <DeleteIcon className='delete'  />
                                 </IconButton>
-                                </>
-                        }
-                    </section>
+                            </div>
+                    }
                 </section>
+            </section>
 
 
-                <div className='content'>
-                    <div className='descrip'>
-                        <div>
-                            {article.data.description}
-                        </div>
-                        <div className='price'>
-                            <span> $  </span><span className='number-price'>{article.data.price}</span>
-                        </div>
+            <section className='content space-around'>
+                <div className='descrip'>
+                    <div>
+                        {article.data.description}
                     </div>
-                    <div className='count'>
+                    <div className='price'>
+                        <span> $  </span><span className='number-price'>{article.data.price}</span>
+                    </div>
+                </div>
+                <div className='count'>
                         <span className='numberCircle '>
                             <span>
                                 {
@@ -95,9 +94,8 @@ const ItemCart =({article, onDelete})=> {
                                 }
                             </span>
                         </span>
-                    </div>
                 </div>
-
+            </section>
         </article>
     )
 }

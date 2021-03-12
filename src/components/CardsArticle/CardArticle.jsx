@@ -25,8 +25,9 @@ const CardArticle =({article})=> {
 
     const useStyles = makeStyles({
         root: {
-            maxWidth: 345,
             borderRadius: '5px',
+            margin: '15px',
+            width: '270px'
         },
         media: {
             height: 300,
