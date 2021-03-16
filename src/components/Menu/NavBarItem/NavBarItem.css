@@ -1,25 +1,7 @@
-ul li a{
-    color: var(--blanco);
-    background-color: var(--azul);
-}
-
-a:link {
-    text-decoration: none;
-}
-
-a:visited {
-    text-decoration: none;
-}
-
-#heading{
+.heading{
     font-size: large;
 }
-
-#heading:hover {
-    text-decoration: none;
-    background-color: #303f9f;
-}
-
-a:active {
-    text-decoration: none;
-}
+.heading:hover{
+    color: black;
+    background-color: var(--azul);
+ }

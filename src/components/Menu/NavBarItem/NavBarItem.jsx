@@ -14,9 +14,8 @@ const NavBarItem = ({name, url = "#"}) => {
     return (
         <li>
             <CardActionArea onClick={goHeading}>
-                <span id='heading' >{name}</span>
+                <span className='heading'>{name}</span>
             </CardActionArea>
-
         </li>
     )
 }

@@ -1,47 +1,52 @@
 .header{
-    display: grid;
-    grid-template-columns: 60% 40%;
-    grid-template-rows: 100%;
+    display: flex;
     position: fixed;
     z-index: 1;
     width: 100%;
+    flex-wrap: nowrap;
 }
 
 .title{
-    position: relative;
-    padding: 0;
-    margin: 0;
-    top:5%;
-    left: 10%;
-    font-size: 4rem;
+    font-size: 3rem;
+    min-width: 450px;
     color: var(--blanco);
     font-family: Audiowide;
     text-shadow: 7px 7px black;
+    margin-left: 20px;
+    margin-right: 0;
+    flex-grow: 1;
 }
 
-.inputs{
-    background-color: var(--azul);
-    grid-row: 1;
-    grid-column: 2;
+.title:hover{
+    cursor: pointer;
+}
+
+.nav-headings{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.user-options{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    flex-grow: 2;
+    align-items: flex-end;
+    margin-right: 10px;
 }
 
 ul{
-    font-size: 1.1em;
+    display: flex;
     padding: 0;
-    margin: 0 2rem 0 0;
-    float: right;
+    margin: 0 0 0.5rem;
+    font-size: 1.1em;
 }
 
 ul li {
     margin: 0 0.5rem;
-    display: block;
-    float: left;
+    display: flex;
     color: var(--blanco);
-}
-
-nav{
-    margin-left: 50px;
 }
 

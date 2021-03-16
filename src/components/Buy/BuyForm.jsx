@@ -141,7 +141,8 @@ const BuyForm =({buy})=>{
                                         className='field card'
                                         name='card_number'
                                         inputRef={register({
-                                            required: validations.req
+                                            required: validations.req,
+                                            validate: value => value.length === 7 || validations.count_digits_card
                                         })}
                                         error={hasError("card_number")}
                                         helperText={hasError("card_number") && errors.card_number.message}

@@ -13,16 +13,22 @@
 .images{
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
 }
 
 .mainimage{
     height: 600px;
     width: 600px;
+    flex-grow: 2;
 }
 
 .detailArticle{
     text-align: left;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 300px;
+    flex-grow: 1;
 }
 
 .image{

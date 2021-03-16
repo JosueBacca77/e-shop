@@ -1,16 +1,21 @@
 import './Menu.css';
 import SearchAppBar from "../Search";
 import NavBarItem from "./NavBarItem/NavBarItem";
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import WidgetCart from "../WidgetCart/WidgetCart";
 import {getFireStore} from "../../Data";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import {useHistory} from "react-router-dom";
+import {pageName} from "../General/constants/strings";
+import {IconBadge} from "../General/Icons/Icon";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import {Store} from "../../Store";
 
 
 const Menu =()=> {
 
     const db = getFireStore()
+
+    const [data] = useContext(Store);
 
     const [headings, setHeadings] = useState([])
 
@@ -46,32 +51,39 @@ const Menu =()=> {
     }
 
     return(
-        <>
-            <header>
-                <div className='header blue-background'>
-                    <CardActionArea onClick={goHome}>
-                        <span className='title'>electronic-Shop</span>
-                    </CardActionArea>
-                    <div className='inputs'>
-                        <SearchAppBar action={openWidgetCart}/>
+        <header className='header blue-background'>
+            <span className='title' onClick={goHome}>{pageName}</span>
+            <section className='nav-headings'>
+                <SearchAppBar />
+                {
+                    headings.length >0
+                        ?<nav >
+                            <ul>
+                                {headings.map(rubro => (
+                                    <NavBarItem key={rubro.id} name={rubro.data.name} url={`/heading/${rubro.data.name}`} />
+                                ))}
+                            </ul>
+                        </nav>
+                        :null
+                }
+            </section>
+            <section className='user-options'>
+                <nav >
+                    <ul >
+                        <NavBarItem key={'cart'} name='Mi Carrito' url='/cart' />
+                        <NavBarItem key={'mypurchases'} name='Mis compras' url='/purchases' />
                         {
-                            headings.length >0
-                            ?<nav >
-                                    <ul>
-                                        {headings.map(rubro => (
-                                            <NavBarItem key={rubro.id} name={rubro.data.name} url={`/heading/${rubro.data.name}`} />
-                                        ))}
-                                        {<NavBarItem key={'cart'} name='Mi Carrito' url='/cart' />}
-                                    </ul>
-                                </nav>
-                                :null
+                            data.items.length >0
+                                ?
+                                <IconBadge count={data.items.length} icon={<ShoppingCartIcon className='iconWhite' onClick={openWidgetCart} />}  />
+                                :
+                                null
                         }
-
-                    </div>
-                </div>
-            </header>
+                    </ul>
+                </nav>
+            </section>
             <WidgetCart show={showWidgetCart}/>
-        </>
+        </header>
     )
 }
 

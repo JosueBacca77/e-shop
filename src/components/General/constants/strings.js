@@ -2,6 +2,8 @@ const infoStrings = {
     stockOut: 'Ha agotado el stock del producto'
 }
 
+const pageName ='electronic-Shop'
+
 const errorStrings = {
     pageNotFound: 'Página no encontrada',
     articleNotFound: 'Artículo no encontrado',
@@ -25,4 +27,4 @@ const articlesAdded =(count,unit,pluralUnit)=>{
     }
 }
 
-export {infoStrings,articlesAdded,errorStrings,purchaseStates}
+export {infoStrings,pageName,articlesAdded,errorStrings,purchaseStates}
