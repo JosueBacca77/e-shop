@@ -35,7 +35,7 @@ const ModifyCountCart =({article,handleChangeCount,handleAddCart,handleClose=nul
                 type='number'
                 variant="outlined"
                 margin="normal"
-                label={`${GetPlural(article.unit)} a agregar al carrito`}
+                label={`${GetPlural(article.data.unit)} a agregar al carrito`}
                 onChange={handleChangeCount}
             />
 
