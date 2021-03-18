@@ -7,6 +7,7 @@ const pageName ='electronic-Shop'
 const errorStrings = {
     pageNotFound: 'Página no encontrada',
     articleNotFound: 'Artículo no encontrado',
+    purchaseNotFound: 'Compra no encontrada',
     headingArticlesNotFound: 'No se han encontrado artículos pertenecientes a este rubro',
     insufficientStock: 'El stock de los siguientes productos es insuficiente para la cantidad solicitada',
 }

@@ -12,6 +12,7 @@ import React, {useState} from "react";
 import Buy from "./components/Buy/Buy";
 import {initialStore} from "./Store/ManageContext";
 import Footer from "./components/General/Footer";
+import PurchaseContainer from "./components/MyPurchases/PurchaseContainer";
 
 
 function App() {
@@ -21,44 +22,49 @@ function App() {
   return (
       <Store.Provider value={[cart, setCart]}>
           <BrowserRouter>
+              <div className='default-background main-container'>
+                  <Menu />
 
-              <Menu />
+                  <div
+                      className=''
+                      id="body"
+                      style={{
+                          backgroundImage: `url(${`${'/Images/back-ground.jpg'}`})`,
+                      }}
+                  >
 
-              <div
-                  className='default-background'
-                  style={{
-                      backgroundImage: `url(${`${'/Images/back-ground.jpg'}`})`,
-                  }}
-              >
+                      <Switch>
 
-                  <Switch>
+                          <Route exact path='/'>
+                              <Home />
+                          </Route>
 
-                      <Route exact path='/'>
-                          <Home />
-                      </Route>
+                          <Route path="/heading/:name?">
+                              <Heading />
+                          </Route>
 
-                      <Route path="/heading/:name?">
-                          <Heading />
-                      </Route>
+                          <Route path='/detail/:id'>
+                              <ArticleDetailContainer />
+                          </Route>
 
-                      <Route path='/detail/:id'>
-                          <ArticleDetailContainer />
-                      </Route>
+                          <Route path='/cart'>
+                              <Cart />
+                          </Route>
 
-                      <Route path='/cart'>
-                          <Cart />
-                      </Route>
+                          <Route path='/buy'>
+                              <Buy />
+                          </Route>
 
-                      <Route path='/buy'>
-                          <Buy />
-                      </Route>
+                          <Route path='/purchase'>
+                              <PurchaseContainer />
+                          </Route>
 
-                      <Route path='*'>
-                          <ErrorPage text={errorStrings.pageNotFound}/>
-                      </Route>
+                          <Route path='*'>
+                              <ErrorPage text={errorStrings.pageNotFound}/>
+                          </Route>
 
-                  </Switch>
-
+                      </Switch>
+                  </div>
                   <Footer />
               </div>
 

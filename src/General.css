@@ -1,6 +1,6 @@
 .main-view{
     padding: 10% 5% 3% 5%;
-    min-height: 700px;
+    min-height: 300px;
 }
 
 .subtitle{
@@ -44,18 +44,33 @@
 }
 
 .default-background{
-    min-height: 700px;
+    min-height: 100%;
 }
+
 
 .blue-background{
     background-color: var(--azul);
 }
 
+.main-container{
+    min-height:100%;
+    position:relative;
+    background-color: #d50000;
+}
+
+#body{
+    margin:0;
+    padding:0;
+    padding-bottom: 15%;
+}
+
 .foot{
-    height: 100px;
     width: 100%;
     display: flex;
     justify-content: center;
+    position: absolute;
+    bottom: 0;
+    /* Height of the footer */
 }
 
 .space-around{

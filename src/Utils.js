@@ -36,5 +36,11 @@ const GetCountFeesValue =(count) => {
     }
 }
 
+const GetSubtotalItem=(item)=>{
+    return(
+        (item.count*item.data.price).toFixed(2)
+    )
+}
 
-export {GetPlural, VerifyContains,Acumulator,GetFeeValue,GetCountFeesValue};
+
+export {GetPlural, VerifyContains,Acumulator,GetFeeValue,GetCountFeesValue,GetSubtotalItem};
