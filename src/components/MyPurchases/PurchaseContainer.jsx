@@ -38,43 +38,37 @@ const PurchaseContainer=()=>{
     }
 
     return(
-        <div
-            style={{
-                backgroundImage: `url(${`${'/Images/back-ground.jpg'}`})`,
-            }}
-        >
-            <div className='main-view center'>
-{/*                {
+        <div className='main-view center'>
+            {/*                {
                     waiting === true
                         ?
                         <LinearIndeterminate />
                         :
                         null
                 }*/}
-                {
-                    purchase.data !== undefined //&& waiting === false
-                        ?
-                        <Purchase
-                            purchase={purchase}
-                        />
-                        :
-                        null
-                }
-                {
-                    purchase.data === undefined //&& waiting === false
-                        ?
-                        <SearchPurchase
-                            GetPurchase={GetPurchase}
-                        />
-                        :null
-                }
-{/*                {
+            {
+                purchase.data !== undefined //&& waiting === false
+                    ?
+                    <Purchase
+                        purchase={purchase}
+                    />
+                    :
+                    null
+            }
+            {
+                purchase.data === undefined //&& waiting === false
+                    ?
+                    <SearchPurchase
+                        GetPurchase={GetPurchase}
+                    />
+                    :null
+            }
+            {/*                {
                     purchase.data.name === undefined && waiting === false
                         ?
                         <ErrorPage text={errorStrings.purchaseNotFound}/>
                         :null
                 }*/}
-            </div>
         </div>
     )
 }

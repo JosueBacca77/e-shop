@@ -3,8 +3,22 @@ import React, {useEffect, useState} from "react";
 import {Search} from "@material-ui/icons";
 import IconButton from "@material-ui/core/IconButton";
 import "./SearchPurchase.css"
+import makeStyles from "@material-ui/core/styles/makeStyles";
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        '& > *': {
+            margin: theme.spacing(2),
+        },
+    },
+    purchCode:{
+        width: '90%',
+    }
+}));
 
 const SearchPurchase=({GetPurchase})=>{
+
+    const classes = useStyles();
 
     const [id,setId]= useState("")
 
@@ -23,10 +37,14 @@ const SearchPurchase=({GetPurchase})=>{
                 margin="normal"
                 label='Ingrese su código de compra'
                 onChange={handleChange}
+                className={classes.purchCode}
             />
-            <IconButton color="primary" onClick={handleSearch}>
-                <Search />
-            </IconButton>
+            <div className={classes.root}>
+                <IconButton color="primary" onClick={handleSearch}>
+                    <Search />
+                </IconButton>
+            </div>
+
         </article>
     )
 }

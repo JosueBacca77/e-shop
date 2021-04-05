@@ -54,11 +54,6 @@ const ArticleDetailContainer =()=>{
 
 
     return(
-        <div
-            style={{
-                backgroundImage: `url(${`${'/Images/back-ground.jpg'}`})`,
-            }}
-        >
             <div className='main-view'>
                 {
                     waiting === true
@@ -81,7 +76,6 @@ const ArticleDetailContainer =()=>{
                         :null
                 }
             </div>
-        </div>
     )
 }
 
