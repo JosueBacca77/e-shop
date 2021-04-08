@@ -15,6 +15,7 @@ import {VerifyContains} from "../../Utils";
 import {useHistory} from "react-router-dom";
 import {Store} from "../../Store";
 import {AddItemToCart, ModifyCountItem, UpdateTotalCart} from "../../Store/ManageContext";
+import {green} from "@material-ui/core/colors";
 
 
 const CardArticle =({article})=> {
@@ -26,8 +27,12 @@ const CardArticle =({article})=> {
     const useStyles = makeStyles({
         root: {
             borderRadius: '5px',
-            margin: '15px',
-            width: '270px'
+            margin: '20px',
+            width: '270px',
+            height: '470px',
+            '&:hover': {
+                boxShadow: '5px 5px 5px green',
+            }
         },
         media: {
             height: 300,
@@ -103,7 +108,7 @@ const CardArticle =({article})=> {
                     title={article.data.name}
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2" className={classes.name} >
+                    <Typography gutterBottom variant="h5" component="h2" className={classes.stopButton} >
                         {article.data.name}
                     </Typography>
 

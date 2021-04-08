@@ -49,21 +49,21 @@ export default function SearchAppBar() {
 
     return (
         <div className={classes.root}>
-                <Toolbar >
-                    <div className={classes.search}>
-                        <div >
-                            <SearchIcon className={classes.searchIcon}/>
-                        </div>
-                        <InputBase
-                            placeholder="Qué estás buscando?"
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput
-                            }}
-                            inputProps={{ "aria-label": "search" }}
-                        />
+            <Toolbar >
+                <div className={classes.search}>
+                    <div >
+                        <SearchIcon className={classes.searchIcon}/>
                     </div>
-                </Toolbar>
+                    <InputBase
+                        placeholder="Qué estás buscando?"
+                        classes={{
+                            root: classes.inputRoot,
+                            input: classes.inputInput
+                        }}
+                        inputProps={{ "aria-label": "search" }}
+                    />
+                </div>
+            </Toolbar>
         </div>
     );
 }

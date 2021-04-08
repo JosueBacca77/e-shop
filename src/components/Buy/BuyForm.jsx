@@ -14,6 +14,7 @@ import {LinearIndeterminate} from "../General/Progress";
 import ErrorStock from "./ErrorStock";
 import {GreenButton} from "../General/Buttons";
 import {purchaseStates} from "../General/constants/strings";
+import SuccessPurchase from "./SuccessPurchase";
 
 
 
@@ -35,7 +36,7 @@ const BuyForm =({buy})=>{
     const email = watch("email")
 
     const [completed, setCompleted] = useState(false)
-    const [salesId, setSalesId] = useState('')
+    const [purchaseId, setPurchaseId] = useState('')
 
     const hasError = inputField => !!(errors && errors[inputField]);
 
@@ -48,7 +49,7 @@ const BuyForm =({buy})=>{
         data.date = Date.now()
         data.state = purchaseStates.generated
         setCompleted(true)
-        buy(data,setSalesId,setWithoutStock,setApproved,setWaiting)
+        buy(data,setPurchaseId,setWithoutStock,setApproved,setWaiting)
     }
 
     if (dataCont.items.length==0 && !completed){
@@ -200,12 +201,13 @@ const BuyForm =({buy})=>{
                                 :
                                     <div>
                                         {
-                                            approved && salesId !== ''
+                                            approved && purchaseId !== ''
                                                 ?
-                                                <section className='subtitle' >
+                                                <SuccessPurchase purchaseId={purchaseId} />
+                                               /* <section className='subtitle' >
                                                     <p>Tu compra se ha completado!!</p>
                                                     <p>Tu código de seguimiento es: <span className='important-data'>{salesId}</span> </p>
-                                                </section>
+                                                </section>*/
                                                 :
                                                 null
                                         }

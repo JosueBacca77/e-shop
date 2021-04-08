@@ -1,5 +1,5 @@
 .main-view{
-    padding: 10% 5% 3% 5%;
+    padding: 7% 2% 3% 5%;
     min-height: 300px;
 }
 
@@ -55,7 +55,6 @@
 .main-container{
     min-height:100%;
     position:relative;
-    background-color: #d50000;
     margin: 0;
 }
 

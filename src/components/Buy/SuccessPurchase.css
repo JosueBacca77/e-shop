@@ -1,0 +1,17 @@
+.success-purchase{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.success-advice{
+    color: lightgreen;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.label{
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}

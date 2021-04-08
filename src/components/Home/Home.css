@@ -1,12 +1,7 @@
 .articles{
-    /*display: grid;
-    grid-template-rows: 50% 50%;
-    grid-template-columns: 33% 33% 33%;
-    grid-gap: 15px;*/
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-
 }
 
 .title-not-found{

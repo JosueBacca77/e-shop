@@ -26,7 +26,6 @@ function App() {
                   <Menu />
 
                   <div
-                      className=''
                       id="body"
                       style={{
                           backgroundImage: `url(${`${'/Images/back-ground.jpg'}`})`,
