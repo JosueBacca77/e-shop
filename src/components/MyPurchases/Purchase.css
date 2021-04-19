@@ -1,0 +1,19 @@
+.info-purchase{
+    display: grid;
+    grid-template-rows: 30% 30% 30%;
+    grid-template-columns: 50% 50%;
+    grid-gap: 10px;
+    margin: 15px;
+    text-align: left;
+}
+.info-purchase-form{
+    background-color: var(--blanco);
+    border-radius: 20px;
+    padding: 10px;
+    width: 700px;
+    padding-top: 20px;
+}
+
+.table-items{
+    margin-right: 10px;
+}

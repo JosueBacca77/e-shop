@@ -1,10 +1,6 @@
 import {getFireStore} from "../../Data";
-import React, {useEffect, useLayoutEffect, useState} from "react";
+import {useLayoutEffect, useState} from "react";
 import Purchase from "./Purchase";
-import {LinearIndeterminate} from "../General/Progress";
-import ArticleDetail from "../Article/ArticleDetail";
-import ErrorPage from "../General/ErrorPage/ErrorPage";
-import {errorStrings} from "../General/constants/strings";
 import SearchPurchase from "./SearchPurchase";
 
 const PurchaseContainer=()=>{

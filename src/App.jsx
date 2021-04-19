@@ -54,7 +54,7 @@ function App() {
                               <Buy />
                           </Route>
 
-                          <Route path='/purchase'>
+                          <Route path='/purchases'>
                               <PurchaseContainer />
                           </Route>
 
