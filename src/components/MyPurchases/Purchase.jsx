@@ -6,9 +6,6 @@ import {GetSubtotalItem} from "../../Utils";
 
 const Purchase=({purchase})=>{
 
-    console.log("purchase buscada")
-    console.log(purchase)
-    console.log(purchase.data.date)
     const [date] = useState(new Date(purchase.data.date))
 
     const formatItemsForTable =(items)=>{

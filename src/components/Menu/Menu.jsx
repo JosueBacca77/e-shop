@@ -9,6 +9,7 @@ import {pageName} from "../General/constants/strings";
 import {IconBadge} from "../General/Icons/Icon";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import {Store} from "../../Store";
+import {BlueButton} from './../General/Buttons'
 
 
 const Menu =()=> {
@@ -72,6 +73,8 @@ const Menu =()=> {
                     <ul >
                         <NavBarItem key={'cart'} name='Mi Carrito' url='/cart' />
                         <NavBarItem key={'mypurchases'} name='Mis compras' url='/purchases' />
+                        <NavBarItem key={'login'} name='Ingresar' url='/login' />
+                        <NavBarItem key={'signup'} name='Registrarme' myclass='signup' url='/signup' />
                         {
                             data.items.length >0
                                 ?

@@ -1,5 +1,7 @@
 import firebasse from 'firebase/app'
 import '@firebase/firestore'
+import 'firebase/auth'
+
 
 const app = firebasse.initializeApp({
     apiKey: process.env.API_KEY,
@@ -17,3 +19,5 @@ export function getFirebase(){
 export function getFireStore(){
     return firebasse.firestore(app)
 }
+
+//export const auth = app.auth()

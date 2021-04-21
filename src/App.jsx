@@ -13,6 +13,8 @@ import Buy from "./components/Buy/Buy";
 import {initialStore} from "./Store/ManageContext";
 import Footer from "./components/General/Footer";
 import PurchaseContainer from "./components/MyPurchases/PurchaseContainer";
+import Login from "./components/User/Login/Login";
+import SignUp from "./components/User/SignUp/SignUp";
 
 
 function App() {
@@ -56,6 +58,14 @@ function App() {
 
                           <Route path='/purchases'>
                               <PurchaseContainer />
+                          </Route>
+
+                          <Route path='/login'>
+                              <Login />
+                          </Route>
+
+                          <Route path='/signup'>
+                              <SignUp />
                           </Route>
 
                           <Route path='*'>
