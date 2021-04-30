@@ -11,12 +11,15 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import blueGrey from "@material-ui/core/colors/blueGrey";
 import './Login.css'
 import {useHistory} from "react-router-dom";
+import {useAuth} from '../../../AuthContext'
 
 
 const Login = () => {
     const {register, handleSubmit, errors} = useForm();
     const hasError = inputField => !!(errors && errors[inputField]);
     const [pagState, setPagState ]= useState(true)
+
+    const {signin} = useAuth()
 
     let history = useHistory();
 
@@ -34,12 +37,10 @@ const Login = () => {
     }
 
     const onSubmit = data => {
-         /*return new Promise((resolve) => {
-             console.log("send data")
-             console.log(data)
-             Customer.autenticate(setPagState,data,history)
-             resolve();
-         });*/
+         return new Promise((resolve) => {
+             
+             resolve(signin(data.email, data.password));
+         });
     }
 
     return (

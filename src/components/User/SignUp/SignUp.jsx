@@ -10,12 +10,15 @@ import {validations} from "../../../Validations";
 import {ErrorLabel} from "../../General/Labels";
 import {AceptButton, GreenButton} from "../../General/Buttons";
 import './SignUp.css'
+import {useAuth} from '../../../AuthContext'
 
 
 const SignUp = () => {
     const {register, handleSubmit, errors} = useForm();
     const hasError = inputField => !!(errors && errors[inputField]);
     // const [pagState, setPagState ]= useState(true)
+
+    const {SignUp} = useAuth()
 
     let history = useHistory();
 
@@ -39,6 +42,7 @@ const SignUp = () => {
             Customer.autenticate(setPagState,data,history)
             resolve();
         });*/
+        console.log("asasas")
     }
 
     return (
