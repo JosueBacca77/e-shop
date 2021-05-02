@@ -13,8 +13,9 @@ import Buy from "./components/Buy/Buy";
 import {initialStore} from "./Store/ManageContext";
 import Footer from "./components/General/Footer";
 import PurchaseContainer from "./components/MyPurchases/PurchaseContainer";
-import Login from "./components/User/Login/Login";
-import SignUp from "./components/User/SignUp/SignUp";
+import LogInForm from "./components/User/Login/LoginForm";
+import SignUp from "./components/User/SignUp/SignUpForm";
+import { AuthProvider } from './AuthContext';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
     const [cart, setCart] = useState(initialStore)
 
   return (
+    <AuthProvider>
       <Store.Provider value={[cart, setCart]}>
           <BrowserRouter>
               <div className='default-background main-container'>
@@ -33,52 +35,54 @@ function App() {
                           backgroundImage: `url(${`${'/Images/back-ground.jpg'}`})`,
                       }}
                   >
+                      
+                        <Switch>
 
-                      <Switch>
+                            <Route exact path='/'>
+                                <Home />
+                            </Route>
 
-                          <Route exact path='/'>
-                              <Home />
-                          </Route>
+                            <Route path="/heading/:name?">
+                                <Heading />
+                            </Route>
 
-                          <Route path="/heading/:name?">
-                              <Heading />
-                          </Route>
+                            <Route path='/detail/:id'>
+                                <ArticleDetailContainer />
+                            </Route>
 
-                          <Route path='/detail/:id'>
-                              <ArticleDetailContainer />
-                          </Route>
+                            <Route path='/cart'>
+                                <Cart />
+                            </Route>
 
-                          <Route path='/cart'>
-                              <Cart />
-                          </Route>
+                            <Route path='/buy'>
+                                <Buy />
+                            </Route>
 
-                          <Route path='/buy'>
-                              <Buy />
-                          </Route>
+                            <Route path='/purchases'>
+                                <PurchaseContainer />
+                            </Route>
 
-                          <Route path='/purchases'>
-                              <PurchaseContainer />
-                          </Route>
+                            <Route path='/login'>
+                                <LogInForm />
+                            </Route>
 
-                          <Route path='/login'>
-                              <Login />
-                          </Route>
+                            <Route path='/signup'>
+                                <SignUp />
+                            </Route>
 
-                          <Route path='/signup'>
-                              <SignUp />
-                          </Route>
+                            <Route path='*'>
+                                <ErrorPage text={errorStrings.pageNotFound}/>
+                            </Route>
 
-                          <Route path='*'>
-                              <ErrorPage text={errorStrings.pageNotFound}/>
-                          </Route>
+                        </Switch>
 
-                      </Switch>
                   </div>
                   <Footer />
               </div>
 
           </BrowserRouter>
       </Store.Provider >
+      </AuthProvider>
   );
 }
 

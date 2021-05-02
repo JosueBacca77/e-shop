@@ -38,8 +38,7 @@ const BuyForm =({buy})=>{
     const [completed, setCompleted] = useState(false)
     const [purchaseId, setPurchaseId] = useState('')
 
-    const hasError = inputField => !!(errors && errors[inputField]);
-
+    const hasError = inputField => (errors && errors[inputField]);
 
     const onSubmit = data => {
         data.items = dataCont.items
