@@ -1,10 +1,11 @@
 import './ArticleDetail.css'
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {GetPlural, VerifyContains} from "../../Utils";
 import {useHistory} from "react-router-dom";
 import {Store} from "../../Store";
 import ModifyCountCart from "../ModifyCountCart";
 import {AddItemToCart, ModifyCountItem, UpdateTotalCart} from "../../Store/ManageContext";
+import {useAuth} from "../../AuthContext"
 
 
 const ArticleDetail =({article})=> {
@@ -19,9 +20,16 @@ const ArticleDetail =({article})=> {
 
     const [data, setData] = useContext(Store)
 
+    const {currentUser} = useAuth()
+
     const handleChangeImage =(image)=> {
         setSelectedImage(image)
     }
+    useEffect(() => {
+        console.log("useefect")
+        console.log(currentUser.email)
+        
+    }, [])
 
     const handleAddCart =()=> {
         if(countAdded>0 && countAdded <= article.data.stock ){
@@ -95,6 +103,9 @@ const ArticleDetail =({article})=> {
                             countAdded={countAdded}
                         />
                         :null
+                }
+                {
+                    <h1>{currentUser.email}</h1>
                 }
             </section>
         </article>

@@ -9,7 +9,7 @@ import {pageName} from "../General/constants/strings";
 import {IconBadge} from "../General/Icons/Icon";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import {Store} from "../../Store";
-import {BlueButton} from './../General/Buttons'
+import {useAuth} from "../../AuthContext"
 
 
 const Menu =()=> {
@@ -17,6 +17,8 @@ const Menu =()=> {
     const db = getFireStore()
 
     const [data] = useContext(Store);
+
+    const {currentUser, logout} = useAuth()
 
     const [headings, setHeadings] = useState([])
 
@@ -73,8 +75,20 @@ const Menu =()=> {
                     <ul >
                         <NavBarItem key={'cart'} name='Mi Carrito' url='/cart' />
                         <NavBarItem key={'mypurchases'} name='Mis compras' url='/purchases' />
-                        <NavBarItem key={'login'} name='Ingresar' url='/login' />
-                        <NavBarItem key={'signup'} name='Registrarme' myclass='signup' url='/signup' />
+
+                        {
+                            currentUser
+                            ?
+                            <>
+                                <NavBarItem key={'user'} name={currentUser.email} myclass='user' url='/' />
+                                <NavBarItem key={'logout'} name='Salir' myclass='logout' logout={logout}/>
+                            </>
+                            :
+                            <>
+                                <NavBarItem key={'login'}  name='Ingresar' url='/login' />
+                                <NavBarItem key={'signup'} name='Registrarme' myclass='signup' url='/signup' />
+                            </>
+                        } 
                         {
                             data.items.length >0
                                 ?

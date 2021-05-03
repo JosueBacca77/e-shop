@@ -5,3 +5,8 @@
     color: black;
     background-color: var(--azul);
  }
+
+ .usernav{
+     display: flex;
+     align-items: center;
+ }

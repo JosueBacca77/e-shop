@@ -2,29 +2,24 @@ import './NavBarItem.css'
 import {useHistory} from "react-router-dom";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import React from "react";
-import makeStyles from "@material-ui/core/styles/makeStyles";
-import {blue} from "@material-ui/core/colors";
 import {BlueButton} from "../../General/Buttons";
+import PersonIcon from '@material-ui/icons/Person';
 
 
-const NavBarItem = ({name, myclass, url = "#"}) => {
-
-    const useStyles = makeStyles((theme) => ({
-        containedBlue: {
-            color: "white",
-            backgroundColor: blue[500],
-            "&:hover": {
-                backgroundColor: blue[700],
-            },
-        },
-    }));
-
-    const classes = useStyles();
+const NavBarItem = ({name, myclass, url = "#", logout}) => {
 
     let history = useHistory();
 
     const goHeading =()=> {
         history.push(url)
+    }
+
+    const onHandkeClick=()=>{
+        if (myclass ==='logout'){
+            logout()
+        }else{
+            goHeading()
+        }
     }
 
     return (
@@ -34,8 +29,16 @@ const NavBarItem = ({name, myclass, url = "#"}) => {
                 ?
                     <BlueButton text={name} onClick={goHeading}/>
                     :
-                    <CardActionArea onClick={goHeading}>
-                        <span className='heading'>{name}</span>
+                    <CardActionArea onClick={onHandkeClick}>
+                        {
+                            myclass ==='user'
+                            ?
+                            <div className='usernav'>
+                                <span className='heading'>{name}&nbsp;</span><PersonIcon />
+                            </div>
+                            :
+                            <span className='heading'>{name}</span>
+                        }
                     </CardActionArea>
 
             }

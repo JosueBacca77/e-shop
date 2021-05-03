@@ -16,6 +16,8 @@ import PurchaseContainer from "./components/MyPurchases/PurchaseContainer";
 import LogIn from "./components/User/Login/Login";
 import SignUp from "./components/User/SignUp/SignUp";
 import { AuthProvider } from './AuthContext';
+import PrivateRoute from "./components/Routers/PrivateRouter"
+import PublicRoute from "./components/Routers/PublicRouter"
 
 
 function App() {
@@ -50,25 +52,15 @@ function App() {
                                 <ArticleDetailContainer />
                             </Route>
 
-                            <Route path='/cart'>
-                                <Cart />
-                            </Route>
+                            <PrivateRoute component={Cart} path='/cart' exact/>
 
-                            <Route path='/buy'>
-                                <Buy />
-                            </Route>
+                            <PrivateRoute component={Buy} path='/buy' exact/>
 
-                            <Route path='/purchases'>
-                                <PurchaseContainer />
-                            </Route>
+                            <PrivateRoute component={PurchaseContainer} path='/purchases' exact/>
 
-                            <Route path='/login'>
-                                <LogIn />
-                            </Route>
-
-                            <Route path='/signup'>
-                                <SignUp />
-                            </Route>
+                            <PublicRoute restricted={true} component={SignUp} path="/signup" exact />
+                            
+                            <PublicRoute restricted={true} component={LogIn} path="/login" exact />
 
                             <Route path='*'>
                                 <ErrorPage text={errorStrings.pageNotFound}/>

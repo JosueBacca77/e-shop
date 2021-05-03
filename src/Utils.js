@@ -1,3 +1,5 @@
+import {useAuth} from './AuthContext'
+
 const GetPlural =(unit)=> {
     switch (unit) {
         case "unidad": return  "unidades"
