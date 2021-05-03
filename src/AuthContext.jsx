@@ -1,7 +1,7 @@
-import {useContext} from 'react'
+import {createContext, useContext, useState, useEffect} from 'react'
 import {auth} from './Data/index'
 
-const AuthContext = useContext(contextValue)
+const AuthContext = createContext()
 
 export function useAuth(){
     return useContext(AuthContext)
@@ -13,7 +13,8 @@ export const AuthProvider=({children})=>{
 
     const value = {
         currentUser,
-        signup
+        signup,
+        signin
     }
     
     function signup(email, password){
@@ -25,18 +26,20 @@ export const AuthProvider=({children})=>{
     }
 
     useEffect(() => {
-        const unsuscribe = auth.onAuthStateChanged(user=>{
-            setCurrentUser(user)
-            setLoading(false)
-        })
+        console.log("-------")
+        //console.log(auth)
+        //const unsuscribe = auth.onAuthStateChanged(user=>{
+        //    setCurrentUser(user)
+        //    setLoading(false)
+        //})
 
-        return unsuscribe
+        //return unsuscribe
     
     }, [])
 
     return(
         <AuthContext.Provider value={value}>
-            {!loading && children}
+            {children}
         </AuthContext.Provider>
     )
 }

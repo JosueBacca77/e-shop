@@ -2,10 +2,11 @@ import firebasse from 'firebase/app'
 import '@firebase/firestore'
 import 'firebase/auth'
 
-
+//const admin = require('firebase-admin');
+//const app = admin.initializeApp({
 const app = firebasse.initializeApp({
-    apiKey: process.env.API_KEY,
-    authDomain: process.env.AUTH_DOMAIN,
+    apiKey: "AIzaSyB_Pa5RW2TcPfl9S6hCyjdOrrimp2OS0uk",
+    authDomain: "electronic-shop-5d783.firebaseapp.com",
     projectId: "electronic-shop-5d783",
     storageBucket: "electronic-shop-5d783.appspot.com",
     messagingSenderId: "582474805810",
@@ -20,4 +21,4 @@ export function getFireStore(){
     return firebasse.firestore(app)
 }
 
-//export const auth = app.auth()
+export const auth = app.auth()

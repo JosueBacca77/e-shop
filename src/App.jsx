@@ -13,8 +13,8 @@ import Buy from "./components/Buy/Buy";
 import {initialStore} from "./Store/ManageContext";
 import Footer from "./components/General/Footer";
 import PurchaseContainer from "./components/MyPurchases/PurchaseContainer";
-import LogInForm from "./components/User/Login/LoginForm";
-import SignUp from "./components/User/SignUp/SignUpForm";
+import LogIn from "./components/User/Login/Login";
+import SignUp from "./components/User/SignUp/SignUp";
 import { AuthProvider } from './AuthContext';
 
 
@@ -63,7 +63,7 @@ function App() {
                             </Route>
 
                             <Route path='/login'>
-                                <LogInForm />
+                                <LogIn />
                             </Route>
 
                             <Route path='/signup'>

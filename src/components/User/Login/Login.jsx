@@ -1,110 +1,30 @@
-import Avatar from "@material-ui/core/Avatar";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
-import {useForm} from "react-hook-form";
-import React, {useState} from "react";
-import {validations} from '../../../Validations'
-import {ErrorLabel} from "../../General/Labels";
-import {AceptButton, GreenButton} from "../../General/Buttons";
-import makeStyles from "@material-ui/core/styles/makeStyles";
-import blueGrey from "@material-ui/core/colors/blueGrey";
-import './Login.css'
-import {useHistory} from "react-router-dom";
+import LogInForm from './LoginForm'
 import {useAuth} from '../../../AuthContext'
+import {useHistory} from "react-router-dom";
 
 
-const Login = () => {
-    const {register, handleSubmit, errors} = useForm();
-    const hasError = inputField => !!(errors && errors[inputField]);
-    const [pagState, setPagState ]= useState(true)
-
-    const {signin} = useAuth()
+const LogIn =()=> {
 
     let history = useHistory();
 
-    const useStyles = makeStyles((theme) => ({
-        avatar: {
-            backgroundColor: blueGrey[900],
-            marginTop: '10px',
-        },
-    }));
+    const {signin} = useAuth()
 
-    const classes = useStyles();
+    const logIn =(email,password, setError)=>{
 
-    const goSignUp=()=>{
-        history.push("/signup")
+        const logIn = new Promise((resolve) => {
+            resolve(signin(email, password));
+        });
+        
+        logIn
+        .then(()=>history.push("/"))
+        .catch(error=>setError(error.message))
     }
 
-    const onSubmit = data => {
-         return new Promise((resolve) => {
-             
-             resolve(signin(data.email, data.password));
-         });
-    }
-
-    return (
-        <div className='main-view center'>
-        <form className='login-form' noValidate
-              onSubmit={handleSubmit(onSubmit)}
-        >
-            <Avatar className={classes.avatar}>
-                <LockOutlinedIcon/>
-            </Avatar>
-            <Typography component="h1" variant="h5" >
-                Ingresar
-            </Typography>
-            <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                name="email"
-                label="Email"
-                autoComplete="email"
-                autoFocus
-                inputRef={register({
-                    required: validations.req,
-                })}
-                error={hasError("codcli")}
-                helperText={hasError("codcli") && errors.email.message}
-            />
-
-            <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Contraseña"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                inputRef={register({
-                    required: validations.req,
-                })}
-                error={hasError("password")}
-                helperText={hasError("password") && errors.password.message}
-            />
-            {
-                pagState !== true
-                    ?
-                    <ErrorLabel
-                        text={pagState.detail}
-                    />
-                    :null
-            }
-            <div className='button'>
-                <AceptButton
-                    text='Aceptar'
-                    type='submit'
-                />
-            </div>
-            <span>Aún no tienes una cuenta?&nbsp;&nbsp;<a href='' onClick={goSignUp}>Registrate ahora</a></span>
-        </form>
+    return(
+        <div className='main-view'>
+            <LogInForm logIn={logIn}/>
         </div>
     )
-};
+}
 
-export default Login;
+export default LogIn
