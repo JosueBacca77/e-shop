@@ -18,7 +18,7 @@ import SuccessPurchase from "./SuccessPurchase";
 
 
 
-const BuyForm =({buy})=>{
+const BuyForm =({buy,user})=>{
 
     let history = useHistory();
     const [dataCont] = useContext(Store);
@@ -47,6 +47,8 @@ const BuyForm =({buy})=>{
         data.fee = GetFeeValue(dataCont.total,countFees)
         data.date = Date.now()
         data.state = purchaseStates.generated
+        data.iduser = user.uid
+        console.log(data)
         setCompleted(true)
         buy(data,setPurchaseId,setWithoutStock,setApproved,setWaiting)
     }
