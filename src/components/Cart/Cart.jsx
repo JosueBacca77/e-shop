@@ -5,6 +5,7 @@ import ItemCart from "./ItemCart";
 import {DeleteItemCart, UpdateTotalCart} from "../../Store/ManageContext";
 import {useHistory} from "react-router-dom";
 import {GreenButton} from "../General/Buttons";
+import {useAuth} from '../../AuthContext'
 
 
 const Cart =()=>{
@@ -12,6 +13,8 @@ const Cart =()=>{
     let history = useHistory();
 
     const [data, setData] = useContext(Store);
+
+    const {currentUser} = useAuth()
 
     const onDelete =(item)=>{
         DeleteItemCart(item.id,data,setData)

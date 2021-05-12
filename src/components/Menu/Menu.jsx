@@ -75,6 +75,13 @@ const Menu =()=> {
                     <ul >
                         <NavBarItem key={'cart'} name='Mi Carrito' url='/cart' />
                         <NavBarItem key={'mypurchases'} name='Mis compras' url='/purchases' />
+                        {
+                            data.items.length >0
+                                ?
+                                <IconBadge count={data.items.length} icon={<ShoppingCartIcon className='iconWhite' onClick={openWidgetCart} />}  />
+                                :
+                                null
+                        }
 
                         {
                             currentUser
@@ -89,13 +96,6 @@ const Menu =()=> {
                                 <NavBarItem key={'signup'} name='Registrarme' myclass='signup' url='/signup' />
                             </>
                         } 
-                        {
-                            data.items.length >0
-                                ?
-                                <IconBadge count={data.items.length} icon={<ShoppingCartIcon className='iconWhite' onClick={openWidgetCart} />}  />
-                                :
-                                null
-                        }
                     </ul>
                 </nav>
             </section>

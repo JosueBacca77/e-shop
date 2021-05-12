@@ -15,8 +15,10 @@ const PurchaseContainer=()=>{
     }, [])
 
     const GetPurchase = (id) =>{
-        db.collection('sales').doc(id).get()
+        db.collection('Sales').doc(id).get()
             .then(function(doc) {
+                console.log(id)
+                console.log('id')
                 if (doc.exists) {
                     setPurchase(
                         {

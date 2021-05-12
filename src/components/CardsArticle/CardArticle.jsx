@@ -15,7 +15,7 @@ import {VerifyContains} from "../../Utils";
 import {useHistory} from "react-router-dom";
 import {Store} from "../../Store";
 import {AddItemToCart, ModifyCountItem, UpdateTotalCart} from "../../Store/ManageContext";
-import {green} from "@material-ui/core/colors";
+import {useAuth} from "../../AuthContext"
 
 
 const CardArticle =({article})=> {
@@ -23,6 +23,7 @@ const CardArticle =({article})=> {
     const [count, setCount] = useState(0)
     const [added, setAdded] = useState(false)
     const [data, setData] = useContext(Store)
+    const {currentUser} = useAuth()
 
     const useStyles = makeStyles({
         root: {
@@ -80,22 +81,24 @@ const CardArticle =({article})=> {
     }
 
     const handleAddCart =()=>{
-        if(count>0 && count <= article.data.stock ) {
-            setAdded(true)
-            //si esta en el cart sumo unidades
-            if (VerifyContains(data.items,article)){
-                //si esta sumo las unidades
-                ModifyCountItem(article.id, count,data,setData)
-                //actualizo total carrito
-                UpdateTotalCart(data,setData)
-            }else{
-                //si no esta lo sumo al cart
-                AddItemToCart(article,count,data,setData)
-                //actualizo total carrito
-                UpdateTotalCart(data,setData)
+        if (currentUser){
+            if(count>0 && count <= article.data.stock ) {
+                setAdded(true)
+                //si esta en el cart sumo unidades
+                if (VerifyContains(data.items,article)){
+                    //si esta sumo las unidades
+                    ModifyCountItem(article.id, count,data,setData)
+                    //actualizo total carrito
+                    UpdateTotalCart(data,setData)
+                }else{
+                    //si no esta lo sumo al cart
+                    AddItemToCart(article,count,data,setData)
+                    //actualizo total carrito
+                    UpdateTotalCart(data,setData)
+                }
             }
-            history.push("/cart")
         }
+        history.push("/cart")
     }
 
     return(

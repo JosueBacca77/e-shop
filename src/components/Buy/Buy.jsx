@@ -4,12 +4,14 @@ import {getFireStore} from "../../Data";
 import {ClearCart} from "../../Store/ManageContext";
 import {Store} from "../../Store";
 import firebase from 'firebase/app';
+import {useAuth} from "../../AuthContext"
 
 
 const Buy =()=> {
 
     const db = getFireStore()
     const [dataCont, setDataCont] = useContext(Store);
+    const {currentUser} = useAuth() 
 
     useLayoutEffect(() => {
         window.scrollTo(0, 0)
@@ -18,7 +20,7 @@ const Buy =()=> {
     const validateStock =(ids,data,setId,setWithoutStock,setApproved,setWaiting)=> {
 
         setWithoutStock([])
-
+        
         const GetArticles = new Promise((resolve) => {
             resolve(
                 db.collection('Articles').where(firebase.firestore.FieldPath.documentId(),'in',ids).get()
@@ -40,7 +42,7 @@ const Buy =()=> {
                             }
                         }
                         if (validStock){
-                            db.collection('sales').add(data)
+                            db.collection('Sales').add(data)
                                 .then(({id})=>{
                                     setId(id)
                                     ClearCart(setDataCont)
@@ -80,7 +82,10 @@ const Buy =()=> {
 
     return(
         <div className='main-view'>
-            <BuyForm buy={buy}/>
+            <BuyForm 
+                buy={buy}
+                user={currentUser}
+            />
         </div>
     )
 }
