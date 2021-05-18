@@ -2,9 +2,12 @@ import './Purchase.css'
 import {useState} from "react";
 import ItemsPurchaseTable from "./ItemsPurchase";
 import {GetSubtotalItem} from "../../Utils";
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import IconButton from "@material-ui/core/IconButton";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 
 
-const Purchase=({purchase})=>{
+const Purchase=({purchase,cleanPurchase})=>{
 
     const [date] = useState(new Date(purchase.data.date))
 
@@ -23,10 +26,31 @@ const Purchase=({purchase})=>{
         return itemsNew
     }
 
+    const useStyles = makeStyles({
+        icon:{
+            color: "blue",
+            '& svg': {
+                fontSize: 40
+              }
+        }
+    });
+
+    const classes = useStyles();
+
+
     return(
         <>
         <form noValidate className='info-purchase-form'>
-            <span className='left-align'><b>Fecha de compra:&nbsp;&nbsp;</b><span>{+date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear()}</span></span>
+            <section className='space-between'>
+                <span ><b>Fecha de compra:&nbsp;&nbsp;</b><span>{+date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear()}</span></span>
+                <div>
+                    <IconButton className={classes.icon} onClick={cleanPurchase}>
+                            <KeyboardBackspaceIcon  />
+                    </IconButton>
+                </div>
+                
+            </section>
+            
             <br/>
             <span className='left-align label-section'>Información del cliente</span>
             <section className='info-purchase'>

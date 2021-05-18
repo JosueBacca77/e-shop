@@ -2,71 +2,73 @@ import {getFireStore} from "../../Data";
 import {useLayoutEffect, useState} from "react";
 import Purchase from "./Purchase";
 import SearchPurchase from "./SearchPurchase";
+import {useAuth} from "../../AuthContext"
+import firebase from 'firebase/app';
 
 const PurchaseContainer=()=>{
 
-    //const {id} = useParams();
     const db = getFireStore()
-   // const [waiting,setWaiting] = useState(true)
-    const [purchase, setPurchase] = useState( {})
+    const [tried, setTried] = useState(false)
+    const [purchase, setPurchase] = useState({})
+    const {currentUser} = useAuth()
 
     useLayoutEffect(() => {
         window.scrollTo(0, 0)
+        console.log("user")
+        console.log(currentUser)
+        
     }, [])
 
+    const cleanPurchase=()=>{
+        setPurchase({})
+        setTried(false)
+    } 
+
     const GetPurchase = (id) =>{
-        db.collection('Sales').doc(id).get()
+        console.log(currentUser.uid)
+        db.collection('Sales')
+        .where(firebase.firestore.FieldPath.documentId(), '==',id)
+        .where('iduser','==',currentUser.uid)
+        .get()
             .then(function(doc) {
-                console.log(id)
-                console.log('id')
-                if (doc.exists) {
+                if (doc.docs.length>0) {
                     setPurchase(
                         {
-                            id: doc.id,
-                            data: doc.data()
+                            id: doc.docs[0].id,
+                            data: doc.docs[0].data()
                         }
-                    );
-                    //setWaiting(false)
+                    );                
                 } else {
                     console.log("El ID de compra no corresponde");
+
                 }
             }).catch(function(error) {
             console.log("Error en búsqueda de la compra: ", error);
         });
+        setTried(true)
     }
 
     return(
         <div className='main-view center'>
-            {/*                {
-                    waiting === true
-                        ?
-                        <LinearIndeterminate />
-                        :
-                        null
-                }*/}
             {
-                purchase.data !== undefined //&& waiting === false
+                purchase.data !== undefined 
                     ?
                     <Purchase
                         purchase={purchase}
+                        cleanPurchase={cleanPurchase}
                     />
                     :
                     null
             }
             {
-                purchase.data === undefined //&& waiting === false
+                purchase.data === undefined 
                     ?
                     <SearchPurchase
                         GetPurchase={GetPurchase}
+                        show={tried}
                     />
                     :null
             }
-            {/*                {
-                    purchase.data.name === undefined && waiting === false
-                        ?
-                        <ErrorPage text={errorStrings.purchaseNotFound}/>
-                        :null
-                }*/}
         </div>
     )
 }

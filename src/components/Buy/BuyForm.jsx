@@ -205,10 +205,6 @@ const BuyForm =({buy,user})=>{
                                             approved && purchaseId !== ''
                                                 ?
                                                 <SuccessPurchase purchaseId={purchaseId} />
-                                               /* <section className='subtitle' >
-                                                    <p>Tu compra se ha completado!!</p>
-                                                    <p>Tu código de seguimiento es: <span className='important-data'>{salesId}</span> </p>
-                                                </section>*/
                                                 :
                                                 null
                                         }
