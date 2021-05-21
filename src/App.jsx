@@ -31,13 +31,8 @@ function App() {
               <div className='default-background main-container'>
                   <Menu />
 
-                  <div
-                      id="body"
-                      style={{
-                          backgroundImage: `url(${`${'/Images/back-ground.jpg'}`})`,
-                      }}
-                  >
-                      
+                  <div id="body">
+
                         <Switch>
 
                             <Route exact path='/'>
