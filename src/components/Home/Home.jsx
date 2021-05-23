@@ -1,7 +1,7 @@
 import React, {useEffect, useLayoutEffect, useState} from "react";
 import './Home.css'
 import './../../General.css'
-import {LinearIndeterminate} from "../General/Progress";
+import {CircularIndeterminate} from "../General/Progress";
 import ArticleList from "../ArticleList";
 import {getFireStore} from "../../Data";
 
@@ -44,7 +44,7 @@ const Home =()=> {
                     title='Lo más buscado'
                 />
                 :
-                <LinearIndeterminate />
+                <CircularIndeterminate />
             }
         </div>
     )

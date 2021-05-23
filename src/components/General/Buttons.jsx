@@ -65,28 +65,26 @@ const BlueButton =({text,type='',onClick})=> {
             position: "relative",
             borderRadius: theme.shape.borderRadius,
             width: "100%",
-            color: fade(theme.palette.info.light, 0.80),
-            backgroundColor:  fade(theme.palette.common.black, 0.35),
-            '&:hover': {
-                backgroundColor: fade(theme.palette.common.black, 0.20),
-                color: fade(theme.palette.info.light, 0.50),
-            },
             height: '35px',
-            display: "flex",
-            alignItems: "center",
             fontWeight: "bold",
         },
+        color:{
+            color: fade(theme.palette.info.light, 0.90),
+            backgroundColor:  fade(theme.palette.common.black, 0.55),
+            '&:hover': {
+                backgroundColor: fade(theme.palette.common.black, 0.40),
+                color: fade(theme.palette.info.light, 0.50),
+            },
+        }
     }));
 
     const classes = useStyles();
 
     return(
-        <div >
-            <Toolbar >
-                <div className={classes.search}>
+        <li>
+            <div className={classes.search}>
                     <Button
-                        className={classes.search}
-
+                        className={classes.color}
                         variant="contained"
                         type={type}
                         onClick={onClick}
@@ -94,8 +92,7 @@ const BlueButton =({text,type='',onClick})=> {
                         {text}
                     </Button>
                 </div>
-            </Toolbar>
-        </div>
+        </li>
     )
 }
 

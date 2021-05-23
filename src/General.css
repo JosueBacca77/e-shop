@@ -6,8 +6,7 @@
 .subtitle{
     color: var(--blanco);
     font-size: 2em;
-    margin: 0 0 5% 0;
-    text-align: left;
+    text-align: center;
 }
 
 .head{
@@ -62,6 +61,7 @@
     margin:0;
     padding:0;
     padding-bottom: 15%;
+    background-color:#00001a
 }
 
 .foot{
@@ -87,3 +87,12 @@
     justify-content: left;
 }
 
+.right-align{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.space-between{
+    display: flex;
+    justify-content: space-between;
+}

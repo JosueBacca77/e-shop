@@ -1,14 +1,17 @@
 import './NavBarItem.css'
 import {useHistory} from "react-router-dom";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import React from "react";
+import React, {useContext} from "react";
 import {BlueButton} from "../../General/Buttons";
 import PersonIcon from '@material-ui/icons/Person';
+import { Store } from '../../../Store';
+import { ClearCart } from '../../../Store/ManageContext';
 
 
 const NavBarItem = ({name, myclass, url = "#", logout}) => {
 
     let history = useHistory();
+
+    const [dataCont, setDataCont] = useContext(Store);
 
     const goHeading =()=> {
         history.push(url)
@@ -16,6 +19,7 @@ const NavBarItem = ({name, myclass, url = "#", logout}) => {
 
     const onHandkeClick=()=>{
         if (myclass ==='logout'){
+            ClearCart(setDataCont)
             logout()
         }else{
             goHeading()
@@ -29,7 +33,7 @@ const NavBarItem = ({name, myclass, url = "#", logout}) => {
                 ?
                     <BlueButton text={name} onClick={goHeading}/>
                     :
-                    <CardActionArea onClick={onHandkeClick}>
+                    <div onClick={onHandkeClick}>
                         {
                             myclass ==='user'
                             ?
@@ -39,8 +43,7 @@ const NavBarItem = ({name, myclass, url = "#", logout}) => {
                             :
                             <span className='heading'>{name}</span>
                         }
-                    </CardActionArea>
-
+                    </div>
             }
         </li>
     )

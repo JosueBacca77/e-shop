@@ -25,11 +25,6 @@ const ArticleDetail =({article})=> {
     const handleChangeImage =(image)=> {
         setSelectedImage(image)
     }
-    useEffect(() => {
-        console.log("useefect")
-        console.log(currentUser.email)
-        
-    }, [])
 
     const handleAddCart =()=> {
         if(countAdded>0 && countAdded <= article.data.stock ){
@@ -103,9 +98,6 @@ const ArticleDetail =({article})=> {
                             countAdded={countAdded}
                         />
                         :null
-                }
-                {
-                    <h1>{currentUser.email}</h1>
                 }
             </section>
         </article>

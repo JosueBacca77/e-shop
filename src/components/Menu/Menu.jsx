@@ -71,18 +71,17 @@ const Menu =()=> {
                 }
             </section>
             <section className='user-options'>
-                <nav >
-                    <ul >
+                <ul >
+                    <div className='carticon'>
                         <NavBarItem key={'cart'} name='Mi Carrito' url='/cart' />
                         <NavBarItem key={'mypurchases'} name='Mis compras' url='/purchases' />
                         {
                             data.items.length >0
-                                ?
+                            ?
                                 <IconBadge count={data.items.length} icon={<ShoppingCartIcon className='iconWhite' onClick={openWidgetCart} />}  />
-                                :
-                                null
+                            :
+                            null
                         }
-
                         {
                             currentUser
                             ?
@@ -95,9 +94,9 @@ const Menu =()=> {
                                 <NavBarItem key={'login'}  name='Ingresar' url='/login' />
                                 <NavBarItem key={'signup'} name='Registrarme' myclass='signup' url='/signup' />
                             </>
-                        } 
+                        }
+                        </div>
                     </ul>
-                </nav>
             </section>
             <WidgetCart show={showWidgetCart}/>
         </header>

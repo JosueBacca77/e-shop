@@ -1,12 +1,11 @@
 import React, {useEffect, useLayoutEffect, useState} from "react";
-import {LinearIndeterminate} from "../General/Progress";
+import {CircularIndeterminate} from "../General/Progress";
 import {useParams} from 'react-router-dom'
 import ArticleList from "../ArticleList";
 import ErrorPage from "../General/ErrorPage/ErrorPage";
 import {errorStrings} from "../General/constants/strings";
 import {getFireStore} from "../../Data";
 import './../../General.css'
-
 
 
 const Heading =()=> {
@@ -45,7 +44,7 @@ const Heading =()=> {
             {
                 waiting === true
                     ?
-                    <LinearIndeterminate />
+                    <CircularIndeterminate />
 
                     :
                     null
