@@ -61,16 +61,14 @@
     margin:0;
     padding:0;
     padding-bottom: 15%;
-    background-color:#00001a
+    background: linear-gradient(90deg, rgba(3,0,36,1) 20%, rgba(9,9,121,1) 51%, rgba(8,19,130,1) 75%, rgba(7,35,146,1) 95%, rgba(5,40,164,1) 98%);
 }
-
 .foot{
     width: 100%;
     display: flex;
     justify-content: center;
     position: absolute;
     bottom: 0;
-    /* Height of the footer */
 }
 
 .space-around{
