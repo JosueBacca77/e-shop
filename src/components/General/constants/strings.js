@@ -10,6 +10,7 @@ const errorStrings = {
     purchaseNotFound: 'Compra no encontrada',
     headingArticlesNotFound: 'No se han encontrado artículos pertenecientes a este rubro',
     insufficientStock: 'El stock de los siguientes productos es insuficiente para la cantidad solicitada',
+    noMatchSearch: 'No hay coincidencias en la búsqueda'
 }
 
 const purchaseStates = {

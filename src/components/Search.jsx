@@ -2,7 +2,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
-import { useState } from "react";
 import { useArticleFilter } from "../ArticleFilterContext";
 
 
@@ -14,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
     search: {
         position: "relative",
         borderRadius: theme.shape.borderRadius,
-       // backgroundColor: fade(theme.palette.common.black, 0.15),
         width: "100%",
         color: "white",
         backgroundColor: fade(theme.palette.common.white, 0.15),
@@ -49,10 +47,16 @@ const useStyles = makeStyles((theme) => ({
 export default function SearchAppBar() {
     const classes = useStyles();
 
-    const {setFilter} = useArticleFilter()
+    const {setArticleFlter} = useArticleFilter()
 
-    const writeSearch =(e)=> {
-        setFilter(e.target.value)
+    const writeSearch =(e)=>{
+
+        const find = new Promise((resolve) => {
+            resolve(setArticleFlter(e.target.value));
+        });
+        
+        find
+        .catch(error=>console.log(error))
     }
 
     return (

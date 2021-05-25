@@ -18,6 +18,7 @@ import SignUp from "./components/User/SignUp/SignUp";
 import { AuthProvider } from './AuthContext';
 import PrivateRoute from "./components/Routers/PrivateRouter"
 import PublicRoute from "./components/Routers/PublicRouter"
+import { ArticleFilter } from './ArticleFilterContext';
 
 
 function App() {
@@ -26,7 +27,8 @@ function App() {
 
   return (
     <AuthProvider>
-      <Store.Provider value={[cart, setCart]}>
+        <ArticleFilter>
+        <Store.Provider value={[cart, setCart]}>
           <BrowserRouter>
               <div className='default-background main-container'>
                   <Menu />
@@ -34,14 +36,14 @@ function App() {
                   <div id="body">
 
                         <Switch>
+                            
+                                <Route exact path='/'>
+                                    <Home />
+                                </Route>
 
-                            <Route exact path='/'>
-                                <Home />
-                            </Route>
-
-                            <Route path="/heading/:name?">
-                                <Heading />
-                            </Route>
+                                <Route path="/heading/:name?">
+                                    <Heading />
+                                </Route>
 
                             <Route path='/detail/:id'>
                                 <ArticleDetailContainer />
@@ -69,6 +71,8 @@ function App() {
 
           </BrowserRouter>
       </Store.Provider >
+        </ArticleFilter>
+      
       </AuthProvider>
   );
 }

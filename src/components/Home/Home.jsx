@@ -4,6 +4,9 @@ import './../../General.css'
 import {CircularIndeterminate} from "../General/Progress";
 import ArticleList from "../ArticleList";
 import {getFireStore} from "../../Data";
+import {useArticleFilter} from "../../ArticleFilterContext";
+import ErrorPage from "../General/ErrorPage/ErrorPage";
+import { errorStrings } from "../General/constants/strings";
 
 
 const Home =()=> {
@@ -12,23 +15,37 @@ const Home =()=> {
 
     const data = getFireStore()
 
+    const {filter} = useArticleFilter()
+
     useLayoutEffect(() => {
         window.scrollTo(0, 0)
     }, [])
 
     useEffect(() => {
-        getArticles();
-    },[]);
 
-    const getArticles = () =>{
-        data.collection('Articles').limit(6).get()
+        getArticles(filter);
+        
+    },[filter]);
+
+    const getArticles = (filter) =>{
+        data.collection('Articles').get()
             .then(arts => {
                 let arr = [];
+                
                 arts.forEach(art => {
-                    arr.push({
-                        id: art.id,
-                        data: art.data()
-                    })
+                    if (filter.length>0){
+                        if (art.data().name.toLowerCase().includes(filter.toLowerCase())){
+                            arr.push({
+                                id: art.id,
+                                data: art.data()
+                            })
+                        }
+                    }else{
+                            arr.push({
+                            id: art.id,
+                            data: art.data()
+                        })
+                    }
                 })
                 setArticles(arr)
             })
@@ -40,11 +57,21 @@ const Home =()=> {
             {articles.length>0
                 ?
                 <ArticleList
-                    articles={articles}
+                    articles={articles.slice(0,6)}
                     title='Lo más buscado'
                 />
                 :
-                <CircularIndeterminate />
+                <>
+                    {
+                        filter.length>0
+                        ?
+                        <ErrorPage text={errorStrings.noMatchSearch}/>
+
+                        :
+                        <CircularIndeterminate />
+                    }
+                </>
+                
             }
         </div>
     )
