@@ -2,6 +2,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
+import { useState } from "react";
+import { useArticleFilter } from "../ArticleFilterContext";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -47,6 +49,12 @@ const useStyles = makeStyles((theme) => ({
 export default function SearchAppBar() {
     const classes = useStyles();
 
+    const {setFilter} = useArticleFilter()
+
+    const writeSearch =(e)=> {
+        setFilter(e.target.value)
+    }
+
     return (
         <div className={classes.root}>
             <Toolbar >
@@ -61,6 +69,7 @@ export default function SearchAppBar() {
                             input: classes.inputInput
                         }}
                         inputProps={{ "aria-label": "search" }}
+                        onChange={writeSearch}
                     />
                 </div>
             </Toolbar>
