@@ -1,23 +1,63 @@
-import React, {useContext, useLayoutEffect} from "react";
-import BuyForm from "./BuyForm";
+import React, {useContext, useEffect, useLayoutEffect, useState} from "react";
+import UserForm from "./UserForm";
+import PayForm from "./PayForm";
 import {getFireStore} from "../../Data";
 import {ClearCart} from "../../Store/ManageContext";
 import {Store} from "../../Store";
 import firebase from 'firebase/app';
-import {useAuth} from "../../AuthContext"
+import {useAuth} from "../../AuthContext";
+import CircularIndeterminate from "../General/Progress";
+import SuccessPurchase from "./SuccessPurchase"
+import ErrorStock from "./ErrorStock"
+import {useHistory} from "react-router-dom";
 
 
 const Buy =()=> {
 
     const db = getFireStore()
+
+    // let history = useHistory();
+
     const [dataCont, setDataCont] = useContext(Store);
-    const {currentUser} = useAuth() 
+
+    const {currentUser} = useAuth()
+    
+    const [waiting, setWaiting] = useState(true)
+
+    const [withoutStock, setWithoutStock] = useState([]);
+
+    const [approved, setApproved] = useState(false);
+
+    const [completed, setCompleted] = useState(false)
+
+    const [purchaseId, setPurchaseId] = useState('')
+
+    const [step, setStep] = useState('userdata')
+
+    const [dataUser, setDataUser] = useState({})
+
+    const handleBack=()=>{
+        if (step==='paydata'){
+            setStep('userdata')
+        }
+    }
+
+    const handleNext=(data)=>{
+        if (step==='userdata'){
+            setDataUser(data)
+            setStep('paydata')
+        }
+    }
+
+    // if (dataCont.items.length==0 && !completed){
+    //     history.push("/")
+    // }
 
     useLayoutEffect(() => {
         window.scrollTo(0, 0)
     }, [])
 
-    const validateStock =(ids,data,setId,setWithoutStock,setApproved,setWaiting)=> {
+    const validateStock =(ids,data)=> {
 
         setWithoutStock([])
         
@@ -44,7 +84,7 @@ const Buy =()=> {
                         if (validStock){
                             db.collection('Sales').add(data)
                                 .then(({id})=>{
-                                    setId(id)
+                                    setPurchaseId(id)
                                     ClearCart(setDataCont)
                                     setApproved(true)
                                 })
@@ -75,17 +115,63 @@ const Buy =()=> {
         return ids
     }
 
-    const buy =(data,setId,setWithoutStock,setApproved,setWaiting)=> {
+    const buy =(data)=> {
+        setCompleted(true)
         let ids = GetIdsFromItems(data.items)
-        validateStock(ids,data,setId,setWithoutStock,setApproved,setWaiting)
+        validateStock(ids,data)
     }
 
     return(
         <div className='main-view'>
-            <BuyForm 
-                buy={buy}
-                user={currentUser}
-            />
+            <>
+            {
+                !completed
+                ?
+                <>
+                {
+                    step==='userdata'
+                    ?
+                    <UserForm
+                        next={handleNext}
+                        userdata={dataUser}
+                    />
+                    :
+                    <PayForm 
+                        buy={buy}
+                        user={currentUser}
+                        clickBack={handleBack}
+                        userdata={dataUser}
+                        setCompleted={setCompleted}
+                    />
+                }
+                </>
+                :
+                <div>
+                    {
+                        waiting
+                        ?
+                            <CircularIndeterminate />
+                            :
+                                <div>
+                                    {
+                                        approved && purchaseId !== ''
+                                            ?
+                                            <SuccessPurchase purchaseId={purchaseId} />
+                                            :
+                                            null
+                                    }
+                                    {
+                                        withoutStock.length >0
+                                        ?
+                                            <ErrorStock articles={withoutStock}/>
+                                            :
+                                            null
+                                    }
+                                </div>
+                    }
+                </div>
+            }
+            </>
         </div>
     )
 }
