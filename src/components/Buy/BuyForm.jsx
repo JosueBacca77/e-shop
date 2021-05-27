@@ -12,9 +12,9 @@ import Radio from "@material-ui/core/Radio";
 import {GetCountFeesValue, GetFeeValue} from "../../Utils";
 import {LinearIndeterminate} from "../General/Progress";
 import ErrorStock from "./ErrorStock";
-import {GreenButton} from "../General/Buttons";
 import {purchaseStates} from "../General/constants/strings";
 import SuccessPurchase from "./SuccessPurchase";
+import NavButtons from '../General/NavButtons/NavButtons'
 
 
 
@@ -27,20 +27,69 @@ const BuyForm =({buy,user})=>{
 
     const [approved, setApproved] = useState(false);
 
-    const [waiting,setWaiting] = useState(true)
+    const [waiting, setWaiting] = useState(true)
+
+    const [step, setStep] = useState('userdata')
 
     const {register, handleSubmit, errors,watch, control} = useForm();
 
     const countFees = watch("countFees", "one")
 
-    const email = watch("email")
+    const name = watch("name","") 
+
+    const surname = watch("surname","") 
+
+    const email = watch("email","")
+
+    const confEmail = watch("confemail","")
+
+    const phone = watch("phone","")
+
+    const cardNumber = watch("card_number","")
 
     const [completed, setCompleted] = useState(false)
     const [purchaseId, setPurchaseId] = useState('')
 
+    const [userData, setUserData] = useState({
+        name:'',
+        lastName:'',
+        email:'',
+        confEmail:'',
+        phone:'',
+        cardNumber:''
+    })
+
     const hasError = inputField => (errors && errors[inputField]);
 
+    const handleBack=()=>{
+        if (step==='paydata'){
+            setStep('userdata')
+        }
+    }
+
+    const handleNext=()=>{
+        if (step==='userdata'){
+            setUserData(
+                {
+                    name:name,
+                    surname:surname,
+                    email:email,
+                    confEmail:confEmail,
+                    phone:phone,
+                    cardNumber:cardNumber
+                }
+            )
+            console.log(userData)
+            setStep('paydata')
+        }
+    }
+
     const onSubmit = data => {
+        data.name = userData.name
+        data.surname = userData.surname
+        data.email = userData.email
+        data.phone = userData.phone
+        data.card_number = userData.cardNumber
         data.items = dataCont.items
         data.total = dataCont.total
         data.countFees = GetCountFeesValue(countFees)
@@ -62,11 +111,16 @@ const BuyForm =({buy,user})=>{
             {
                 !completed
                 ?
-                    <div >
+                    <div className='buy-main'>
                         <form noValidate className='form'
                               onSubmit={handleSubmit(onSubmit)}>
-                            <article className='buy-data' >
-                                <section className='fields'>
+                            <article >
+                            {
+                                step === 'userdata'
+                                ?
+                                <>
+                                <span className='section-title'>Datos del comprador</span>
+                                <section className='fields padding-10'>
                                     <TextField
                                         variant="outlined"
                                         margin="normal"
@@ -78,6 +132,7 @@ const BuyForm =({buy,user})=>{
                                             maxLength: validations.max_name,
                                             required: validations.req
                                         })}
+                                        defaultValue={userData.name}
                                         error={hasError("name")}
                                         helperText={hasError("name") && errors.name.message}
                                     />
@@ -91,6 +146,7 @@ const BuyForm =({buy,user})=>{
                                             maxLength: validations.max_name,
                                             required: validations.req
                                         })}
+                                        defaultValue={userData.surname}
                                         error={hasError("surname")}
                                         helperText={hasError("surname") && errors.surname.message}
                                     />
@@ -104,6 +160,7 @@ const BuyForm =({buy,user})=>{
                                             pattern: validations.email,
                                             required: validations.req,
                                         })}
+                                        defaultValue={userData.email}
                                         error={hasError("email")}
                                         helperText={hasError("email") && errors.email.message}
                                     />
@@ -118,6 +175,7 @@ const BuyForm =({buy,user})=>{
                                             required: validations.req,
                                             validate: value => value === email || validations.email_no_match
                                         })}
+                                        defaultValue={userData.confEmail}
                                         error={hasError("confemail")}
                                         helperText={hasError("confemail") && errors.confemail.message}
                                     />
@@ -132,6 +190,7 @@ const BuyForm =({buy,user})=>{
                                             maxLength: validations.max_phone,
                                             required: validations.req
                                         })}
+                                        defaultValue={userData.phone}
                                         error={hasError("phone")}
                                         helperText={hasError("phone") && errors.phone.message}
                                     />
@@ -146,13 +205,28 @@ const BuyForm =({buy,user})=>{
                                             required: validations.req,
                                             validate: value => value.length === 7 || validations.count_digits_card
                                         })}
+                                        defaultValue={userData.cardNumber}
                                         error={hasError("card_number")}
                                         helperText={hasError("card_number") && errors.card_number.message}
                                     />
                                 </section>
-                                <section className='pay'>
+                                <section className='padding-10'>
+                                    <NavButtons 
+                                        textBack='' 
+                                        textNext='Siguiente'
+                                        clickNext={handleNext}
+                                    />
+                                </section>
+                                </>
+                                    :
+                                    null
+                                }
+                                {
+                                    step === 'paydata'
+                                    ?
+                                    <section className='pay'>
                                     <FormLabel component="legend">Cantidad de pagos: </FormLabel>
-                                    <RadioGroup aria-label="gender" defaultValue="one" >
+                                    <RadioGroup aria-label="gender" defaultValue={countFees} >
                                         <div >
                                             <FormControlLabel inputRef={register} name="countFees" value="one"
                                                               control={<Radio/>} label="Único pago"/>
@@ -180,16 +254,20 @@ const BuyForm =({buy,user})=>{
                                             </div>
                                             :null
                                     }
-
+                                    <section className='padding-10'>
+                                        <NavButtons 
+                                            textBack='Volver' 
+                                            textNext='Finalizar compra'
+                                            clickBack={handleBack}
+                                            type='Submit'
+                                        />
+                                    </section>
                                 </section>
+                                    :
+                                    null
+                                }
                             </article>
 
-                            <div className='center'>
-                                <GreenButton
-                                    text='Finalizar compra'
-                                    type='submit'
-                                />
-                            </div>
 
                         </form>
                     </div>
