@@ -6,7 +6,7 @@ import {useForm} from "react-hook-form";
 import React, {useState} from "react";
 import {validations} from '../../../Validations'
 import {ErrorLabel} from "../../General/Labels";
-import {AceptButton, GreenButton} from "../../General/Buttons";
+import {AceptButton} from "../../General/Buttons";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import blueGrey from "@material-ui/core/colors/blueGrey";
 import './Login.css'

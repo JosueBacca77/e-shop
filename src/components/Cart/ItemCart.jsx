@@ -21,11 +21,12 @@ const ItemCart =({article, onDelete})=> {
     const [data, setData] = useContext(Store)
 
     const handleAddCart =()=> {
-        if(countAdded <= article.data.stock){
+        if(countAdded >0 && countAdded <= article.data.stock ){
             //reemplazo cantidad del item
             ReplaceItemCart(article.id,countAdded,data,setData)
             //actualizo total carrito
             UpdateTotalCart(data,setData)
+            setAdding(false)
         }
     }
 

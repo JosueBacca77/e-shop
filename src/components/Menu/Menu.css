@@ -1,7 +1,7 @@
 .header{
     display: grid;
     width: 100%;
-    grid-template-columns: 25% 30% 45%;
+    grid-template-columns: 20% 37% 43%;
 }
 
 .carticon{

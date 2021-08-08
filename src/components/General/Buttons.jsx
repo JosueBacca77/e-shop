@@ -2,8 +2,7 @@ import {Button} from "@material-ui/core";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import green from "@material-ui/core/colors/green";
 import {fade} from "@material-ui/core/styles";
-import Toolbar from "@material-ui/core/Toolbar";
-import {blue, indigo} from "@material-ui/core/colors";
+import {indigo} from "@material-ui/core/colors";
 
 
 const GreenButton =({text,type='',onClick})=> {
@@ -81,18 +80,16 @@ const BlueButton =({text,type='',onClick})=> {
     const classes = useStyles();
 
     return(
-        <li>
-            <div className={classes.search}>
-                    <Button
-                        className={classes.color}
-                        variant="contained"
-                        type={type}
-                        onClick={onClick}
-                    >
-                        {text}
-                    </Button>
-                </div>
-        </li>
+        <div className={classes.search}>
+            <Button
+                className={classes.color}
+                variant="contained"
+                type={type}
+                onClick={onClick}
+            >
+            {text}
+            </Button>
+        </div>
     )
 }
 

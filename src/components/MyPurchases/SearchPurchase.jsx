@@ -17,11 +17,11 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const SearchPurchase=({GetPurchase,show})=>{
+const SearchPurchase=({GetPurchase, show, waiting})=>{
 
     const classes = useStyles();
 
-    const [id,setId]= useState("")
+    const [id, setId]= useState("")
 
     const handleSearch=()=>{
         GetPurchase(id)
@@ -48,7 +48,7 @@ const SearchPurchase=({GetPurchase,show})=>{
                 </div>
             </article>
             {
-                show
+                show && !waiting
                 ?
                     <div className='labelerror'>
                         <ErrorLabel text={'ID de compra inexistente'} />

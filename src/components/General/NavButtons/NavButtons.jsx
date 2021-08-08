@@ -1,7 +1,7 @@
-import { AceptButton, BlueButton } from "../Buttons"
+import { AceptButton} from "../Buttons"
 
 
-const NavButtons =({textBack, textNext, clickBack, clickNext, type=''})=> { 
+const NavButtons =({textBack, textNext, clickBack})=> { 
     return(
         <article className='space-between'>
            
@@ -9,7 +9,7 @@ const NavButtons =({textBack, textNext, clickBack, clickNext, type=''})=> {
                 {
                     textBack !== ''
                     ?
-                    <AceptButton text={textBack} onClick={clickBack}/>
+                    <AceptButton text={textBack} onClick={clickBack} type='button'/>
                     :
                     null
                 }
@@ -19,7 +19,7 @@ const NavButtons =({textBack, textNext, clickBack, clickNext, type=''})=> {
                 {
                     textNext !== ''
                     ?
-                    <AceptButton text={textNext} onClick={clickNext} type={type}/>
+                    <AceptButton text={textNext} type='submit'/>
                     :
                     null
                 }

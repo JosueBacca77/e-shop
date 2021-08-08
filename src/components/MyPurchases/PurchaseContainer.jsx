@@ -11,12 +11,10 @@ const PurchaseContainer=()=>{
     const [tried, setTried] = useState(false)
     const [purchase, setPurchase] = useState({})
     const {currentUser} = useAuth()
+    const [waiting,setWaiting] = useState(false)
 
     useLayoutEffect(() => {
         window.scrollTo(0, 0)
-        console.log("user")
-        console.log(currentUser)
-        
     }, [])
 
     const cleanPurchase=()=>{
@@ -25,7 +23,7 @@ const PurchaseContainer=()=>{
     } 
 
     const GetPurchase = (id) =>{
-        console.log(currentUser.uid)
+        setWaiting(true);
         db.collection('Sales')
         .where(firebase.firestore.FieldPath.documentId(), '==',id)
         .where('iduser','==',currentUser.uid)
@@ -46,6 +44,7 @@ const PurchaseContainer=()=>{
             console.log("Error en búsqueda de la compra: ", error);
         });
         setTried(true)
+        setWaiting(false)
     }
 
     return(
@@ -66,6 +65,7 @@ const PurchaseContainer=()=>{
                     <SearchPurchase
                         GetPurchase={GetPurchase}
                         show={tried}
+                        waiting={waiting}
                     />
                     :null
             }
