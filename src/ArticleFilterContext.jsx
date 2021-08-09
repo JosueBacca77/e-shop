@@ -18,11 +18,7 @@ export const ArticleFilter=({children})=>{
     function setArticleFlter(filter){
         return setFilter(filter)
     }
-
-    useEffect(() => {
-        setFilter('')
-    }, [])
-
+    
     return(
         <ArticleFilterContext.Provider value={value}>
             {children}
