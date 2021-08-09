@@ -23,6 +23,9 @@ const ModifyCountCart =({article,handleChangeCount,handleAddCart,handleClose=nul
         },
         cartIcon:{
             color: "blue"
+        },
+        addToCart:{
+            width: "250px"
         }
     });
 
@@ -32,6 +35,7 @@ const ModifyCountCart =({article,handleChangeCount,handleAddCart,handleClose=nul
         <>
         <article className='center'>
             <TextField
+                className={classes.addToCart}
                 type='number'
                 variant="outlined"
                 margin="normal"
