@@ -1,0 +1,33 @@
+p{
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.user{
+    color: var(--blanco);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100px;
+}
+
+.user:hover{
+    color: black;
+ }
+
+ .option{
+    color: var(--azul);
+    margin-bottom: 10%;
+    color: var(--azul);
+ }
+
+ .logout{
+    color: var(--rojo);
+ }
+
+li {
+    display: flex;
+}
+
+li:hover{
+    cursor: pointer;
+}

@@ -1,29 +1,15 @@
 import './NavBarItem.css'
 import {useHistory} from "react-router-dom";
-import React, {useContext} from "react";
 import {BlueButton} from "../../General/Buttons";
 import PersonIcon from '@material-ui/icons/Person';
-import { Store } from '../../../Store';
-import { ClearCart } from '../../../Store/ManageContext';
 
 
-const NavBarItem = ({name, myclass, url = "#", logout}) => {
+const NavBarItem = ({name, myclass, url = "#", logout, onHandleNav}) => {
 
     let history = useHistory();
 
-    const [dataCont, setDataCont] = useContext(Store);
-
     const goHeading =()=> {
         history.push(url)
-    }
-
-    const onHandkeClick=()=>{
-        if (myclass ==='logout'){
-            ClearCart(setDataCont)
-            logout()
-        }else{
-            goHeading()
-        }
     }
 
     return (
@@ -32,8 +18,8 @@ const NavBarItem = ({name, myclass, url = "#", logout}) => {
                 myclass==='signup'
                 ?
                     <BlueButton text={name} onClick={goHeading}/>
-                    :
-                    <div onClick={onHandkeClick}>
+                :
+                    <div onClick={()=>onHandleNav(myclass, url)}>
                         {
                             myclass ==='user'
                             ?

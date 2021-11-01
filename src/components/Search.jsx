@@ -40,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
         width: "100%",
         [theme.breakpoints.up("sm")]: {
             width: "40ch",
+        },
+        [theme.breakpoints.down("sm")]: {
+            width: "35ch",
         }
     }
 }));

@@ -7,7 +7,7 @@ import Grow from "@material-ui/core/Grow";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '20%',
+        width: '100%',
         '& > * + *': {
             marginTop: theme.spacing(2),
         },

@@ -1,5 +1,6 @@
 .heading{
     font-size: 1em;
+    font-weight: bold;
 }
 .heading:hover{
     color: black;
@@ -9,3 +10,13 @@
      display: flex;
      align-items: center;
  }
+
+ li {
+    margin: 0 0.5rem;
+    display: flex;
+    color: var(--blanco);
+}
+
+li:hover{
+    cursor: pointer;
+}
