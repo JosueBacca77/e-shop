@@ -11,6 +11,7 @@ import {validations} from "../../../Validations";
 import {ErrorLabel} from "../../General/Labels";
 import {AceptButton} from "../../General/Buttons";
 import './SignUp.css'
+import Form from "../../General/Form/Form";
 
 
 const SignUpForm = ({signUp}) => {
@@ -26,7 +27,7 @@ const SignUpForm = ({signUp}) => {
         avatar: {
             backgroundColor: blueGrey[900],
             marginTop: '10px',
-        },
+        }
     }));
 
     const classes = useStyles();
@@ -41,15 +42,23 @@ const SignUpForm = ({signUp}) => {
 
     return (
         <div className='main-view center'>
-            <form className='signup-form' noValidate
-                  onSubmit={handleSubmit(onSubmit)}
+            <Form 
+                onSubmit={handleSubmit(onSubmit)}
+                _width={'300px'}
             >
+
+            
+            {/* <form className='signup-form' noValidate
+                  onSubmit={handleSubmit(onSubmit)}
+            > */}
+
                 <Avatar className={classes.avatar}>
                     <PersonIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5" >
                     Registrarme
                 </Typography>
+                
                 <TextField
                     variant="outlined"
                     margin="normal"
@@ -113,7 +122,8 @@ const SignUpForm = ({signUp}) => {
                     />
                 </div>
                 <span>Posees una cuenta?&nbsp;&nbsp;<a href='' onClick={goSignUp}>Ingresa aquí</a></span>
-            </form>
+            {/* </form> */}
+            </Form>
         </div>
     )
 };

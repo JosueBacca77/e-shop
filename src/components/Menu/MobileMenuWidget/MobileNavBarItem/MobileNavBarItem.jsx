@@ -1,7 +1,7 @@
 import './MobileNavBarItem.css'
 
 
-const MobileNavBarItem = ({name, myclass, url = "#", logout, onHandleNav, setMobileWidget}) => {
+const MobileNavBarItem = ({name, myclass, onHandleNav}) => {
 
     return (
         <li>

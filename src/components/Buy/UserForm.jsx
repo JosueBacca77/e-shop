@@ -27,7 +27,7 @@ const UserForm =({userdata, next})=>{
 
     return(
         <div className='buy-main'>
-            <form noValidate className='form'
+            <form noValidate className='userForm'
                 onSubmit={handleSubmit(onSubmit)}>
                 <article >
                     <span className='section-title'>Ingresa tus datos</span>

@@ -9,6 +9,8 @@ import {Store} from "../../Store";
 import {ReplaceItemCart, UpdateTotalCart} from "../../Store/ManageContext";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import {useHistory} from "react-router-dom";
+import { CardMedia } from '@material-ui/core';
+import Counter from '../Counter';
 
 
 
@@ -44,26 +46,62 @@ const ItemCart =({article, onDelete})=> {
         history.push("/detail"+article.id)
     }
 
+    console.log('article',article)
+
     return(
         <article key={article.id} className='item'>
-            <section className='head space-around'>
-                <CardActionArea onClick={goDetail}>
-                    <h1 className='subtitle name' >
-                        {article.data.name}
-                    </h1>
-                </CardActionArea>
+            <section className='flex-start'>
+                <div className='cardMediaContainer'>
+                    <CardMedia
+                        component="img"
+                        alt="Imagen de archivo"
+                        id="imgstore"
+                        src={article?.data?.images && article.data.images.length>0? `/Images/${article?.data?.images[0]}`:'/Images/notArticleImages'}
+                        // src={pedido.imagen ? imgURL(pedido.imagen) : NO_PEDIDO_IMAGE}
+                        title="Imagen"
+                    />
+                </div>
+                <article className='itemCardData'>
+                    <CardActionArea onClick={goDetail}>
+                        <h1 className='name' >
+                            {article.data.name}
+                        </h1>
+                    </CardActionArea>
+                    <div className='itemCardDetail'>
+                        <div className='descrip'>
+                            <div>
+                                {article.data.description}
+                            </div>
+                            <div className='price'>
+                                <span> $  </span><span className='number-price'>{article.data.price}</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <div className='itemCardOptions'>
+                    <IconButton onClick={()=>onDelete(article)}>
+                        <DeleteIcon className='delete'  />
+                    </IconButton>
+                    <Counter
+                        limit={article.data.stock}
+                        count={countAdded}
+                        setCount={setCountAdded}
+                        disabled={article.data.stock<=0}
+                    />
+                </div>
 
                 <section className='right-content' >
                     {
                         adding
                             ?
-                            <ModifyCountCart
-                                article={article}
-                                handleChangeCount={handleChangeCount}
-                                handleAddCart={handleAddCart}
-                                handleClose={handleClose}
-                                countAdded={countAdded}
-                            />
+                            // <ModifyCountCart
+                            //     article={article}
+                            //     handleChangeCount={handleChangeCount}
+                            //     handleAddCart={handleAddCart}
+                            //     handleClose={handleClose}
+                            //     countAdded={countAdded}
+                            // />
+                            null
                             :
                             <div className='iconsItemCart'>
                                 <IconButton onClick={()=> setAdding(true)}>

@@ -74,6 +74,7 @@ const BlueButton =({text,type='',onClick})=> {
                 backgroundColor: fade(theme.palette.common.black, 0.40),
                 color: fade(theme.palette.info.light, 0.50),
             },
+            fontWeight:'bold'
         }
     }));
 

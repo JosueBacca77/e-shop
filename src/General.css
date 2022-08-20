@@ -1,5 +1,5 @@
 .main-view{
-    padding: 7% 2% 3% 5%;
+    padding: 2% 2% 3% 5%;
     min-height: 300px;
 }
 
@@ -99,4 +99,10 @@
 .space-between{
     display: flex;
     justify-content: space-between;
+}
+
+.flex-start{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }

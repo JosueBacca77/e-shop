@@ -19,7 +19,7 @@
     grid-column: 2;
 }
 
-.form{
+.userForm{
     background-color: var(--blanco);
     border-radius: 20px;
     padding: 10px;

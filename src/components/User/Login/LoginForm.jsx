@@ -11,6 +11,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import blueGrey from "@material-ui/core/colors/blueGrey";
 import './Login.css'
 import {useHistory} from "react-router-dom";
+import Form from "../../General/Form/Form";
 
 
 const LogInForm = ({logIn}) => {
@@ -40,65 +41,70 @@ const LogInForm = ({logIn}) => {
 
     return (
         <div className='main-view center'>
-        <form className='login-form' noValidate
-              onSubmit={handleSubmit(onSubmit)}
-        >
-            <Avatar className={classes.avatar}>
-                <LockOutlinedIcon/>
-            </Avatar>
-            <Typography component="h1" variant="h5" >
-                Ingresar
-            </Typography>
-            <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                name="email"
-                label="Email"
-                autoComplete="email"
-                autoFocus
-                inputRef={register({
-                    required: validations.req,
-                    pattern: validations.email
-                })}
-                error={hasError("email")}
-                helperText={hasError("email") && errors.email.message}
-            />
-
-            <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Contraseña"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                inputRef={register({
-                    required: validations.req,
-                })}
-                error={hasError("password")}
-                helperText={hasError("password") && errors.password.message}
-            />
-            {
-                error !== ''
-                    ?
-                    <ErrorLabel
-                        text={error}
-                    />
-                    :null
-            }
-            <div className='button'>
-                <AceptButton
-                    text='Aceptar'
-                    type='submit'
+            <Form
+                onSubmit={handleSubmit(onSubmit)}
+            >
+                <Avatar className={classes.avatar}>
+                    <LockOutlinedIcon/>
+                </Avatar>
+                <Typography component="h1" variant="h5" >
+                    Ingresar
+                </Typography>
+                <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="email"
+                    name="email"
+                    label="Email"
+                    autoComplete="email"
+                    autoFocus
+                    inputRef={register({
+                        required: validations.req,
+                        pattern: validations.email
+                    })}
+                    error={hasError("email")}
+                    helperText={hasError("email") && errors.email.message}
                 />
-            </div>
-            <span>Aún no tienes una cuenta?&nbsp;&nbsp;<a href='' onClick={goSignUp}>Registrate ahora</a></span>
-        </form>
+
+                <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Contraseña"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                    inputRef={register({
+                        required: validations.req,
+                    })}
+                    error={hasError("password")}
+                    helperText={hasError("password") && errors.password.message}
+                />
+                {
+                    error !== ''
+                        ?
+                        <ErrorLabel
+                            text={error}
+                        />
+                        :null
+                }
+                <div className='button'>
+                    <AceptButton
+                        text='Aceptar'
+                        type='submit'
+                    />
+                </div>
+                <span>Aún no tienes una cuenta?&nbsp;&nbsp;<a href='' onClick={goSignUp}>Registrate ahora</a></span>
+            </Form>
+        {/* <form className='login-form' noValidate
+              onSubmit={handleSubmit(onSubmit)}
+        > */}
+            
+        {/* </form> */}
         </div>
     )
 };

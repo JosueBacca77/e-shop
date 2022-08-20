@@ -4,7 +4,7 @@ import {BlueButton} from "../../General/Buttons";
 import PersonIcon from '@material-ui/icons/Person';
 
 
-const NavBarItem = ({name, myclass, url = "#", logout, onHandleNav}) => {
+const NavBarItem = ({name, myclass, url = "#", onHandleNav}) => {
 
     let history = useHistory();
 

@@ -32,7 +32,7 @@ const CardArticle =({article})=> {
             width: '270px',
             height: '470px',
             '&:hover': {
-                boxShadow: '5px 5px 5px green',
+                boxShadow: '#777A7E 0px 7px 29px 0px'            
             }
         },
         media: {
