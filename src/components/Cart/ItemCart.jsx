@@ -46,95 +46,57 @@ const ItemCart =({article, onDelete})=> {
         history.push("/detail"+article.id)
     }
 
-    console.log('article',article)
-
     return(
-        <article key={article.id} className='item'>
-            <section className='flex-start'>
-                <div className='cardMediaContainer'>
-                    <CardMedia
-                        component="img"
-                        alt="Imagen de archivo"
-                        id="imgstore"
-                        src={article?.data?.images && article.data.images.length>0? `/Images/${article?.data?.images[0]}`:'/Images/notArticleImages'}
-                        // src={pedido.imagen ? imgURL(pedido.imagen) : NO_PEDIDO_IMAGE}
-                        title="Imagen"
-                    />
-                </div>
+        <article key={article.id} className='item flex-start'>
+            <div className='cardMediaContainer'>
+                <CardMedia
+                    component="img"
+                    alt="Imagen de archivo"
+                    id="imgstore"
+                    src={article?.data?.images && article.data.images.length>0? `/Images/${article?.data?.images[0]}`:'/Images/notArticleImages'}
+                    // src={pedido.imagen ? imgURL(pedido.imagen) : NO_PEDIDO_IMAGE}
+                    title="Imagen"
+                />
+            </div>
+            <div className='space-between content'>
                 <article className='itemCardData'>
-                    <CardActionArea onClick={goDetail}>
-                        <h1 className='name' >
+                    <div>
+                        <span className='itemCardname' onClick={goDetail}>
                             {article.data.name}
-                        </h1>
-                    </CardActionArea>
-                    <div className='itemCardDetail'>
+                        </span>
+
                         <div className='descrip'>
-                            <div>
-                                {article.data.description}
-                            </div>
-                            <div className='price'>
-                                <span> $  </span><span className='number-price'>{article.data.price}</span>
-                            </div>
+                            {article.data.description}
+                            
                         </div>
                     </div>
+                    
+
+                    <div className='space-between itemCardPrice'>
+
+                        <Counter
+                            limit={article.data.stock}
+                            count={countAdded}
+                            setCount={setCountAdded}
+                            disabled={article.data.stock<=0}
+                        />
+
+                        <div className='price'>
+                            <span> $  </span><span className='number-price'>{article.data.price}</span>
+                        </div>
+
+                    </div>
+                    
+                    
                 </article>
-                <div className='itemCardOptions'>
+                <div className='deleteItem'>
                     <IconButton onClick={()=>onDelete(article)}>
                         <DeleteIcon className='delete'  />
                     </IconButton>
-                    <Counter
-                        limit={article.data.stock}
-                        count={countAdded}
-                        setCount={setCountAdded}
-                        disabled={article.data.stock<=0}
-                    />
+                    
                 </div>
+            </div>
 
-                <section className='right-content' >
-                    {
-                        adding
-                            ?
-                            // <ModifyCountCart
-                            //     article={article}
-                            //     handleChangeCount={handleChangeCount}
-                            //     handleAddCart={handleAddCart}
-                            //     handleClose={handleClose}
-                            //     countAdded={countAdded}
-                            // />
-                            null
-                            :
-                            <div className='iconsItemCart'>
-                                <IconButton onClick={()=> setAdding(true)}>
-                                    <EditIcon className='edit' />
-                                </IconButton>
-                                <IconButton onClick={()=>onDelete(article)}>
-                                    <DeleteIcon className='delete'  />
-                                </IconButton>
-                            </div>
-                    }
-                </section>
-            </section>
-
-
-            <section className='content space-around'>
-                <div className='descrip'>
-                    <div>
-                        {article.data.description}
-                    </div>
-                    <div className='price'>
-                        <span> $  </span><span className='number-price'>{article.data.price}</span>
-                    </div>
-                </div>
-                <div className='count'>
-                        <span className='numberCircle '>
-                            <span>
-                                {
-                                    data.items.find(item=>item.id == article.id).count
-                                }
-                            </span>
-                        </span>
-                </div>
-            </section>
         </article>
     )
 }

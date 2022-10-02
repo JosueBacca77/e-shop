@@ -1,0 +1,10 @@
+.total-cart{
+    font-size: 2rem;
+}
+.items{
+    width: 90vw;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap:10px
+}

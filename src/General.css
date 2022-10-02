@@ -23,7 +23,7 @@
 
 .right-content{
     grid-column: 2;
-    font-size: 2rem;
+    /* font-size: 2rem; */
     text-align: right;
 }
 
@@ -102,6 +102,11 @@
 }
 
 .flex-start{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.flex-start-center{
     display: flex;
     justify-content: flex-start;
     align-items: center;
