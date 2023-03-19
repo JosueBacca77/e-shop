@@ -4,7 +4,7 @@
 .items{
     width: 90vw;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    gap:10px
+    gap:10px;
 }

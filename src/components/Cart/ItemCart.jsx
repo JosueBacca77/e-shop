@@ -1,13 +1,10 @@
 import './ItemCart.css'
 import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
 import IconButton from "@material-ui/core/IconButton";
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import '../../General.css'
-import ModifyCountCart from "../ModifyCountCart";
 import {Store} from "../../Store";
 import {ReplaceItemCart, UpdateTotalCart} from "../../Store/ManageContext";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import {useHistory} from "react-router-dom";
 import { CardMedia } from '@material-ui/core';
 import Counter from '../Counter';
@@ -16,31 +13,21 @@ import Counter from '../Counter';
 
 const ItemCart =({article, onDelete})=> {
 
-    const [adding, setAdding] = useState(false)
+    const [countAdded, setCountAdded] = useState(article?.count)
 
-    const [countAdded, setCountAdded] = useState(0)
+    const [data, setData] = useContext(Store);
 
-    const [data, setData] = useContext(Store)
+    let history = useHistory();
 
-    const handleAddCart =()=> {
+    useEffect(() => {
         if(countAdded >0 && countAdded <= article.data.stock ){
             //reemplazo cantidad del item
             ReplaceItemCart(article.id,countAdded,data,setData)
             //actualizo total carrito
             UpdateTotalCart(data,setData)
-            setAdding(false)
         }
-    }
+    }, [countAdded, article?.data?.stock])
 
-    const handleChangeCount =(e)=> {
-        setCountAdded(e.target.value)
-    }
-
-    const handleClose =()=> {
-        setAdding(false)
-    }
-
-    let history = useHistory();
 
     const goDetail =()=> {
         history.push("/detail"+article.id)
@@ -50,16 +37,22 @@ const ItemCart =({article, onDelete})=> {
         <article key={article.id} className='item flex-start'>
             <div className='cardMediaContainer'>
                 <CardMedia
+                    width={220}
+                    height={220}
                     component="img"
                     alt="Imagen de archivo"
                     id="imgstore"
                     src={article?.data?.images && article.data.images.length>0? `/Images/${article?.data?.images[0]}`:'/Images/notArticleImages'}
-                    // src={pedido.imagen ? imgURL(pedido.imagen) : NO_PEDIDO_IMAGE}
                     title="Imagen"
                 />
             </div>
             <div className='space-between content'>
                 <article className='itemCardData'>
+                    <div className='deleteItem'>
+                        <IconButton onClick={()=>onDelete(article)}>
+                            <DeleteIcon className='delete'  />
+                        </IconButton>
+                    </div>
                     <div>
                         <span className='itemCardname' onClick={goDetail}>
                             {article.data.name}
@@ -67,10 +60,8 @@ const ItemCart =({article, onDelete})=> {
 
                         <div className='descrip'>
                             {article.data.description}
-                            
                         </div>
                     </div>
-                    
 
                     <div className='space-between itemCardPrice'>
 
@@ -79,6 +70,7 @@ const ItemCart =({article, onDelete})=> {
                             count={countAdded}
                             setCount={setCountAdded}
                             disabled={article.data.stock<=0}
+                            leastAble={1}
                         />
 
                         <div className='price'>
@@ -87,14 +79,8 @@ const ItemCart =({article, onDelete})=> {
 
                     </div>
                     
-                    
                 </article>
-                <div className='deleteItem'>
-                    <IconButton onClick={()=>onDelete(article)}>
-                        <DeleteIcon className='delete'  />
-                    </IconButton>
-                    
-                </div>
+                
             </div>
 
         </article>

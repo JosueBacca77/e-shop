@@ -3,7 +3,7 @@
     border-radius: 10px;
     padding: 0 20px 0 0;
     margin-bottom: 5%;
-    max-width: 50%;
+    width: 96%;
 }
 
 .itemCardname{
@@ -26,8 +26,8 @@
 }
 
 .content{
-    display: grid;
-    grid-template-columns: 92% 8%;
+    display: flex;
+    width: 100%;
 }
 
 .numberCircle {
@@ -88,13 +88,21 @@
     height: 200px;
 }    
 .itemCardData{
-    width: 25vw;
+    position: relative;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin-left: 10px;
+    user-select: none;
 }
 
 .itemCardPrice{
-    padding-right: 5%;
+    padding-right: 2%;
+}
+
+.deleteItem{
+    position: absolute;
+    top: 0;
+    right: 0;
 }

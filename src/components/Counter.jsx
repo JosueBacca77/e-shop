@@ -4,7 +4,7 @@ import AddIcon from "@material-ui/icons/Add";
 import React from "react";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
-const Counter = ({limit,count,setCount,disabled}) => {
+const Counter = ({limit,count,setCount,disabled, leastAble=0}) => {
 
     const handleAdd =()=>{
         if (count < limit){
@@ -13,7 +13,7 @@ const Counter = ({limit,count,setCount,disabled}) => {
     }
 
     const handleSubstract =()=>{
-        if (count>0){
+        if (count>leastAble){
             setCount(count-1)
         }
     }
@@ -31,10 +31,8 @@ const Counter = ({limit,count,setCount,disabled}) => {
 
     return(
         <div>
-            <IconButton color="inherit" disabled={count===0 || disabled} onClick={handleSubstract} >
-                <RemoveIcon className={count===0?classes.iconDiabled:classes.icon}
-
-                />
+            <IconButton color="inherit" disabled={count <= leastAble || disabled} onClick={handleSubstract} >
+                <RemoveIcon className={count <= leastAble?classes.iconDiabled:classes.icon}/>
             </IconButton>
             <span>{count}</span>
             <IconButton color="inherit" disabled={count===limit || disabled} onClick={handleAdd}>
