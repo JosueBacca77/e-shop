@@ -1,10 +1,10 @@
 import './Menu.css';
 import SearchAppBar from "../Search";
 import NavBarItem from "./NavBarItem/NavBarItem";
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect, useMemo, useState} from "react";
 import WidgetCart from "../WidgetCart/WidgetCart";
 import {getFireStore} from "../../Data";
-import {useHistory} from "react-router-dom";
+import {useHistory, useLocation, useParams} from "react-router-dom";
 import {pageName} from "../General/constants/strings";
 import {IconBadge} from "../General/Icons/Icon";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
@@ -56,6 +56,10 @@ const Menu =()=> {
 
     const [showWidgetUser, setShowWidgetUser] = useState(false);
 
+    const {name} = useParams();
+
+    const location = useLocation();
+    
     const size = useWindowSize();
 
     let history = useHistory();
@@ -110,7 +114,7 @@ const Menu =()=> {
             {
                 size.width > 991
                 ?
-                <article className='header blue-background'>
+                <article className='header dark-background'>
                     <span className='title' onClick={goHome}>{pageName}</span>
                     <section className='products-options'>
                         <SearchAppBar />
@@ -123,7 +127,8 @@ const Menu =()=> {
                                                 key={rubro.id} 
                                                 name={rubro.data.name} 
                                                 url={`/heading/${rubro.data.name}`}
-                                                onHandleNav={onHandleNav} 
+                                                onHandleNav={onHandleNav}
+                                                currentLocation={location.pathname.split('/').at(-1)}
                                             />
                                         ))}
                                     </ul>
@@ -136,15 +141,17 @@ const Menu =()=> {
                             <div className='carticon'>
                                 <NavBarItem 
                                     key={'cart'} 
-                                    name='Mi Carrito' 
+                                    name='Mi carrito' 
                                     url='/cart' 
                                     onHandleNav={onHandleNav}
+                                    currentLocation={location.pathname.split('/').at(-1)==='cart'?'Mi carrito':''}
                                 />
                                 <NavBarItem 
                                     key={'mypurchases'} 
                                     name='Mis compras' 
                                     url='/purchases' 
                                     onHandleNav={onHandleNav}
+                                    currentLocation={location.pathname.split('/').at(-1)==='purchases'?'Mis compras':''}
                                 />
                                 {
                                     data.items.length >0
@@ -162,7 +169,9 @@ const Menu =()=> {
                                             name={currentUser.email} 
                                             myclass='user' 
                                             url='/'
-                                            onHandleNav={onHandleNav} 
+                                            onHandleNav={onHandleNav}
+                                            currentLocation={location.pathname.split('/').at(-1)==='cart'?'Mi Carrito':''}
+
                                         />
                                         <NavBarItem 
                                             key={'logout'} 
@@ -179,6 +188,8 @@ const Menu =()=> {
                                             name='Ingresar' 
                                             url='/login' 
                                             onHandleNav={onHandleNav}
+                                            currentLocation={location.pathname.split('/').at(-1)==='login'?'Ingresar':''}
+
                                         />
                                         <NavBarItem 
                                             key={'signup'} 
@@ -186,6 +197,7 @@ const Menu =()=> {
                                             myclass='signup' 
                                             url='/signup' 
                                             onHandleNav={onHandleNav}
+                                            currentLocation={location.pathname.split('/').at(-1)==='signup'?'Registrarme':''}
                                         />
                                     </>
                                 }
@@ -194,7 +206,7 @@ const Menu =()=> {
                     </section>
                 </article>
                 :
-                <article className='blue-background'>
+                <article className='dark-background'>
                     <section className={data.items.length >0?classes.mainOptionsWithCart:classes.mainOptions}>
                         <IconButton>
                             <MenuIcon className={classes.menuIcon} onClick={openWidgetUser}/>

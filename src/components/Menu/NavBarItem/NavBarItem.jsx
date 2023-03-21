@@ -4,7 +4,7 @@ import {BlueButton} from "../../General/Buttons";
 import PersonIcon from '@material-ui/icons/Person';
 
 
-const NavBarItem = ({name, myclass, url = "#", onHandleNav}) => {
+const NavBarItem = ({name, myclass, url = "#", onHandleNav, currentLocation=''}) => {
 
     let history = useHistory();
 
@@ -24,10 +24,10 @@ const NavBarItem = ({name, myclass, url = "#", onHandleNav}) => {
                             myclass ==='user'
                             ?
                             <div className='usernav'>
-                                <span className='heading'>{name}&nbsp;</span><PersonIcon />
+                                <span className={`${currentLocation===name?'selected-heading':'unselected-heading'}`}>{name}&nbsp;</span><PersonIcon />
                             </div>
                             :
-                            <span className='heading'>{name}</span>
+                            <span className={`${currentLocation===name?'selected-heading':'unselected-heading'}`}>{name}</span>
                         }
                     </div>
             }

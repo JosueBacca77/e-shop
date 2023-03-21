@@ -4,7 +4,7 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 
 const Footer =()=> {
     return(
-        <footer className='blue-background foot'>
+        <footer className='dark-background foot'>
             <div>
                 <h3>Por cualquier consulta no dudes en contactarnos!</h3>
                 <div className='center'>

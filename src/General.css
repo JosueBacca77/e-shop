@@ -53,12 +53,12 @@
 }
 
 
-.blue-background{
-    background-color: var(--azul);
+.dark-background{
+    background: rgb(2,2,3);
+    background: linear-gradient(90deg, rgba(21,21,24,1) 0%, rgba(43,46,48,1) 100%);
 }
 
 .main-container{
-    min-height:100%;
     position:relative;
     margin: 0;
 }
@@ -66,8 +66,9 @@
 #body{
     margin:0;
     padding:0;
-    padding-bottom: 15%;
-    background: linear-gradient(90deg, rgba(3,0,36,1) 20%, rgba(9,9,121,1) 51%, rgba(8,19,130,1) 75%, rgba(7,35,146,1) 95%, rgba(5,40,164,1) 98%);
+    background-color: black;
+    height: 90vh;
+    overflow-y: auto;
 }
 .foot{
     width: 100%;

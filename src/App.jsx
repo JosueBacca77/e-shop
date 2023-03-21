@@ -23,7 +23,7 @@ import { ArticleFilter } from './ArticleFilterContext';
 
 function App() {
 
-    const [cart, setCart] = useState(initialStore)
+const [cart, setCart] = useState(initialStore)
 
   return (
     <AuthProvider>
