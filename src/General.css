@@ -59,6 +59,7 @@
     position:relative;
     margin: 0;
     overflow: hidden;
+    font-family: 'Inter', sans-serif;
 }
 
 #body{

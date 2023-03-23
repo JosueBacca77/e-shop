@@ -1,5 +1,95 @@
 .without-stock{
-    background-color: var(--rojo);
+    color: var(--rojo);
+    font-size: 18px;
+    margin: 20px;
+    height: 20px;
+}
+
+.card-wrapper{
+    position: relative;
+    width: 300px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease-out;
+    margin: 10px;
+    height: 500px;
+}
+
+.card-wrapper > .back-article-card{
+    transform: rotate3d(1,1,0,180deg);
+}
+
+.card-wrapper:hover{
+    transform: rotate3d(1,1,0,180deg);
+}
+
+.card-article{
+    position: absolute;
+    box-sizing: border-box;
+    left: 0;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
     color: var(--blanco);
-    height: 100px;
+    background-color: rgb(24, 23, 23);
+}
+
+.front-article-card{
+    backface-visibility: hidden;
+    cursor: pointer;
+}
+
+.front-article-card > .card-description{
+    padding: 8px;    
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.front-article-card > .card-description > h2{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+}
+
+.back-article-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    user-select: none;
+}
+
+.front-article-card > img{
+    width:100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.back-article-card > .add-to-card{
+    border-radius: 8px;
+    background-color: white;
+    padding: 14px;
+    font-size: 22px;
+    color:black;
+    cursor: pointer;
+}
+
+.back-article-card > .add-to-card:hover{
+    background-color: rgb(180, 180, 180);
+}
+
+.back-article-card > .disabled{
+    cursor: not-allowed;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.12);
+    padding: 14px;
+    font-size: 22px;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.back-article-card h2{
+    font-size: 32px;
 }

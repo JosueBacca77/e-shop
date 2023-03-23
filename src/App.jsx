@@ -37,13 +37,13 @@ const [cart, setCart] = useState(initialStore)
 
                         <Switch>
                             
-                                <Route exact path='/'>
-                                    <Home />
-                                </Route>
+                            <Route exact path='/'>
+                                <Home />
+                            </Route>
 
-                                <Route path="/heading/:name?">
-                                    <Heading />
-                                </Route>
+                            <Route path="/heading/:name?">
+                                <Heading />
+                            </Route>
 
                             <Route path='/detail/:id'>
                                 <ArticleDetailContainer />
