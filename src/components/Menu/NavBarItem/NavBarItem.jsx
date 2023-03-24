@@ -24,10 +24,10 @@ const NavBarItem = ({name, myclass, url = "#", onHandleNav, currentLocation=''})
                             myclass ==='user'
                             ?
                             <div className='usernav'>
-                                <span className={`${currentLocation===name?'selected-heading':'unselected-heading'}`}>{name}&nbsp;</span><PersonIcon />
+                                <span className={`${currentLocation===name?'selected-heading':'underline-when-hover'}`}>{name}&nbsp;</span><PersonIcon />
                             </div>
                             :
-                            <span className={`${currentLocation===name?'selected-heading':'unselected-heading'}`}>{name}</span>
+                            <span className={`${currentLocation===name?'selected-heading':'underline-when-hover'}`}>{name}</span>
                         }
                     </div>
             }

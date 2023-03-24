@@ -1,8 +1,6 @@
 .without-stock{
     color: var(--rojo);
     font-size: 18px;
-    margin: 20px;
-    height: 20px;
 }
 
 .card-wrapper{
@@ -12,6 +10,14 @@
     transition: transform 0.6s ease-out;
     margin: 10px;
     height: 500px;
+}
+
+.article-options{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 30%;
+    align-items: center;
 }
 
 .card-wrapper > .back-article-card{
@@ -29,10 +35,6 @@
     top: 0;
     width: 300px;
     height: 100%;
-    border-radius: 8px;
-    overflow: hidden;
-    color: var(--blanco);
-    background-color: rgb(24, 23, 23);
 }
 
 .front-article-card{
@@ -68,7 +70,7 @@
     object-fit: cover;
 }
 
-.back-article-card > .add-to-card{
+.back-article-card > .article-options > .add-to-card{
     border-radius: 8px;
     background-color: white;
     padding: 14px;
@@ -77,11 +79,11 @@
     cursor: pointer;
 }
 
-.back-article-card > .add-to-card:hover{
+.back-article-card > .article-options > .add-to-card:hover{
     background-color: rgb(180, 180, 180);
 }
 
-.back-article-card > .disabled{
+.back-article-card > .article-options > .disabled{
     cursor: not-allowed;
     border-radius: 8px;
     background-color: rgba(255, 255, 255, 0.12);
@@ -92,4 +94,22 @@
 
 .back-article-card h2{
     font-size: 32px;
+}
+
+.back-article-card > .article-options > .amount-in-cart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(10, 134, 10);
+    font-weight: bold;
+    padding:14px;
+}
+
+.back-article-card > .article-options > .amount-in-cart:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.view-detail{
+    text-align: center;
 }

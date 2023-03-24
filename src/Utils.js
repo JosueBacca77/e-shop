@@ -1,5 +1,3 @@
-import {useAuth} from './AuthContext'
-
 const GetPlural =(unit)=> {
     switch (unit) {
         case "unidad": return  "unidades"
@@ -44,5 +42,9 @@ const GetSubtotalItem=(item)=>{
     )
 }
 
+const getArticleAmountInCart =(data,articleId)=>{
+    return data.find(article => article.id == articleId)?.count || 0;
+}
 
-export {GetPlural, VerifyContains,Acumulator,GetFeeValue,GetCountFeesValue,GetSubtotalItem};
+
+export {GetPlural, VerifyContains,Acumulator,GetFeeValue,GetCountFeesValue,GetSubtotalItem, getArticleAmountInCart};
