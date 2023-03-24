@@ -34,7 +34,7 @@ const ItemCart =({article, onDelete})=> {
     }
 
     return(
-        <article key={article.id} className='item flex-start'>
+        <article key={article.id} className='card item flex-start'>
             <div className='cardMediaContainer'>
                 <CardMedia
                     width={220}
@@ -53,7 +53,7 @@ const ItemCart =({article, onDelete})=> {
                             <DeleteIcon className='delete'  />
                         </IconButton>
                     </div>
-                    <div>
+                    <div className='itemCardNameDesc'>
                         <span className='itemCardname' onClick={goDetail}>
                             {article.data.name}
                         </span>

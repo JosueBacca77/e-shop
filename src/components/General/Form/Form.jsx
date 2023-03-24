@@ -4,7 +4,7 @@ const Form =({onSubmit, _width, children})=>{
 
     return(
         <form
-            className='form' noValidate
+            className='form card' noValidate
             onSubmit={onSubmit}
         >   
             {children}

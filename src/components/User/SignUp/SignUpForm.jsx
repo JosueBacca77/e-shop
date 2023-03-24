@@ -27,7 +27,12 @@ const SignUpForm = ({signUp}) => {
         avatar: {
             backgroundColor: blueGrey[900],
             marginTop: '10px',
-        }
+        },
+        input: {
+            "&:-webkit-autofill": {
+              WebkitBoxShadow: "0 0 0 1000px rgb(31, 30, 30) inset",
+            }
+        },
     }));
 
     const classes = useStyles();
@@ -46,12 +51,6 @@ const SignUpForm = ({signUp}) => {
                 onSubmit={handleSubmit(onSubmit)}
                 _width={'300px'}
             >
-
-            
-            {/* <form className='signup-form' noValidate
-                  onSubmit={handleSubmit(onSubmit)}
-            > */}
-
                 <Avatar className={classes.avatar}>
                     <PersonIcon />
                 </Avatar>
@@ -69,6 +68,7 @@ const SignUpForm = ({signUp}) => {
                     label="Email"
                     autoComplete="email"
                     autoFocus
+                    inputProps={{ className: classes.input }}
                     inputRef={register({
                         required: validations.req,
                     })}
@@ -85,6 +85,7 @@ const SignUpForm = ({signUp}) => {
                     label="Contraseña"
                     type="password"
                     id="password"
+                    inputProps={{ className: classes.input }}
                     inputRef={register({
                         required: validations.req,
                     })}
@@ -100,6 +101,7 @@ const SignUpForm = ({signUp}) => {
                     label="Repetir contraseña"
                     type="password"
                     id="password_repeat"
+                    inputProps={{ className: classes.input }}
                     inputRef={register({
                         required: validations.req,
                         validate: value => value === pass || validations.pass_no_match
@@ -122,7 +124,6 @@ const SignUpForm = ({signUp}) => {
                     />
                 </div>
                 <span>Posees una cuenta?&nbsp;&nbsp;<a href='' onClick={goSignUp}>Ingresa aquí</a></span>
-            {/* </form> */}
             </Form>
         </div>
     )

@@ -1,7 +1,5 @@
 .form{
     width: 40%;
-    background-color: var(--blanco);
-    border-radius: 20px;
     padding: 25px;
     padding-top: 20px;
     display: flex;

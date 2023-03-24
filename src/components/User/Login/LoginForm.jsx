@@ -27,6 +27,11 @@ const LogInForm = ({logIn}) => {
             backgroundColor: blueGrey[900],
             marginTop: '10px',
         },
+        input: {
+            "&:-webkit-autofill": {
+              WebkitBoxShadow: "0 0 0 1000px rgb(31, 30, 30) inset",
+            }
+        },
     }));
 
     const classes = useStyles();
@@ -60,6 +65,7 @@ const LogInForm = ({logIn}) => {
                     label="Email"
                     autoComplete="email"
                     autoFocus
+                    inputProps={{ className: classes.input }}
                     inputRef={register({
                         required: validations.req,
                         pattern: validations.email
@@ -67,7 +73,6 @@ const LogInForm = ({logIn}) => {
                     error={hasError("email")}
                     helperText={hasError("email") && errors.email.message}
                 />
-
                 <TextField
                     variant="outlined"
                     margin="normal"
@@ -78,6 +83,7 @@ const LogInForm = ({logIn}) => {
                     type="password"
                     id="password"
                     autoComplete="current-password"
+                    inputProps={{ className: classes.input }}
                     inputRef={register({
                         required: validations.req,
                     })}

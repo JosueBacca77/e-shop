@@ -1,13 +1,13 @@
 .item{
-    background-color: var(--blanco);
-    border-radius: 10px;
     padding: 0 20px 0 0;
     margin-bottom: 5%;
     width: 96%;
 }
+.itemCardNameDesc{
+    padding: 10px;
+}
 
 .itemCardname{
-    color: var(--azul);
     font-size: 2rem;
     font-weight: bold;
 }
@@ -103,6 +103,6 @@
 
 .deleteItem{
     position: absolute;
-    top: 0;
+    top: 10px;
     right: 0;
 }
