@@ -6,12 +6,12 @@ import blueGrey from "@material-ui/core/colors/blueGrey";
 import Avatar from "@material-ui/core/Avatar";
 import PersonIcon from '@material-ui/icons/Person';
 import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
 import {validations} from "../../../Validations";
 import {ErrorLabel} from "../../General/Labels";
 import {AceptButton} from "../../General/Buttons";
 import './SignUp.css'
 import Form from "../../General/Form/Form";
+import { DarkTextFieldMUI } from "../../General/TextField";
 
 
 const SignUpForm = ({signUp}) => {
@@ -27,12 +27,7 @@ const SignUpForm = ({signUp}) => {
         avatar: {
             backgroundColor: blueGrey[900],
             marginTop: '10px',
-        },
-        input: {
-            "&:-webkit-autofill": {
-              WebkitBoxShadow: "0 0 0 1000px rgb(31, 30, 30) inset",
-            }
-        },
+        }
     }));
 
     const classes = useStyles();
@@ -57,51 +52,33 @@ const SignUpForm = ({signUp}) => {
                 <Typography component="h1" variant="h5" >
                     Registrarme
                 </Typography>
-                
-                <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
+                <DarkTextFieldMUI 
                     id="email"
                     name="email"
                     label="Email"
                     autoComplete="email"
-                    autoFocus
-                    inputProps={{ className: classes.input }}
                     inputRef={register({
                         required: validations.req,
                     })}
                     error={hasError("email")}
                     helperText={hasError("email") && errors.email.message}
                 />
-
-                <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
+                <DarkTextFieldMUI 
                     name="password"
                     label="Contraseña"
                     type="password"
                     id="password"
-                    inputProps={{ className: classes.input }}
                     inputRef={register({
                         required: validations.req,
                     })}
                     error={hasError("password")}
                     helperText={hasError("password") && errors.password.message}
                 />
-                <TextField
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
+                <DarkTextFieldMUI 
                     name="password_repeat"
                     label="Repetir contraseña"
                     type="password"
                     id="password_repeat"
-                    inputProps={{ className: classes.input }}
                     inputRef={register({
                         required: validations.req,
                         validate: value => value === pass || validations.pass_no_match

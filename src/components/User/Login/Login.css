@@ -13,3 +13,8 @@
 .button{
     margin: 20px;
 }
+
+.MuiFilledInput-root{
+    border: '1px solid #e2e2e1',
+
+}
