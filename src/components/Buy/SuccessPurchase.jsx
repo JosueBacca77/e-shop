@@ -23,12 +23,22 @@ const SuccessPurchase = ({purchaseId}) => {
         },
         search: {
             position: "relative",
-            borderRadius: theme.shape.borderRadius,
+            borderRadius: "8px 0 0 8px",
+            width: "100%",
+            color: blue[700],
+            backgroundColor: fade(theme.palette.common.white, 0.15),
+            height: '35px',
+            display: "flex",
+            alignItems: "center",
+        },
+        copyId: {
+            borderRadius: "0px 8px 8px 0",
             width: "100%",
             color: blue[700],
             backgroundColor: fade(theme.palette.common.white, 0.15),
             '&:hover': {
                 backgroundColor: fade(theme.palette.common.white, 0.25),
+                cursor: 'pointer'
             },
             height: '35px',
             display: "flex",
@@ -78,9 +88,11 @@ const SuccessPurchase = ({purchaseId}) => {
                             />
                         </div>
 
-                        <div className={classes.search}>
-                            <CopyToClipboard text={value}
-                                             onCopy={handleCopy}>
+                        <div className={classes.copyId}>
+                            <CopyToClipboard 
+                                text={value}
+                                onCopy={handleCopy}
+                            >
                                 <FileCopyIcon />
                             </CopyToClipboard>
                         </div>

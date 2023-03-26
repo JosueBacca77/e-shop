@@ -88,7 +88,7 @@ const LogInForm = ({logIn}) => {
                         type='submit'
                     />
                 </div>
-                <span>Aún no tienes una cuenta?&nbsp;&nbsp;<a href='' onClick={goSignUp}>Registrate ahora</a></span>
+                <span>Aún no tienes una cuenta?&nbsp;&nbsp;<span className="underline-when-hover" onClick={goSignUp}>Registrate ahora</span></span>
             </Form>
         </div>
     )

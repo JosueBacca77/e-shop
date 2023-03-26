@@ -109,7 +109,7 @@ const SignUpForm = ({signUp}) => {
                     />
                 </ThemeProvider>
                 </div>
-                <span>Posees una cuenta?&nbsp;&nbsp;<a href='' onClick={goSignUp}>Ingresa aquí</a></span>
+                <span>Posees una cuenta?&nbsp;&nbsp;<span className="underline-when-hover" onClick={goSignUp}>Ingresa aquí</span></span>
             </Form>
         </div>
     )
