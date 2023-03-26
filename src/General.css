@@ -81,7 +81,7 @@
 
 .card{
     border-radius: 8px;
-    background-color: rgb(31, 30, 30);
+    background-color: var(--negroCard);
     overflow: hidden;
     color: var(--blanco);
 }

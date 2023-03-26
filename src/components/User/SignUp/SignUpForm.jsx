@@ -12,6 +12,7 @@ import {AceptButton} from "../../General/Buttons";
 import './SignUp.css'
 import Form from "../../General/Form/Form";
 import { DarkTextFieldMUI } from "../../General/TextField";
+import { createTheme, ThemeProvider } from "@material-ui/core";
 
 
 const SignUpForm = ({signUp}) => {
@@ -39,6 +40,12 @@ const SignUpForm = ({signUp}) => {
     const onSubmit = data =>{
         signUp(data.email, data.password, setError)
     }
+
+    const theme = createTheme({
+        palette: {
+          type: "dark"
+        }
+    });
 
     return (
         <div className='main-view center'>
@@ -95,10 +102,12 @@ const SignUpForm = ({signUp}) => {
                         :null
                 }
                 <div className='button'>
+                <ThemeProvider theme={theme}>
                     <AceptButton
                         text='Aceptar'
                         type='submit'
                     />
+                </ThemeProvider>
                 </div>
                 <span>Posees una cuenta?&nbsp;&nbsp;<a href='' onClick={goSignUp}>Ingresa aquí</a></span>
             </Form>
