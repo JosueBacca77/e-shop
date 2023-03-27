@@ -6,6 +6,7 @@ import {useForm} from "react-hook-form";
 import {Store} from "../../Store";
 import NavButtons from '../General/NavButtons/NavButtons'
 import { AceptButton } from "../General/Buttons";
+import { DarkTextFieldMUI } from "../General/TextField";
 
 
 
@@ -25,16 +26,16 @@ const UserForm =({userdata, next})=>{
         next(data)
     }
 
+    console.log('userdata',userdata)
+
     return(
-        <div className='buy-main'>
-            <form noValidate className='userForm'
+        <div className='buy-main' >
+            <form noValidate className='userForm card'
                 onSubmit={handleSubmit(onSubmit)}>
-                <article >
-                    <span className='section-title'>Ingresa tus datos</span>
+                
+                    <p className='section-title'>Ingresa tus datos</p>
                     <section className='fields padding-10'>
-                        <TextField
-                            variant="outlined"
-                            margin="normal"
+                        <DarkTextFieldMUI
                             label='Nombre'
                             name='name'
                             id='name'
@@ -47,7 +48,7 @@ const UserForm =({userdata, next})=>{
                             error={hasError("name")}
                             helperText={hasError("name") && errors.name.message}
                         />
-                        <TextField
+                        <DarkTextFieldMUI
                             variant="outlined"
                             margin="normal"
                             label='Apellido'
@@ -61,7 +62,7 @@ const UserForm =({userdata, next})=>{
                             error={hasError("surname")}
                             helperText={hasError("surname") && errors.surname.message}
                         />
-                        <TextField
+                        <DarkTextFieldMUI
                             variant="outlined"
                             margin="normal"
                             label='Email'
@@ -75,12 +76,13 @@ const UserForm =({userdata, next})=>{
                             error={hasError("email")}
                             helperText={hasError("email") && errors.email.message}
                         />
-                        <TextField
+                        <DarkTextFieldMUI
                             variant="outlined"
                             margin="normal"
                             label='Confirmar Email'
                             className='field dni'
                             name='confemail'
+                            autoComplete='off'
                             inputRef={register({
                                 pattern: validations.email,
                                 required: validations.req,
@@ -90,7 +92,7 @@ const UserForm =({userdata, next})=>{
                             error={hasError("confemail")}
                             helperText={hasError("confemail") && errors.confemail.message}
                         />
-                        <TextField
+                        <DarkTextFieldMUI
                             type='number'
                             variant="outlined"
                             margin="normal"
@@ -105,7 +107,7 @@ const UserForm =({userdata, next})=>{
                             error={hasError("phone")}
                             helperText={hasError("phone") && errors.phone.message}
                         />
-                        <TextField
+                        <DarkTextFieldMUI
                             type='number'
                             variant="outlined"
                             margin="normal"
@@ -122,16 +124,11 @@ const UserForm =({userdata, next})=>{
                         />
                     </section>
                     <section className='padding-10 accept-btn'>
-                        {/* <NavButtons 
-                            textBack='' 
-                            textNext='Siguiente'
-                        /> */}
                         <AceptButton
                             text='Aceptar'
                             type='submit'
                         />
                     </section>
-                </article>
             </form>
         </div>
     )

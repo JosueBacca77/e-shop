@@ -49,10 +49,6 @@ const Buy =()=> {
         }
     }
 
-    // if (dataCont.items.length==0 && !completed){
-    //     history.push("/")
-    // }
-
     useLayoutEffect(() => {
         window.scrollTo(0, 0)
     }, [])
@@ -120,6 +116,8 @@ const Buy =()=> {
         let ids = GetIdsFromItems(data.items)
         validateStock(ids,data)
     }
+
+    console.log('dataUser',dataUser)
 
     return(
         <div className='main-view'>

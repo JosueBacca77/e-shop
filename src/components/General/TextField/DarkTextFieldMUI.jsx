@@ -5,7 +5,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 
 
 const DarkTextFieldMUI=({...props})=>{
-    const { id, name, label, autoComplete, inputRef, error, helperText, } = props;
+    const { id, name, label, autoComplete, inputRef, error, helperText, defaultValue} = props;
 
     const theme = createTheme({
         palette: {
@@ -24,7 +24,6 @@ const DarkTextFieldMUI=({...props})=>{
 
     const classes = useStyles();
 
-
     return(
         <ThemeProvider theme={theme}>
             <TextField
@@ -32,6 +31,7 @@ const DarkTextFieldMUI=({...props})=>{
                 margin="normal"
                 required
                 fullWidth
+                defaultValue={defaultValue}
                 id={id}
                 name={name}
                 label={label}
