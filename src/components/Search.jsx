@@ -3,6 +3,8 @@ import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import { useArticleFilter } from "../ArticleFilterContext";
+import { useEffect, useState } from "react";
+import useDeferredValue from "../Hooks/useDeferredValue";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -48,14 +50,28 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SearchAppBar() {
+
     const classes = useStyles();
+    const {setArticleFlter} = useArticleFilter();
 
-    const {setArticleFlter} = useArticleFilter()
+    const [inputValue, setInputValue] = useState('');
+    const deferredInputValue = useDeferredValue(inputValue);
 
-    const writeSearch =(e)=>{
+    const handleChange = (e) => {
+        setInputValue(e.target.value);
+    };
+
+    useEffect(() => {
+        if(deferredInputValue){
+            writeSearch(deferredInputValue);
+        }
+    }, [deferredInputValue])
+
+
+    const writeSearch =(value)=>{
 
         const find = new Promise((resolve) => {
-            resolve(setArticleFlter(e.target.value));
+            resolve(setArticleFlter(value));
         });
         
         find
@@ -76,7 +92,7 @@ export default function SearchAppBar() {
                             input: classes.inputInput
                         }}
                         inputProps={{ "aria-label": "search" }}
-                        onChange={writeSearch}
+                        onChange={handleChange}
                     />
                 </div>
             </Toolbar>
