@@ -37,7 +37,6 @@ const SuccessPurchase = ({purchaseId}) => {
             color: blue[700],
             backgroundColor: fade(theme.palette.common.white, 0.15),
             '&:hover': {
-                backgroundColor: fade(theme.palette.common.white, 0.25),
                 cursor: 'pointer'
             },
             height: '35px',

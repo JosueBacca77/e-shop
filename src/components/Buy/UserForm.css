@@ -5,27 +5,45 @@
 
 .fields{
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 49% 49%;
     grid-template-rows: 30% 30% 30% 30%;
-    gap: 8px;
+    gap: 2%;
     grid-column: 1;
+}
+
+.height-60{
+    height: 59px;
+}
+
+.nav-buttons{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.payment-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
 }
 
 .padding-10{
     padding: 10px;
 }
 
-.pay{
-    grid-column: 2;
-}
-
-.userForm{
-    width: 70%;
+.pay-card{
+    width: 40%;
 }
 
 .buy-main{
     display: flex;
     justify-content: center;
+    padding: 20px;
+}
+
+.userForm{
+    width: 70%;
 }
 
 .field{
@@ -64,6 +82,11 @@
 
 .total{
     font-size: 2rem;
+    font-weight: bold;
+}
+
+.label{
+    font-size: 1em;
 }
 
 .section-title{

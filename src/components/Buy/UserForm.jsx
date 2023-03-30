@@ -26,15 +26,11 @@ const UserForm =({userdata, next})=>{
         next(data)
     }
 
-    console.log('userdata',userdata)
-
     return(
-        <div className='buy-main' >
-            <form noValidate className='userForm card'
+            <form noValidate className='userForm card padding-10'
                 onSubmit={handleSubmit(onSubmit)}>
-                
                     <p className='section-title'>Ingresa tus datos</p>
-                    <section className='fields padding-10'>
+                    <section className='fields'>
                         <DarkTextFieldMUI
                             label='Nombre'
                             name='name'
@@ -130,7 +126,6 @@ const UserForm =({userdata, next})=>{
                         />
                     </section>
             </form>
-        </div>
     )
 }
 

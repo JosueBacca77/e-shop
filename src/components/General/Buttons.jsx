@@ -30,15 +30,16 @@ const GreenButton =({text,type='',onClick})=> {
     )
 }
 
-const AceptButton =({text,type='',onClick})=> {
+const AceptButton =({text,type='',width='',onClick})=> {
 
     const useStyles = makeStyles(() => ({
-        containedGreen: {
+        containedAccept: {
             color: "#000000",
             backgroundColor: "#ffffff",
             "&:hover": {
                 backgroundColor: "#CAC9C3"
             },
+            width:width
         },
     }));
 
@@ -46,7 +47,7 @@ const AceptButton =({text,type='',onClick})=> {
 
     return(
         <Button
-            className={classes.containedGreen}
+            className={classes.containedAccept}
             variant="contained"
             type={type}
             onClick={onClick}

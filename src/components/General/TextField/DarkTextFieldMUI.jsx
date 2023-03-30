@@ -5,7 +5,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 
 
 const DarkTextFieldMUI=({...props})=>{
-    const { id, name, label, autoComplete, inputRef, error, helperText, defaultValue} = props;
+    const { id, name, label, autoComplete, inputRef, error, helperText, defaultValue, noSelect} = props;
 
     const theme = createTheme({
         palette: {
@@ -19,6 +19,7 @@ const DarkTextFieldMUI=({...props})=>{
               WebkitBoxShadow: "0 0 0 1000px rgb(31, 30, 30) inset",
               WebkitTextFillColor: '#ffffff'
             },
+            userSelect:noSelect?'none':'auto'
         },
     }));
 

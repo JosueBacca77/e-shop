@@ -1,15 +1,16 @@
 import { AceptButton} from "../Buttons"
+import "./NavButtons.css"
 
 
 const NavButtons =({textBack, textNext, clickBack})=> { 
     return(
-        <article className='space-between'>
+        <div className='navigate-steps'>
            
             <div className='back-button'>
                 {
                     textBack !== ''
                     ?
-                    <AceptButton text={textBack} onClick={clickBack} type='button'/>
+                    <AceptButton text={textBack} width='100px' onClick={clickBack} type='button'/>
                     :
                     null
                 }
@@ -19,12 +20,12 @@ const NavButtons =({textBack, textNext, clickBack})=> {
                 {
                     textNext !== ''
                     ?
-                    <AceptButton text={textNext} type='submit'/>
+                    <AceptButton text={textNext} width='100px' type='submit'/>
                     :
                     null
                 }
             </div>
-        </article>
+        </div>
     ) 
         
 } 

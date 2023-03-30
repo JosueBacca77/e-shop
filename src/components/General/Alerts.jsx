@@ -7,14 +7,13 @@ import Grow from "@material-ui/core/Grow";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '100%',
-        '& > * + *': {
-            marginTop: theme.spacing(2),
-        },
+        // '& > * + *': {
+        //     marginTop: theme.spacing(2),
+        // },
         position: 'fixed',
         right: '4vw',
         bottom: '3vw',
-        zIndex: 1
+        zIndex: 9
     },
 }));
 

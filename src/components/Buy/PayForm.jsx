@@ -38,51 +38,56 @@ const PayForm =({buy,user,clickBack,userdata, setCompleted})=>{
     // }
 
     return(
-        <>
-        <div className='buy-main'>
-            <form noValidate className='form'
-                onSubmit={handleSubmit(onSubmit)}>
-                <article className='pay'>
-                    <FormLabel component="legend">Cantidad de pagos: </FormLabel>
-                        <RadioGroup aria-label="gender" defaultValue={countFees} >
-                            <div >
-                                <FormControlLabel inputRef={register} name="countFees" value="one"
-                                    control={<Radio/>} label="Único pago"/>
-                                <FormControlLabel inputRef={register} name="countFees" value="three"
-                                    control={<Radio/>}
-                                    label="3"/>
-                                <FormControlLabel inputRef={register} name="countFees" value="six"
-                                    control={<Radio/>}
-                                    label="6"/>
-                                <FormControlLabel inputRef={register} name="countFees" value="twelve"
-                                    control={<Radio/>}
-                                    label="12"/>
-                            </div>
-                        </RadioGroup>
-                        <br />
-                        <div className='total important-data'>
-                            <span>{` $ ${dataCont.total}`}</span>
-                        </div>
-                        {
-                            countFees !== "one"
-                            ?
-                            <div>
-                                <span>{`${GetCountFeesValue(countFees)} cuotas de $`}</span>
-                                <span className='total'>{GetFeeValue(dataCont.total,countFees)}</span>
-                            </div>
-                            :null
-                        }       
-                        <section className='padding-10'>
-                            <NavButtons 
-                                textBack='Volver' 
-                                textNext='Finalizar compra'
-                                clickBack={clickBack}
-                            />
-                        </section>
-                    </article>
-                </form>
+        <form noValidate className='card pay-card padding-10'
+            onSubmit={handleSubmit(onSubmit)}>
+            <div className='height-60 payment-section'>
+                <span className='label'>Cantidad de pagos: </span>
+                <RadioGroup aria-label="gender" defaultValue={countFees} >
+                    <div>
+                        <FormControlLabel inputRef={register} name="countFees" value="one"
+                            control={<Radio/>} label="Único pago"/>
+                        <FormControlLabel inputRef={register} name="countFees" value="three"
+                            control={<Radio/>}
+                            label="3"/>
+                        <FormControlLabel inputRef={register} name="countFees" value="six"
+                            control={<Radio/>}
+                            label="6"/>
+                        <FormControlLabel inputRef={register} name="countFees" value="twelve"
+                            control={<Radio/>}
+                            label="12"/>
+                    </div>
+                </RadioGroup>
             </div>
-        </>
+            <div className='height-60'>
+            {
+                countFees !== "one"
+                ?
+                <div className='payment-section'>
+                    <span className='label'>{`${GetCountFeesValue(countFees)} cuotas de`}</span>
+                    <div>
+                        <span className='label'>{'$ '}</span>
+                        <span className='total'>{GetFeeValue(dataCont.total,countFees)}</span>
+                    </div>
+                </div>
+                :null
+            }
+            </div>
+            
+            <div className='height-60 payment-section'>
+                <span className='label'>Total</span>
+                <div>
+                    <span className='label'>{'$ '}</span>
+                    <span className='total'>{`${dataCont.total}`}</span>
+                </div>
+            </div>
+            <section className='height-60 nav-buttons'>
+                <NavButtons 
+                    textBack='Volver' 
+                    textNext='Comprar'
+                    clickBack={clickBack}
+                />
+            </section>
+        </form>
     )
 }
 

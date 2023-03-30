@@ -117,15 +117,13 @@ const Buy =()=> {
         validateStock(ids,data)
     }
 
-    console.log('dataUser',dataUser)
-
     return(
         <div className='main-view'>
             <>
             {
                 !completed
                 ?
-                <>
+                <div class='buy-main'>
                 {
                     step==='userdata'
                     ?
@@ -142,7 +140,7 @@ const Buy =()=> {
                         setCompleted={setCompleted}
                     />
                 }
-                </>
+                </div>
                 :
                 <div>
                     {

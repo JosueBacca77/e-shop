@@ -1,16 +1,7 @@
-.main{
-    display: grid;
-    grid-template-columns: 50% 50%;
-}
-
-.back-button{
+.navigate-steps{
     display: flex;
-    justify-content: flex-start;
-    grid-column: 1;
-}
-
-.next-button{
-    display: flex;
-    justify-content: flex-end;
-    grid-column: 2;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px
 }
