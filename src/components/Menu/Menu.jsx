@@ -1,7 +1,7 @@
 import './Menu.css';
 import SearchAppBar from "../Search";
 import NavBarItem from "./NavBarItem/NavBarItem";
-import React, {useContext, useEffect, useMemo, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import WidgetCart from "../WidgetCart/WidgetCart";
 import {getFireStore} from "../../Data";
 import {useHistory, useLocation, useParams} from "react-router-dom";
@@ -10,7 +10,7 @@ import {IconBadge} from "../General/Icons/Icon";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import {Store} from "../../Store";
 import {useAuth} from "../../AuthContext"
-import { useWindowSize } from '../General/SizeScreenHook';
+import { useWindowSize } from '../../Hooks/SizeScreenHook';
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles } from '@material-ui/core';

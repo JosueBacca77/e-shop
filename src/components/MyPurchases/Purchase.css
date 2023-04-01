@@ -7,13 +7,11 @@
     text-align: left;
 }
 .info-purchase-form{
-    background-color: var(--blanco);
-    border-radius: 20px;
     padding: 10px;
-    width: 700px;
-    padding-top: 20px;
 }
 
-.table-items{
-    margin-right: 10px;
+.close-purchase{
+    position: absolute;
+    top: 0;
+    right: 10px;
 }

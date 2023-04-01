@@ -46,5 +46,10 @@ const getArticleAmountInCart =(data,articleId)=>{
     return data.find(article => article.id == articleId)?.count || 0;
 }
 
+const getDateFromTimestamp =(timestamp)=>{
+    const date = new Date(timestamp);
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
+    return(date.toLocaleDateString('en-US', options))
+}
 
-export {GetPlural, VerifyContains,Acumulator,GetFeeValue,GetCountFeesValue,GetSubtotalItem, getArticleAmountInCart};
+export {GetPlural, VerifyContains,Acumulator,GetFeeValue,GetCountFeesValue,GetSubtotalItem, getArticleAmountInCart, getDateFromTimestamp};
