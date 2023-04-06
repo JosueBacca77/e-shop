@@ -58,7 +58,7 @@ const WidgetOptions = ({show, setShow, currentUser, logout, onHandleNav}) => {
                     <div className={classes.userAccount}>
                         <AccountCircleIcon className={classes.accountIcon}/>
                         <MobileNavBarItem 
-                            name={currentUser ? currentUser.email.split('@',1) : 'Ingresar'} 
+                            name={currentUser ? currentUser.email.split('@',1) : 'Log In'} 
                             url={currentUser ? '' : '/login'}
                             myclass='user'
                             onHandleNav={()=>onHandleNav('user', currentUser ? '' : '/login', setShow)}
@@ -75,7 +75,7 @@ const WidgetOptions = ({show, setShow, currentUser, logout, onHandleNav}) => {
                         <>
                             <MobileNavBarItem 
                                 key={'mypurchases'} 
-                                name='Mis compras' 
+                                name='My purchases' 
                                 url='/purchases'
                                 myclass='option'
                                 onHandleNav={()=>onHandleNav('option', '/purchases', setShow)}
@@ -83,7 +83,7 @@ const WidgetOptions = ({show, setShow, currentUser, logout, onHandleNav}) => {
                             />
                             <MobileNavBarItem
                                 key={'cart'} 
-                                name='Mi Carrito' 
+                                name='My cart' 
                                 url='/cart'
                                 myclass='option'
                                 onHandleNav={()=>onHandleNav('option', '/cart', setShow)}
@@ -91,7 +91,7 @@ const WidgetOptions = ({show, setShow, currentUser, logout, onHandleNav}) => {
                             />
                             <MobileNavBarItem 
                                 key={'logout'} 
-                                name='Salir' 
+                                name='Logout' 
                                 myclass='logout' 
                                 logout={logout}
                                 onHandleNav={()=>onHandleNav('logout', '/', setShow)}
@@ -100,7 +100,7 @@ const WidgetOptions = ({show, setShow, currentUser, logout, onHandleNav}) => {
                         </>
                         :
                         <MobileNavBarItem key={'signup'} 
-                            name='Registrarme' 
+                            name='Sign Up' 
                             myclass='option' 
                             url='/signup'
                             onHandleNav={()=>onHandleNav('option', '/signup', setShow)}

@@ -84,7 +84,7 @@ const ArticleDetail =({article})=> {
                     {article.data.description}
                 </p>
                 <div className='price'>
-                    <p>Stock disponible:</p>
+                    <p>Available stock</p>
                     <span style={{'fontWeight':'bold'}}>{`${article.data.stock} ${GetPlural(article.data.unit)}`}</span>
                 </div>
                 <br/>

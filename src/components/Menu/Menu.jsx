@@ -141,22 +141,25 @@ const Menu =()=> {
                             <div className='carticon'>
                                 <NavBarItem 
                                     key={'cart'} 
-                                    name='Mi carrito' 
+                                    name='My cart' 
                                     url='/cart' 
                                     onHandleNav={onHandleNav}
-                                    currentLocation={location.pathname.split('/').at(-1)==='cart'?'Mi carrito':''}
+                                    currentLocation={location.pathname.split('/').at(-1)==='cart'?'My cart':''}
                                 />
                                 <NavBarItem 
                                     key={'mypurchases'} 
-                                    name='Mis compras' 
+                                    name='My purchases' 
                                     url='/purchases' 
                                     onHandleNav={onHandleNav}
-                                    currentLocation={location.pathname.split('/').at(-1)==='purchases'?'Mis compras':''}
+                                    currentLocation={location.pathname.split('/').at(-1)==='purchases'?'My purchases':''}
                                 />
                                 {
                                     data.items.length >0
                                     ?
-                                        <IconBadge count={data.items.length} icon={<ShoppingCartIcon className='iconWhite' onClick={openWidgetCart} />}  />
+                                        <IconBadge count={data.items.length} icon={<ShoppingCartIcon className='iconWhite' 
+                                                onClick={null}// needs visual refactor{openWidgetCart} 
+                                            />}
+                                        />
                                     :
                                     null
                                 }
@@ -170,12 +173,12 @@ const Menu =()=> {
                                             myclass='user' 
                                             url='/'
                                             onHandleNav={onHandleNav}
-                                            currentLocation={location.pathname.split('/').at(-1)==='cart'?'Mi Carrito':''}
+                                            currentLocation={location.pathname.split('/').at(-1)==='cart'?'My cart':''}
 
                                         />
                                         <NavBarItem 
                                             key={'logout'} 
-                                            name='Salir' 
+                                            name='Log out' 
                                             myclass='logout' 
                                             logout={logout}
                                             onHandleNav={onHandleNav}
@@ -185,19 +188,19 @@ const Menu =()=> {
                                     <>
                                         <NavBarItem 
                                             key={'login'}  
-                                            name='Ingresar' 
+                                            name='Log in' 
                                             url='/login' 
                                             onHandleNav={onHandleNav}
-                                            currentLocation={location.pathname.split('/').at(-1)==='login'?'Ingresar':''}
+                                            currentLocation={location.pathname.split('/').at(-1)==='login'?'Log in':''}
 
                                         />
                                         <NavBarItem 
                                             key={'signup'} 
-                                            name='Registrarme' 
+                                            name='Sign up' 
                                             myclass='signup' 
                                             url='/signup' 
                                             onHandleNav={onHandleNav}
-                                            currentLocation={location.pathname.split('/').at(-1)==='signup'?'Registrarme':''}
+                                            currentLocation={location.pathname.split('/').at(-1)==='signup'?'Sign up':''}
                                         />
                                     </>
                                 }

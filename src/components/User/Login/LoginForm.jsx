@@ -1,6 +1,5 @@
 import Avatar from "@material-ui/core/Avatar";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
 import {useForm} from "react-hook-form";
 import React, {useState} from "react";
 import {validations} from '../../../Validations'
@@ -46,9 +45,6 @@ const LogInForm = ({logIn}) => {
                 <Avatar className={classes.avatar}>
                     <LockOutlinedIcon/>
                 </Avatar>
-                <Typography component="h1" variant="h5" >
-                    Ingresar
-                </Typography>
                 <DarkTextFieldMUI 
                     id="email"
                     name="email"
@@ -84,11 +80,11 @@ const LogInForm = ({logIn}) => {
                 }
                 <div className='button'>
                     <AceptButton
-                        text='Aceptar'
+                        text='LOG IN'
                         type='submit'
                     />
                 </div>
-                <span>Aún no tienes una cuenta?&nbsp;&nbsp;<span className="underline-when-hover" onClick={goSignUp}>Registrate ahora</span></span>
+                <span>Don't have an account yet?&nbsp;&nbsp;<span className="underline-when-hover" onClick={goSignUp}>Sign up now</span></span>
             </Form>
         </div>
     )

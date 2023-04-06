@@ -5,7 +5,6 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import blueGrey from "@material-ui/core/colors/blueGrey";
 import Avatar from "@material-ui/core/Avatar";
 import PersonIcon from '@material-ui/icons/Person';
-import Typography from "@material-ui/core/Typography";
 import {validations} from "../../../Validations";
 import {ErrorLabel} from "../../General/Labels";
 import {AceptButton} from "../../General/Buttons";
@@ -50,9 +49,6 @@ const SignUpForm = ({signUp}) => {
                 <Avatar className={classes.avatar}>
                     <PersonIcon />
                 </Avatar>
-                <Typography component="h1" variant="h5" >
-                    Registrarme
-                </Typography>
                 <DarkTextFieldMUI 
                     id="email"
                     name="email"
@@ -98,12 +94,12 @@ const SignUpForm = ({signUp}) => {
                 <div className='button'>
                 <DarkThemeContainerMUI>
                     <AceptButton
-                        text='Aceptar'
+                        text='Sign up'
                         type='submit'
                     />
                 </DarkThemeContainerMUI>
                 </div>
-                <span>Posees una cuenta?&nbsp;&nbsp;<span className="underline-when-hover" onClick={goSignUp}>Ingresa aquí</span></span>
+                <span>Have an account?&nbsp;&nbsp;<span className="underline-when-hover" onClick={goSignUp}>Log in</span></span>
             </Form>
         </div>
     )

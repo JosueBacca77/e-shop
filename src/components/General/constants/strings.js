@@ -1,20 +1,20 @@
 const infoStrings = {
-    stockOut: 'Ha agotado el stock del producto'
+    stockOut: 'The product is out of stock'
 }
 
 const pageName ='electronic-Shop'
 
 const errorStrings = {
-    pageNotFound: 'Página no encontrada',
-    articleNotFound: 'Artículo no encontrado',
-    purchaseNotFound: 'Compra no encontrada',
-    headingArticlesNotFound: 'No se han encontrado artículos pertenecientes a este rubro',
-    insufficientStock: 'El stock de los siguientes productos es insuficiente para la cantidad solicitada',
-    noMatchSearch: 'No hay coincidencias en la búsqueda'
+    pageNotFound: 'Page not found',
+    articleNotFound: 'Product not found',
+    purchaseNotFound: 'Purchase not found',
+    headingArticlesNotFound: 'There are not product that belong to this heading',
+    insufficientStock: 'The stock of the following products is not enough for the amount required',
+    noMatchSearch: 'No match'
 }
 
 const purchaseStates = {
-    generated: 'Generada'
+    generated: 'Generated'
 }
 
 const articlesAdded =(count,unit,pluralUnit)=>{
@@ -22,10 +22,10 @@ const articlesAdded =(count,unit,pluralUnit)=>{
         return ""
     }
     if (count=="1"){
-        return `Ha agregado ${count} ${unit} al carrito!`
+        return `You have added ${count} ${unit} to your cart!`
     }
     else{
-        return `Ha agregado ${count} ${pluralUnit} al carrito!`
+        return `You have added ${count} ${pluralUnit} to your cart!`
     }
 }
 

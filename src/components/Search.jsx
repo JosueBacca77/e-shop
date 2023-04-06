@@ -86,7 +86,7 @@ export default function SearchAppBar() {
                         <SearchIcon className={classes.searchIcon}/>
                     </div>
                     <InputBase
-                        placeholder="Qué estás buscando?"
+                        placeholder="What are you looking for?"
                         classes={{
                             root: classes.inputRoot,
                             input: classes.inputInput

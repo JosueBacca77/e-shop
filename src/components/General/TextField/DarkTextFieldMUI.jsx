@@ -8,9 +8,10 @@ const DarkTextFieldMUI=({...props})=>{
 
     const useStyles = makeStyles((theme) => ({
         input: {
+            color:'#ffffff',
             "&:-webkit-autofill": {
               WebkitBoxShadow: "0 0 0 1000px rgb(31, 30, 30) inset",
-              WebkitTextFillColor: '#ffffff'
+              WebkitTextFillColor: '#ffffff',
             },
             userSelect:noSelect?'none':'auto'
         },
@@ -31,7 +32,7 @@ const DarkTextFieldMUI=({...props})=>{
                 label={label}
                 autoComplete={autoComplete}
                 autoFocus
-                inputProps={{ className: classes.input }}
+                inputProps={{ className: classes.input} }
                 inputRef={inputRef}
                 error={error}
                 helperText={helperText}

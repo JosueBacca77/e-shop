@@ -121,7 +121,7 @@ const UserForm =({userdata, next})=>{
                     </section>
                     <section className='padding-10 accept-btn'>
                         <AceptButton
-                            text='Aceptar'
+                            text='BUY'
                             type='submit'
                         />
                     </section>

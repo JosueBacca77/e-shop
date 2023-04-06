@@ -1,8 +1,8 @@
 const GetPlural =(unit)=> {
     switch (unit) {
-        case "unidad": return  "unidades"
-        case "par":  return "pares"
-        case "metro": return  "metros"
+        case "unit": return  "units"
+        case "pair":  return "pairs"
+        case "meter": return  "meters"
         default : return ""
     }
 }

@@ -35,7 +35,7 @@ const Cart =()=>{
             {
                 data.items !== undefined && data.items.length === 0
                     ?
-                    <h1 className='subtitle'>El carrito está vacío por el momento...</h1>
+                    <h1 className='subtitle'>Your cart is still empty...</h1>
                     :
                     <>
                         <div className='head'>
