@@ -48,7 +48,7 @@ const CardArticle =({article})=> {
                     {
                         VerifyContains(data.items,article)?
                         <span className="amount-in-cart" onClick={goCart}>
-                            {`${getArticleAmountInCart(data.items, article.id)} ${getArticleAmountInCart(data.items, article.id) === 1 ? article.data.unit: GetPlural(article.data.unit)} en el carrito`}
+                            {`${getArticleAmountInCart(data.items, article.id)} ${getArticleAmountInCart(data.items, article.id) === 1 ? article.data.unit: GetPlural(article.data.unit)} in your cart`}
                         </span>
                         :
                         <>

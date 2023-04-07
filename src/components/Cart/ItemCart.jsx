@@ -30,7 +30,7 @@ const ItemCart =({article, onDelete})=> {
 
 
     const goDetail =()=> {
-        history.push("/detail"+article.id)
+        history.push("/detail/"+article.id)
     }
 
     return(
