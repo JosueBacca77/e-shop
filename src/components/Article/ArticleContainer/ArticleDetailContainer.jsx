@@ -1,6 +1,6 @@
 import React, {useEffect, useLayoutEffect, useState} from "react";
 import ArticleDetail from "../ArticleDetail";
-import {CircularIndeterminate} from "../../General/Progress";
+import {CircularIndeterminate} from "../../General/Progress/Progress";
 import {useParams} from 'react-router-dom'
 import {errorStrings} from "../../General/constants/strings";
 import ErrorPage from "../../General/ErrorPage/ErrorPage";

@@ -1,7 +1,7 @@
 import React, {useEffect, useLayoutEffect, useState} from "react";
 import './Home.css'
 import './../../General.css'
-import {CircularIndeterminate} from "../General/Progress";
+import {CircularIndeterminate} from "../General/Progress/Progress";
 import ArticleList from "../ArticleList";
 import {getFireStore} from "../../Data";
 import {useArticleFilter} from "../../ArticleFilterContext";

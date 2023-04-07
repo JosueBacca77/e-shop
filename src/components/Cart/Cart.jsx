@@ -6,7 +6,6 @@ import ItemCart from "./ItemCart";
 import {DeleteItemCart, UpdateTotalCart} from "../../Store/ManageContext";
 import {useHistory} from "react-router-dom";
 import {GreenButton} from "../General/Buttons";
-import {useAuth} from '../../AuthContext'
 
 
 const Cart =()=>{
@@ -14,8 +13,6 @@ const Cart =()=>{
     let history = useHistory();
 
     const [data, setData] = useContext(Store);
-
-    const {currentUser} = useAuth()
 
     const onDelete =(item)=>{
         DeleteItemCart(item.id,data,setData)
@@ -35,7 +32,7 @@ const Cart =()=>{
             {
                 data.items !== undefined && data.items.length === 0
                     ?
-                    <h1 className='subtitle'>Your cart is still empty...</h1>
+                    <h1 className='subtitle'>Your cart is empty...</h1>
                     :
                     <>
                         <div className='head'>

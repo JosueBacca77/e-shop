@@ -1,9 +1,7 @@
 import {getFireStore} from "../../Data";
 import {useLayoutEffect, useMemo, useState} from "react";
 import Purchase from "./Purchase";
-import SearchPurchase from "./SearchPurchase";
 import {useAuth} from "../../AuthContext"
-import firebase from 'firebase/app';
 import SortableTableMUI from "../General/SortableTableMUI";
 import DarkThemeContainerMUI from "../General/DarkThemeContainerMui";
 import ModalMUI from "../General/ModalMUI";
@@ -11,12 +9,10 @@ import ModalMUI from "../General/ModalMUI";
 const PurchaseContainer=()=>{
 
     const db = getFireStore()
-    const [tried, setTried] = useState(false)
     const [purchase, setPurchase] = useState({})
     const [userPurchases, setUserPurchases] = useState([])
 
     const {currentUser} = useAuth()
-    const [waiting,setWaiting] = useState(false);
 
     const purchasesHeadCells = [
         {
@@ -67,7 +63,6 @@ const PurchaseContainer=()=>{
 
     const cleanPurchase=()=>{
         setPurchase({})
-        // setTried(false)
     } 
 
     const userPurchasesData = useMemo(() => {
@@ -83,12 +78,10 @@ const PurchaseContainer=()=>{
     }, [userPurchases.length])
 
     const GetPurchase = (id) =>{
-        setWaiting(true);
         db.collection('Sales')
         .where('iduser','==',currentUser.uid)
         .get()
             .then(function(doc) {
-                console.log('doc',doc.docs)
                 if (doc.docs.length>0) {
                     setUserPurchases(doc.docs)
                 } else {
@@ -98,8 +91,6 @@ const PurchaseContainer=()=>{
             }).catch(function(error) {
             console.log("Error en búsqueda de la compra: ", error);
         });
-        setTried(true)
-        setWaiting(false)
     }
 
     const handleSetPurchase = (selectedPurchase) =>{
@@ -110,8 +101,6 @@ const PurchaseContainer=()=>{
         window.scrollTo(0, 0);
         GetPurchase();
     }, [])
-
-    console.log('purchase',purchase)
 
     return(
         <div className='main-view'>
@@ -148,16 +137,6 @@ const PurchaseContainer=()=>{
                 :
                 null
             }
-            {/* {
-                purchase.data === undefined 
-                    ?
-                    <SearchPurchase
-                        GetPurchase={GetPurchase}
-                        show={tried}
-                        waiting={waiting}
-                    />
-                    :null
-            } */}
         </div>
     )
 }

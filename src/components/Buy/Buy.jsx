@@ -6,7 +6,7 @@ import {ClearCart} from "../../Store/ManageContext";
 import {Store} from "../../Store";
 import firebase from 'firebase/app';
 import {useAuth} from "../../AuthContext";
-import CircularIndeterminate from "../General/Progress";
+import CircularIndeterminate from "../General/Progress/Progress";
 import SuccessPurchase from "./SuccessPurchase"
 import ErrorStock from "./ErrorStock"
 import {useHistory} from "react-router-dom";
