@@ -1,0 +1,9 @@
+.addToCartIcon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.out-of-stock{
+    margin-left: 6px;
+}

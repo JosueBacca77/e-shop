@@ -3,7 +3,7 @@ import React, {useContext, useEffect, useState} from "react";
 import {GetPlural, VerifyContains} from "../../Utils";
 import {useHistory} from "react-router-dom";
 import {Store} from "../../Store";
-import ModifyCountCart from "../ModifyCountCart";
+import ModifyCountCart from "../ModifyCountCart/ModifyCountCart";
 import {AddItemToCart, ModifyCountItem, UpdateTotalCart} from "../../Store/ManageContext";
 import {useAuth} from "../../AuthContext"
 
@@ -50,26 +50,25 @@ const ArticleDetail =({article})=> {
     }
 
     return(
-        <article className='article'>
-            <ul className='images'>
+        <article className='card article'>
+            <div className='images'>
                 {article.data.images.length >0
                     ?
                     article.data.images.map(ima => (
-                        <li key={ima}>
-                            <img className={selectedImage==ima
-                                ?'selectedImage':'image'}
-                                 src={`/Images/${ima}`} alt={ima}
-                                 onClick={()=>handleChangeImage(ima)}
+                        <div key={ima} onMouseEnter={()=>handleChangeImage(ima)}>
+                            <img 
+                                className={`image ${selectedImage==ima && 'selected-image-list' }`}
+                                src={`/Images/${ima}`} alt={ima}
                             />
-                        </li>
+                        </div> 
                     ))
                     :null}
-            </ul>
-            <section className='mainimage'>
+            </div>
+            <section className='main-image-container'>
                 <img
                     src={`/Images/${selectedImage}`}
                     alt={article.data.name}
-                    className='mainimage'
+                    className='selected-image'
                 />
             </section>
             <section className='detailArticle'>
@@ -77,28 +76,29 @@ const ArticleDetail =({article})=> {
                     {article.data.name}
                 </h1>
                 <div className='price'>
-                    <h2>{`$ ${article.data.price}`}</h2>
-                    <span>{`c/${article.data.unit}`}</span>
+                    <span className='price-number'>{`$ ${article.data.price}`}</span>
+                    <span>{`per ${article.data.unit}`}</span>
                 </div>
                 <p>
                     {article.data.description}
                 </p>
                 <div className='price'>
-                    <p>Available stock</p>
-                    <span style={{'fontWeight':'bold'}}>{`${article.data.stock} ${GetPlural(article.data.unit)}`}</span>
+                    <span style={{'fontWeight':'bold'}}>{`${article.data.stock} ${GetPlural(article.data.unit)} available`}</span>
                 </div>
                 <br/>
-                {
-                    article.data.stock >0
-                        ?
-                        <ModifyCountCart
-                            article={article}
-                            handleChangeCount={handleChangeCount}
-                            handleAddCart={handleAddCart}
-                            countAdded={countAdded}
-                        />
-                        :null
-                }
+                <div className='add-to-cart'>
+                    {
+                        article.data.stock >0
+                            ?
+                            <ModifyCountCart
+                                article={article}
+                                handleChangeCount={handleChangeCount}
+                                handleAddCart={handleAddCart}
+                                countAdded={countAdded}
+                            />
+                            :null
+                    }
+                </div>
             </section>
         </article>
     )

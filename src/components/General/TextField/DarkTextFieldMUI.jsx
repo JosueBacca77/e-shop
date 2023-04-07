@@ -4,7 +4,8 @@ import DarkThemeContainerMUI from "../DarkThemeContainerMui";
 
 
 const DarkTextFieldMUI=({...props})=>{
-    const { id, name, label, autoComplete, inputRef, error, helperText, defaultValue, noSelect} = props;
+    const { id, name, label, autoComplete, inputRef,
+        error, helperText, defaultValue, noSelect, type='text', onChange} = props;
 
     const useStyles = makeStyles((theme) => ({
         input: {
@@ -22,6 +23,7 @@ const DarkTextFieldMUI=({...props})=>{
     return(
         <DarkThemeContainerMUI>
             <TextField
+                type={type}
                 variant="outlined"
                 margin="normal"
                 required
@@ -36,6 +38,7 @@ const DarkTextFieldMUI=({...props})=>{
                 inputRef={inputRef}
                 error={error}
                 helperText={helperText}
+                onChange={onChange}
             />
         </DarkThemeContainerMUI>
     )

@@ -41,10 +41,10 @@ const ArticleDetailContainer =()=>{
                     );
                     setWaiting(false)
                 } else {
-                    console.log("El artículo no existe");
+                    console.log("Product doesn't exists");
                 }
             }).catch(function(error) {
-            console.log("Error en búsqueda de artículo: ", error);
+            console.log("Error: ", error);
         });
     }
 
