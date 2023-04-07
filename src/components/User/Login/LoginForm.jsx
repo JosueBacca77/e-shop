@@ -1,16 +1,13 @@
-import Avatar from "@material-ui/core/Avatar";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import {useForm} from "react-hook-form";
 import React, {useState} from "react";
 import {validations} from '../../../Validations'
 import {ErrorLabel} from "../../General/Labels";
 import {AceptButton} from "../../General/Buttons";
-import makeStyles from "@material-ui/core/styles/makeStyles";
-import blueGrey from "@material-ui/core/colors/blueGrey";
 import './Login.css'
 import {useHistory} from "react-router-dom";
 import Form from "../../General/Form/Form";
 import { DarkTextFieldMUI } from "../../General/TextField";
+import { IconEShop } from "../../General/Icons";
 
 
 const LogInForm = ({logIn}) => {
@@ -19,15 +16,6 @@ const LogInForm = ({logIn}) => {
     const [error, setError] = useState('')
 
     let history = useHistory();
-
-    const useStyles = makeStyles((theme) => ({
-        avatar: {
-            backgroundColor: blueGrey[900],
-            marginTop: '10px',
-        }
-    }));
-
-    const classes = useStyles();
 
     const goSignUp=()=>{
         history.push("/signup")
@@ -42,9 +30,7 @@ const LogInForm = ({logIn}) => {
             <Form
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon/>
-                </Avatar>
+                <IconEShop />
                 <DarkTextFieldMUI 
                     id="email"
                     name="email"

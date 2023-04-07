@@ -4,9 +4,9 @@ import NavBarItem from "./NavBarItem/NavBarItem";
 import React, {useContext, useEffect, useState} from "react";
 import WidgetCart from "../WidgetCart/WidgetCart";
 import {getFireStore} from "../../Data";
-import {useHistory, useLocation, useParams} from "react-router-dom";
+import {useHistory, useLocation} from "react-router-dom";
 import {pageName} from "../General/constants/strings";
-import {IconBadge} from "../General/Icons/Icon";
+import {IconBadge} from "../General/Icons";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import {Store} from "../../Store";
 import {useAuth} from "../../AuthContext"
@@ -55,8 +55,6 @@ const Menu =()=> {
     const [showWidgetCart, setShowWidgetCart] = useState(false);
 
     const [showWidgetUser, setShowWidgetUser] = useState(false);
-
-    const {name} = useParams();
 
     const location = useLocation();
     

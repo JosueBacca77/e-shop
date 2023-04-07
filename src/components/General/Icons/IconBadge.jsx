@@ -1,6 +1,5 @@
 import Badge from "@material-ui/core/Badge";
 import IconButton from "@material-ui/core/IconButton";
-import React from "react";
 
 
 const IconBadge =({icon,count,action})=>{
@@ -13,5 +12,4 @@ const IconBadge =({icon,count,action})=>{
         </IconButton>
     )
 }
-export {IconBadge}
-
+export default IconBadge;

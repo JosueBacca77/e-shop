@@ -52,7 +52,6 @@ const ArticleDetailContainer =()=>{
         getArticle()
     },[]);
 
-
     return(
             <div className='main-view'>
                 {

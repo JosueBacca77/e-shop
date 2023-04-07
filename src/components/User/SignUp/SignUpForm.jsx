@@ -1,10 +1,6 @@
 import {useForm} from "react-hook-form";
 import {useState} from "react";
 import {useHistory} from "react-router-dom";
-import makeStyles from "@material-ui/core/styles/makeStyles";
-import blueGrey from "@material-ui/core/colors/blueGrey";
-import Avatar from "@material-ui/core/Avatar";
-import PersonIcon from '@material-ui/icons/Person';
 import {validations} from "../../../Validations";
 import {ErrorLabel} from "../../General/Labels";
 import {AceptButton} from "../../General/Buttons";
@@ -12,6 +8,7 @@ import './SignUp.css'
 import Form from "../../General/Form/Form";
 import { DarkTextFieldMUI } from "../../General/TextField";
 import DarkThemeContainerMUI from "../../General/DarkThemeContainerMui";
+import { IconEShop } from "../../General/Icons";
 
 
 const SignUpForm = ({signUp}) => {
@@ -22,15 +19,6 @@ const SignUpForm = ({signUp}) => {
     const [error, setError ] = useState('')
 
     let history = useHistory();
-
-    const useStyles = makeStyles((theme) => ({
-        avatar: {
-            backgroundColor: blueGrey[900],
-            marginTop: '10px',
-        }
-    }));
-
-    const classes = useStyles();
 
     const goSignUp=()=>{
         history.push("/login")
@@ -46,9 +34,7 @@ const SignUpForm = ({signUp}) => {
                 onSubmit={handleSubmit(onSubmit)}
                 _width={'300px'}
             >
-                <Avatar className={classes.avatar}>
-                    <PersonIcon />
-                </Avatar>
+                <IconEShop />
                 <DarkTextFieldMUI 
                     id="email"
                     name="email"
