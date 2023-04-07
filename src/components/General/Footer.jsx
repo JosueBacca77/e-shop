@@ -6,7 +6,7 @@ const Footer =()=> {
     return(
         <footer className='dark-background foot'>
             <div>
-                <h3>Por cualquier consulta no dudes en contactarnos!</h3>
+                <h3>Get in touch with us!</h3>
                 <div className='center'>
                     <ul >
                         <li><FacebookIcon color='secondary'/></li>
@@ -16,7 +16,6 @@ const Footer =()=> {
                 </div>
 
             </div>
-
         </footer>
     )
 }
