@@ -62,9 +62,7 @@ export default function SearchAppBar() {
     };
 
     useEffect(() => {
-        if(deferredInputValue){
-            writeSearch(deferredInputValue);
-        }
+        writeSearch(deferredInputValue);
     }, [deferredInputValue])
 
 

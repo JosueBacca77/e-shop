@@ -22,9 +22,7 @@ const Home =()=> {
     }, [])
 
     useEffect(() => {
-
         getArticles(filter);
-        
     },[filter]);
 
     const getArticles = (filter) =>{
@@ -49,7 +47,7 @@ const Home =()=> {
                 })
                 setArticles(arr)
             })
-            .catch(error => console.log('Error en la búsqueda de productos de home: '+error))
+            .catch(error => console.log('Error in products searching: '+error))
     }
 
     return(
@@ -57,8 +55,8 @@ const Home =()=> {
             {articles.length>0
                 ?
                 <ArticleList
-                    articles={articles.slice(0,6)}
-                    title='Lo más buscado'
+                    articles={articles.slice(0,8)}
+                    title='Most psearched'
                 />
                 :
                 <>
