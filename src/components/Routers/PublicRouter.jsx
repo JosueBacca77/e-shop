@@ -15,6 +15,6 @@ function PublicRoute ({component: Component, restricted, ...rest}){
             : <Component {...props} />
         )} />
     );
-};
+}
 
 export default PublicRoute;

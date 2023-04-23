@@ -3,10 +3,18 @@ import {useHistory} from "react-router-dom";
 import {BlueButton} from "../../General/Buttons";
 import PersonIcon from '@material-ui/icons/Person';
 
+interface NavBarItemProps {
+    name: string, 
+    myclass?: string, 
+    url?:string, 
+    onHandleNav:(myclass?:string, url?:string)=>void, 
+    currentLocation?:string
+}
 
-const NavBarItem = ({name, myclass, url = "#", onHandleNav, currentLocation=''}) => {
 
-    let history = useHistory();
+const NavBarItem = ({name, myclass, url = "#", onHandleNav, currentLocation=''}: NavBarItemProps) => {
+
+    const history = useHistory();
 
     const goHeading =()=> {
         history.push(url)

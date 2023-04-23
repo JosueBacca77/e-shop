@@ -70,16 +70,18 @@ const Menu =()=> {
         return size.width<991 ? setShowWidgetUser(!showWidgetUser) : null
     }
 
-    const onHandleNav=(myclass, url, setMobileWidget)=>{
-        if(setMobileWidget){
-            setMobileWidget(false)
-        }
+    const onHandleNav=(myclass, url)=>{
+        // if(setMobileWidget){
+        //     setMobileWidget(false)
+        // }
         if (myclass ==='logout'){
             ClearCart(setDataCont)
             logout()
             history.push('/')
         }else{
-            history.push(url)
+            if(url){
+                history.push(url)
+            }
         }
     }
 

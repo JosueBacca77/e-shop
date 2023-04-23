@@ -2,13 +2,13 @@ import './App.css';
 import Menu from './components/Menu/Menu'
 import Home from "./components/Home/Home";
 import ArticleDetailContainer from "./components/Article/ArticleContainer/ArticleDetailContainer";
-import {BrowserRouter,Switch, Route} from 'react-router-dom'
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Heading from "./components/Headings/Heading";
 import ErrorPage from "./components/General/ErrorPage/ErrorPage";
 import {errorStrings} from "./components/General/constants/strings";
 import Cart from "./components/Cart/Cart";
 import {Store} from "./Store/index"
-import React, {useState} from "react";
+import {useState} from "react";
 import Buy from "./components/Buy/Buy";
 import {initialStore} from "./Store/ManageContext";
 import Footer from "./components/General/Footer";
@@ -21,7 +21,7 @@ import PublicRoute from "./components/Routers/PublicRouter"
 import { ArticleFilter } from './ArticleFilterContext';
 
 
-function App() {
+const App=()=> {
 
 const [cart, setCart] = useState(initialStore)
 

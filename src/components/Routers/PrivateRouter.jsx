@@ -15,6 +15,6 @@ function PrivateRoute ({component: Component, ...rest}){
             : <Redirect to="/login" />
         )} />
     );
-};
+}
 
 export default PrivateRoute;
