@@ -1,17 +1,44 @@
 import {GetPlural} from "../../Utils";
 import IconButton from "@material-ui/core/IconButton";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import React from "react";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import CloseIcon from '@material-ui/icons/Close';
 import {ErrorLabel} from "../General/Labels";
 import {infoStrings} from "../General/constants/strings";
 import { DarkTextFieldMUI } from "../General/TextField";
-import './ModifyCountCart.css'
+import './ModifyCountCart.css';
+import { ArticleInterface } from "../interfaces/Article.interface";
 
-const ModifyCountCart =({article,handleChangeCount,handleAddCart,handleClose=null,countAdded})=>{
 
-    const useStyles = makeStyles({
+interface ModifyCountCartProps {
+    article: ArticleInterface,
+    handleChangeCount:()=>void,
+    handleAddCart:()=>void,
+    handleClose?:()=>void,
+    countAdded:number
+}
+
+interface StylesProps {
+    icon: {
+      color: string;
+    };
+    addIconButtonCart: {
+      width: string;
+      height: string;
+    };
+    addToCart: {
+      display: string;
+      alignItems: string;
+      justifyContent: string;
+      height: string;
+      backgroundColor: string;
+      width: string;
+    };
+  }
+
+const ModifyCountCart =({article,handleChangeCount,handleAddCart,handleClose=null,countAdded}:ModifyCountCartProps)=>{
+
+    const useStyles = makeStyles<StylesProps>(() => ({
         icon:{
             color: "blue"
         },
@@ -27,7 +54,7 @@ const ModifyCountCart =({article,handleChangeCount,handleAddCart,handleClose=nul
             backgroundColor:'pink',
             width:'100px'
         }
-    });
+    }));
 
     const classes = useStyles();
 
