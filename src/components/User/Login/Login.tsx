@@ -1,15 +1,16 @@
 import LogInForm from './LoginForm'
 import {useAuth} from '../../../AuthContext'
 import {useHistory} from "react-router-dom";
+import {Dispatch, SetStateAction} from "react";
 
 
 const LogIn =()=> {
 
-    let history = useHistory();
+    const history = useHistory();
 
     const {signin} = useAuth()
 
-    const logIn =(email,password, setError)=>{
+    const logIn =(email:string,password:string, setError: Dispatch<SetStateAction<string>>)=>{
 
         const logIn = new Promise((resolve) => {
             resolve(signin(email, password));

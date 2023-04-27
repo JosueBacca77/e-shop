@@ -1,6 +1,6 @@
 import './form.css'
 
-const Form =({onSubmit, _width, children})=>{
+const Form =({onSubmit, children})=>{
 
     return(
         <form

@@ -24,7 +24,7 @@
   "include": [
     "src/**/*.tsx",
     "src/**/*.jsx"
-  ],
+, "src/Hooks/useTextInput.js", "src/Hooks/useDeferredValue.js"  ],
   "exclude": [
     "node_modules"
   ],

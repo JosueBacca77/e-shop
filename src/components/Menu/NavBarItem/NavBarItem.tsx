@@ -3,7 +3,7 @@ import {useHistory} from "react-router-dom";
 import {BlueButton} from "../../General/Buttons";
 import PersonIcon from '@material-ui/icons/Person';
 
-interface NavBarItemProps {
+type NavBarItemProps = {
     name: string, 
     myclass?: string, 
     url?:string, 

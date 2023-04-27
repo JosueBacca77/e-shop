@@ -10,7 +10,7 @@ import './ModifyCountCart.css';
 import { ArticleInterface } from "../interfaces/Article.interface";
 
 
-interface ModifyCountCartProps {
+type ModifyCountCartProps = {
     article: ArticleInterface,
     handleChangeCount:()=>void,
     handleAddCart:()=>void,
@@ -18,7 +18,7 @@ interface ModifyCountCartProps {
     countAdded:number
 }
 
-interface StylesProps {
+type StylesProps = {
     icon: {
       color: string;
     };

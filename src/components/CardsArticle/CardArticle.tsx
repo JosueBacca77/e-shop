@@ -5,14 +5,15 @@ import {Store} from "../../Store";
 import {AddItemToCart, UpdateTotalCart} from "../../Store/ManageContext";
 import {useAuth} from "../../AuthContext";
 import "./CardsArticle.css"
+import { ArticleInterface } from "../interfaces/Article.interface";
 
 
-const CardArticle =({article})=> {
+const CardArticle =({article}: { article: ArticleInterface })=> {
 
     const [data, setData] = useContext(Store)
     const {currentUser} = useAuth()
 
-    let history = useHistory();
+    const history = useHistory();
 
     const goDetail =()=> {
         history.push("/detail/"+article.id)

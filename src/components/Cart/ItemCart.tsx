@@ -8,16 +8,19 @@ import {ReplaceItemCart, UpdateTotalCart} from "../../Store/ManageContext";
 import {useHistory} from "react-router-dom";
 import { CardMedia } from '@material-ui/core';
 import Counter from '../Counter';
+import { ArticleInterface } from '../interfaces/Article.interface';
 
+type ItemCartTypes= {
+    article: ArticleInterface,
+    onDelete:(article: ArticleInterface)=> void
+}
 
-
-const ItemCart =({article, onDelete})=> {
-
+const ItemCart =({article, onDelete}: ItemCartTypes)=> {
     const [countAdded, setCountAdded] = useState(article?.count)
 
     const [data, setData] = useContext(Store);
 
-    let history = useHistory();
+    const history = useHistory();
 
     useEffect(() => {
         if(countAdded >0 && countAdded <= article.data.stock ){

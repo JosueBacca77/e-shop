@@ -1,5 +1,5 @@
 import {useForm} from "react-hook-form";
-import React, {useState} from "react";
+import {useState, Dispatch, SetStateAction} from "react";
 import {validations} from '../../../Validations'
 import {ErrorLabel} from "../../General/Labels";
 import {AceptButton} from "../../General/Buttons";
@@ -10,25 +10,25 @@ import { DarkTextFieldMUI } from "../../General/TextField";
 import { IconEShop } from "../../General/Icons";
 
 
-const LogInForm = ({logIn}) => {
+type LogInFormProps = {
+    logIn: (email:string, password:string, setError:Dispatch<SetStateAction<string>>)=> void
+}
+
+const LogInForm = ({logIn}: LogInFormProps) => {
     const {register, handleSubmit, errors} = useForm();
-    const hasError = inputField => (errors && errors[inputField]);
+    const hasError = (inputField:string) => !!errors[inputField];
     const [error, setError] = useState('')
 
-    let history = useHistory();
+    const history = useHistory();
 
     const goSignUp=()=>{
         history.push("/signup")
     }
-    
-    const onSubmit = data =>{
-        logIn(data.email, data.password, setError)
-    }
 
     return (
         <div className='main-view center'>
-            <Form
-                onSubmit={handleSubmit(onSubmit)}
+            <Form 
+                onSubmit={handleSubmit((data) => logIn(data.email, data.password, setError))}
             >
                 <IconEShop />
                 <DarkTextFieldMUI 
@@ -68,6 +68,7 @@ const LogInForm = ({logIn}) => {
                     <AceptButton
                         text='LOG IN'
                         type='submit'
+                        onClick={null}
                     />
                 </div>
                 <span>Don't have an account yet?&nbsp;&nbsp;<span className="underline-when-hover" onClick={goSignUp}>Sign up now</span></span>

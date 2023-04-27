@@ -1,5 +1,6 @@
 export interface ArticleInterface {
     id:string,
+    count: number,
     data:{
         description:string,
         heading:string,

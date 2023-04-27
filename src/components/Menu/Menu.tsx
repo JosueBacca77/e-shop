@@ -1,9 +1,8 @@
 import './Menu.css';
 import SearchAppBar from "../Search";
 import NavBarItem from "./NavBarItem/NavBarItem";
-import React, {useContext, useEffect, useState} from "react";
+import {useContext, useState} from "react";
 import WidgetCart from "../WidgetCart/WidgetCart";
-import {getFireStore} from "../../Data";
 import {useHistory, useLocation} from "react-router-dom";
 import {pageName} from "../General/constants/strings";
 import {IconBadge} from "../General/Icons";
@@ -16,6 +15,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles } from '@material-ui/core';
 import MobileWidgetOptions from './MobileMenuWidget/MobileWidgetOptions';
 import { ClearCart } from '../../Store/ManageContext';
+import useGetHeadings from "../../Hooks/useGetHeadings"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -40,8 +40,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Menu =()=> {
 
-    const db = getFireStore()
-
     const classes = useStyles()
 
     const [data] = useContext(Store);
@@ -50,7 +48,7 @@ const Menu =()=> {
 
     const {currentUser, logout} = useAuth()
 
-    const [headings, setHeadings] = useState([])
+    const { headings } = useGetHeadings()
 
     const [showWidgetCart, setShowWidgetCart] = useState(false);
 
@@ -60,7 +58,7 @@ const Menu =()=> {
     
     const size = useWindowSize();
 
-    let history = useHistory();
+    const history = useHistory();
 
     const openWidgetCart = () => {
         setShowWidgetCart(!showWidgetCart);
@@ -70,10 +68,7 @@ const Menu =()=> {
         return size.width<991 ? setShowWidgetUser(!showWidgetUser) : null
     }
 
-    const onHandleNav=(myclass, url)=>{
-        // if(setMobileWidget){
-        //     setMobileWidget(false)
-        // }
+    const onHandleNav=(myclass: string, url: string)=>{
         if (myclass ==='logout'){
             ClearCart(setDataCont)
             logout()
@@ -85,31 +80,11 @@ const Menu =()=> {
         }
     }
 
-    const getHeadings = () =>{
-        db.collection('Headings').get()
-            .then(heads => {
-                let arr = [];
-                heads.forEach(head => {
-                    arr.push({
-                        id: head.id,
-                        data: head.data()
-                    })
-                })
-                setHeadings(arr)
-            })
-            .catch(error => console.log(`Error en la búsqueda de rubros, ${error}`))
-    }
-
-    useEffect(() => {
-        getHeadings()
-    },[]);
-
     const goHome =()=> {
         history.push("/")
     }
 
     return(
-
         <header>
             {
                 size.width > 991
@@ -156,8 +131,11 @@ const Menu =()=> {
                                 {
                                     data.items.length >0
                                     ?
-                                        <IconBadge count={data.items.length} icon={<ShoppingCartIcon className='iconWhite' 
-                                                onClick={null}// needs visual refactor{openWidgetCart} 
+                                        <IconBadge 
+                                            count={data.items.length}
+                                            action={null} // todo: needs visual refactor{openWidgetCart}
+                                            icon={
+                                                <ShoppingCartIcon className='iconWhite'
                                             />}
                                         />
                                     :
@@ -180,7 +158,6 @@ const Menu =()=> {
                                             key={'logout'} 
                                             name='Log out' 
                                             myclass='logout' 
-                                            logout={logout}
                                             onHandleNav={onHandleNav}
                                         />
                                     </>
@@ -218,7 +195,7 @@ const Menu =()=> {
                         {
                             data.items.length >0
                             ?
-                                <IconBadge count={data.items.length} icon={<ShoppingCartIcon className='iconWhite' onClick={openWidgetCart} />}  />
+                                <IconBadge count={data.items.length} action={openWidgetCart} icon={<ShoppingCartIcon className='iconWhite' />}  />
                             :
                                 null
                         }
