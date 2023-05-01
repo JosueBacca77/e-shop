@@ -6,7 +6,7 @@ import ArticleList from "../ArticleList";
 import {useArticleFilter} from "../../ArticleFilterContext";
 import ErrorPage from "../General/ErrorPage/ErrorPage";
 import { errorStrings } from "../General/constants/strings";
-import useGetArticles from "../../Hooks/useGetArticles";
+import useGetArticles from "../../Hooks/useGetArticlesByFilter";
 
 
 const Home =()=> {

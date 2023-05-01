@@ -4,15 +4,15 @@ import { useEffect, useState } from "react";
 import { FirebaseDocumentInterface } from "../components/interfaces/FirebaseDocument.interface";
 import { ArticleInterface } from "../components/interfaces/Article.interface";
 
-type useGetArticlesTypes = {
+type useGetArticlesByFilterTypes = {
   filter:string
 }
 
-type useGetArticlesReturnType = {
+type useGetArticlesByFilterReturnType = {
   articles: FirebaseDocumentInterface<ArticleInterface>[];
 };
 
-const useGetArticles=({filter=''}:useGetArticlesTypes): useGetArticlesReturnType=>{
+const useGetArticlesByFilter=({filter=''}:useGetArticlesByFilterTypes): useGetArticlesByFilterReturnType=>{
   const db = getFireStore()
 
   const [articles, setArticles] = useState<FirebaseDocumentInterface<ArticleInterface>[]>([])
@@ -49,4 +49,4 @@ const useGetArticles=({filter=''}:useGetArticlesTypes): useGetArticlesReturnType
     return { articles }
 }
 
-export default useGetArticles;
+export default useGetArticlesByFilter;

@@ -5,5 +5,5 @@ import {ArticleInterface} from "./Article.interface"
 
 
 export interface CartArticleInterface extends FirebaseDocumentInterface<ArticleInterface> {
-    count: number
+    count?: number
 }

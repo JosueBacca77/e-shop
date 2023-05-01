@@ -1,34 +1,29 @@
 import './ArticleDetail.css'
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useState} from "react";
 import {GetPlural, VerifyContains} from "../../Utils";
 import {useHistory} from "react-router-dom";
 import {Store} from "../../Store";
 import ModifyCountCart from "../ModifyCountCart/ModifyCountCart";
 import {AddItemToCart, ModifyCountItem, UpdateTotalCart} from "../../Store/ManageContext";
-import {useAuth} from "../../AuthContext"
+import { CartArticleInterface } from '../interfaces/CartArticle.interface';
 
 
-const ArticleDetail =({article})=> {
+const ArticleDetail =({article}:{article: CartArticleInterface})=> {
 
-    let history = useHistory();
+    const history = useHistory();
 
     const [selectedImage, setSelectedImage] = useState(article.data.images[0])
-
-    const [added, setAdded] = useState(false)
 
     const [countAdded, setCountAdded] = useState(0)
 
     const [data, setData] = useContext(Store)
 
-    const {currentUser} = useAuth()
-
-    const handleChangeImage =(image)=> {
+    const handleChangeImage =(image:string)=> {
         setSelectedImage(image)
     }
 
     const handleAddCart =()=> {
         if(countAdded>0 && countAdded <= article.data.stock ){
-            setAdded(true)
             //si esta en el cart sumo las unidades
             if (VerifyContains(data.items,article)){
                 //si esta sumo las unidades
@@ -45,8 +40,9 @@ const ArticleDetail =({article})=> {
         }
     }
 
-    const handleChangeCount =(e)=> {
-        setCountAdded(e.target.value)
+    const handleChangeCount =(e: React.ChangeEvent<HTMLInputElement>)=> {
+        const inputValue = parseInt(e.target.value, 10);
+        setCountAdded(isNaN(inputValue) ? 0 : inputValue);
     }
 
     return(
@@ -54,7 +50,7 @@ const ArticleDetail =({article})=> {
             <div className='images'>
                 {article.data.images.length >0
                     ?
-                    article.data.images.map(ima => (
+                    article.data.images.map((ima:string) => (
                         <div key={ima} onMouseEnter={()=>handleChangeImage(ima)}>
                             <img 
                                 className={`image ${selectedImage==ima && 'selected-image-list' }`}

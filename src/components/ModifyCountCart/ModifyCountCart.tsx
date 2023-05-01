@@ -12,7 +12,7 @@ import { CartArticleInterface } from "../interfaces/CartArticle.interface";
 
 type ModifyCountCartProps = {
     article: CartArticleInterface,
-    handleChangeCount:()=>void,
+    handleChangeCount:(e: React.ChangeEvent<HTMLInputElement>)=>void,
     handleAddCart:()=>void,
     handleClose?:()=>void,
     countAdded:number
