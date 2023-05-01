@@ -7,11 +7,11 @@ import {ErrorLabel} from "../General/Labels";
 import {infoStrings} from "../General/constants/strings";
 import { DarkTextFieldMUI } from "../General/TextField";
 import './ModifyCountCart.css';
-import { ArticleInterface } from "../interfaces/Article.interface";
+import { CartArticleInterface } from "../interfaces/CartArticle.interface";
 
 
 type ModifyCountCartProps = {
-    article: ArticleInterface,
+    article: CartArticleInterface,
     handleChangeCount:()=>void,
     handleAddCart:()=>void,
     handleClose?:()=>void,

@@ -6,7 +6,7 @@ import ItemCart from "./ItemCart";
 import {DeleteItemCart, UpdateTotalCart} from "../../Store/ManageContext";
 import {useHistory} from "react-router-dom";
 import {GreenButton} from "../General/Buttons";
-import { ArticleInterface } from "../interfaces/Article.interface";
+import { CartArticleInterface } from "../interfaces/CartArticle.interface";
 
 
 const Cart =()=>{
@@ -15,7 +15,7 @@ const Cart =()=>{
 
     const [data, setData] = useContext(Store);
 
-    const onDelete =(item: ArticleInterface)=>{
+    const onDelete =(item: CartArticleInterface)=>{
         DeleteItemCart(item.id,data,setData)
         UpdateTotalCart(data,setData)
     };
@@ -44,7 +44,7 @@ const Cart =()=>{
                         </div>
                         <div className='flex-center items'>
                         {
-                            data.items.map( (article: ArticleInterface) =>
+                            data.items.map( (article: CartArticleInterface) =>
                                 <ItemCart
                                     key={article.id}
                                     article={article}

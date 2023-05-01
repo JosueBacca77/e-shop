@@ -1,18 +1,18 @@
 import './ItemCart.css'
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from "@material-ui/core/IconButton";
-import React, {useContext, useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import '../../General.css'
 import {Store} from "../../Store";
 import {ReplaceItemCart, UpdateTotalCart} from "../../Store/ManageContext";
 import {useHistory} from "react-router-dom";
 import { CardMedia } from '@material-ui/core';
 import Counter from '../Counter';
-import { ArticleInterface } from '../interfaces/Article.interface';
+import { CartArticleInterface } from '../interfaces/CartArticle.interface';
 
 type ItemCartTypes= {
-    article: ArticleInterface,
-    onDelete:(article: ArticleInterface)=> void
+    article: CartArticleInterface,
+    onDelete:(article: CartArticleInterface)=> void
 }
 
 const ItemCart =({article, onDelete}: ItemCartTypes)=> {

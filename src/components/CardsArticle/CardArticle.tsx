@@ -5,10 +5,10 @@ import {Store} from "../../Store";
 import {AddItemToCart, UpdateTotalCart} from "../../Store/ManageContext";
 import {useAuth} from "../../AuthContext";
 import "./CardsArticle.css"
-import { ArticleInterface } from "../interfaces/Article.interface";
+import { CartArticleInterface } from "../interfaces/CartArticle.interface";
 
 
-const CardArticle =({article}: { article: ArticleInterface })=> {
+const CardArticle =({article}: { article: CartArticleInterface })=> {
 
     const [data, setData] = useContext(Store)
     const {currentUser} = useAuth()
