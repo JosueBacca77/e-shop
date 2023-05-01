@@ -1,9 +1,7 @@
-import React, {useContext, useState} from "react";
+import {useContext} from "react";
 import './UserForm.css'
 import {useForm} from "react-hook-form";
 import {Store} from "../../Store";
-import {useHistory} from "react-router-dom";
-import FormLabel from "@material-ui/core/FormLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
@@ -32,10 +30,6 @@ const PayForm =({buy,user,clickBack,userdata, setCompleted})=>{
         data = {...data, ...userdata}
         buy(data)
     }
-
-    // if (dataCont.items.length==0 && !complete){
-    //     history.push("/")
-    // }
 
     return(
         <form noValidate className='card pay-card padding-10'
