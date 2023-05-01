@@ -37,7 +37,7 @@ const Cart =()=>{
                     :
                     <>
                         <div className='head'>
-                            <h1 className='left-subtitle'>Mi Carrito</h1>
+                            <h1 className='left-subtitle'>My cart</h1>
                             <span className='right-content important-data total-cart' >
                                 {`$  ${data.total}`}
                             </span>

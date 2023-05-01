@@ -53,12 +53,12 @@ const CardArticle =({article}: { article: CartArticleInterface })=> {
                         </span>
                         :
                         <>
-                            <button className={article.data.stock <= 0?'disabled':'add-to-card'} disabled={article.data.stock <= 0} onClick={handleAddCart}>Agregar al carrito</button>
+                            <button className={article.data.stock <= 0?'disabled':'add-to-card'} disabled={article.data.stock <= 0} onClick={handleAddCart}>Add to cart</button>
                             <span className="without-stock">
                                 {
                                     article.data.stock <= 0
                                     ?
-                                        "Agotado"
+                                        "Out of stock"
                                     :
                                     null
                                 }
@@ -66,7 +66,7 @@ const CardArticle =({article}: { article: CartArticleInterface })=> {
                         </>
                     }
                     <span className="underline-when-hover view-detail" onClick={goDetail}>
-                        Ver detalle
+                        See detail
                     </span>
                 </div>
 
