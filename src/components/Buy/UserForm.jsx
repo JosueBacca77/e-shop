@@ -1,10 +1,6 @@
-import TextField from "@material-ui/core/TextField";
-import React, {useContext} from "react";
 import './UserForm.css'
 import {validations} from "../../Validations";
 import {useForm} from "react-hook-form";
-import {Store} from "../../Store";
-import NavButtons from '../General/NavButtons/NavButtons'
 import { AceptButton } from "../General/Buttons";
 import { DarkTextFieldMUI } from "../General/TextField";
 
@@ -12,11 +8,7 @@ import { DarkTextFieldMUI } from "../General/TextField";
 
 const UserForm =({userdata, next})=>{
 
-    const [dataCont] = useContext(Store);
-
-    const {register, handleSubmit, errors, watch, control} = useForm();
-
-    const countFees = watch("countFees", "one")
+    const {register, handleSubmit, errors, watch} = useForm();
 
     const email = watch("email", userdata.confemail)
 
@@ -29,10 +21,10 @@ const UserForm =({userdata, next})=>{
     return(
             <form noValidate className='userForm card padding-10'
                 onSubmit={handleSubmit(onSubmit)}>
-                    <p className='section-title'>Ingresa tus datos</p>
+                    <p className='section-title'>Fill your data</p>
                     <section className='fields'>
                         <DarkTextFieldMUI
-                            label='Nombre'
+                            label='Name'
                             name='name'
                             id='name'
                             className='field name'
@@ -47,7 +39,7 @@ const UserForm =({userdata, next})=>{
                         <DarkTextFieldMUI
                             variant="outlined"
                             margin="normal"
-                            label='Apellido'
+                            label='Last name'
                             className='field surname'
                             name='surname'
                             inputRef={register({
@@ -75,7 +67,7 @@ const UserForm =({userdata, next})=>{
                         <DarkTextFieldMUI
                             variant="outlined"
                             margin="normal"
-                            label='Confirmar Email'
+                            label='Confirm Email'
                             className='field dni'
                             name='confemail'
                             autoComplete='off'
@@ -92,7 +84,7 @@ const UserForm =({userdata, next})=>{
                             type='number'
                             variant="outlined"
                             margin="normal"
-                            label='Teléfono'
+                            label='Phone'
                             className='field conf-email'
                             name='phone'
                             inputRef={register({
@@ -107,7 +99,7 @@ const UserForm =({userdata, next})=>{
                             type='number'
                             variant="outlined"
                             margin="normal"
-                            label='Nro. Tarjeta'
+                            label='Card number'
                             className='field card'
                             name='card_number'
                             inputRef={register({

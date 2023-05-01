@@ -72,8 +72,8 @@ const SuccessPurchase = ({purchaseId}) => {
     return (
         <section className='success-purchase'>
             <img className={classes.image} src={'Icons/s.png'}/>
-            <p className='success-advice'>Tu compra se ha completado!!</p>
-            <p className='label'>Tu código de seguimiento es:
+            <p className='success-advice'>Your purchase has been done successfully!!</p>
+            <p className='label'>Your purchase code is:
                 <div className={classes.root}>
                     <Toolbar >
                         <div className={classes.search}>
@@ -98,7 +98,7 @@ const SuccessPurchase = ({purchaseId}) => {
                     </Toolbar>
                 </div>
             </p>
-            <ActionAlert text='Copiado!' showAlert={showAlert} setShowAlert={setShowAlert}/>
+            <ActionAlert text='Copied!' showAlert={showAlert} setShowAlert={setShowAlert}/>
         </section>
     )
 }

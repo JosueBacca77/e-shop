@@ -41,11 +41,11 @@ const PayForm =({buy,user,clickBack,userdata, setCompleted})=>{
         <form noValidate className='card pay-card padding-10'
             onSubmit={handleSubmit(onSubmit)}>
             <div className='height-60 payment-section'>
-                <span className='label'>Cantidad de pagos: </span>
+                <span className='label'>Amount of fees: </span>
                 <RadioGroup aria-label="gender" defaultValue={countFees} >
                     <div>
                         <FormControlLabel inputRef={register} name="countFees" value="one"
-                            control={<Radio/>} label="Único pago"/>
+                            control={<Radio/>} label="One payment"/>
                         <FormControlLabel inputRef={register} name="countFees" value="three"
                             control={<Radio/>}
                             label="3"/>
@@ -63,7 +63,7 @@ const PayForm =({buy,user,clickBack,userdata, setCompleted})=>{
                 countFees !== "one"
                 ?
                 <div className='payment-section'>
-                    <span className='label'>{`${GetCountFeesValue(countFees)} cuotas de`}</span>
+                    <span className='label'>{`${GetCountFeesValue(countFees)} fees of`}</span>
                     <div>
                         <span className='label'>{'$ '}</span>
                         <span className='total'>{GetFeeValue(dataCont.total,countFees)}</span>
@@ -82,8 +82,8 @@ const PayForm =({buy,user,clickBack,userdata, setCompleted})=>{
             </div>
             <section className='height-60 nav-buttons'>
                 <NavButtons 
-                    textBack='Volver' 
-                    textNext='Comprar'
+                    textBack='Go back' 
+                    textNext='Buy'
                     clickBack={clickBack}
                 />
             </section>
