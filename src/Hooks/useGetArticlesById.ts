@@ -33,7 +33,6 @@ const useGetArticlesById=({id=''}:useGetArticlesByIdTypes): useGetArticlesByIdRe
                   }
               );
           } else {
-            console.log('ENTRA ELS')
               setArticle(null)
           }  
           setIsLoading(false);

@@ -3,22 +3,24 @@ import firebase from 'firebase/app';
 import { useEffect, useState } from "react";
 import { FirebaseDocumentInterface } from "../components/interfaces/FirebaseDocument.interface";
 import { ArticleInterface } from "../components/interfaces/Article.interface";
+import { FirebaseGetWhereClosureInterface } from "../components/interfaces/FirebaseGetWhereClousure.interface";
 
-type useGetArticlesByFilterTypes = {
-  filter:string
-}
 
-type useGetArticlesByFilterReturnType = {
+type useGetArticlesByNameReturnType = {
   articles: FirebaseDocumentInterface<ArticleInterface>[];
 };
 
-const useGetArticlesByFilter=({filter=''}:useGetArticlesByFilterTypes): useGetArticlesByFilterReturnType=>{
+const useGetArticlesByName=(filter:string, whereClousure?:FirebaseGetWhereClosureInterface) :useGetArticlesByNameReturnType=>{
   const db = getFireStore()
 
   const [articles, setArticles] = useState<FirebaseDocumentInterface<ArticleInterface>[]>([])
 
-    const getArticles = (filter:string): void => {
-        db.collection('Articles')
+    const getArticles = (filter:string, whereClousure: FirebaseGetWhereClosureInterface | undefined): void => {
+      const query = whereClousure
+      ? db.collection('Articles').where(whereClousure.field, '==', whereClousure.value)
+      : db.collection('Articles');
+  
+      query
           .get()
           .then((arts: firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>) => {
             const arr:FirebaseDocumentInterface<ArticleInterface>[] = [];
@@ -43,10 +45,10 @@ const useGetArticlesByFilter=({filter=''}:useGetArticlesByFilterTypes): useGetAr
       }
 
     useEffect(() => {
-      getArticles(filter)
-    },[]);
+      getArticles(filter, whereClousure)
+    },[filter, whereClousure?.field, whereClousure?.value]);
 
     return { articles }
 }
 
-export default useGetArticlesByFilter;
+export default useGetArticlesByName;

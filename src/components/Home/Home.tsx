@@ -6,12 +6,12 @@ import ArticleList from "../ArticleList";
 import {useArticleFilter} from "../../ArticleFilterContext";
 import ErrorPage from "../General/ErrorPage/ErrorPage";
 import { errorStrings } from "../General/constants/strings";
-import useGetArticles from "../../Hooks/useGetArticlesByFilter";
+import useGetArticles from "../../Hooks/useGetArticlesByName";
 
 
 const Home =()=> {
 
-    const {filter} = useArticleFilter()
+    const {filter} = useArticleFilter();
 
     const {articles} = useGetArticles(filter);
 
