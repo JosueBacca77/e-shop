@@ -9,11 +9,12 @@ import InputBase from "@material-ui/core/InputBase";
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import ActionAlert from "../General/Alerts";
 
+type SuccessPurchaseTypes = {
+    purchaseId:string
+}
 
-const SuccessPurchase = ({purchaseId}) => {
+const SuccessPurchase = ({purchaseId}: SuccessPurchaseTypes) => {
 
-    const [value, setValue] = useState(purchaseId)
-    const [copied, setCopied] = useState(false)
     const [showAlert, setShowAlert] = useState(false)
 
     const useStyles = makeStyles((theme) => ({
@@ -65,7 +66,6 @@ const SuccessPurchase = ({purchaseId}) => {
     const classes = useStyles();
 
     const handleCopy =()=> {
-        setCopied( true)
         setShowAlert(true)
     }
 
@@ -89,7 +89,7 @@ const SuccessPurchase = ({purchaseId}) => {
 
                         <div className={classes.copyId}>
                             <CopyToClipboard 
-                                text={value}
+                                text={purchaseId}
                                 onCopy={handleCopy}
                             >
                                 <FileCopyIcon />

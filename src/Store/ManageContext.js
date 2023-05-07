@@ -53,7 +53,7 @@ const DeleteItemCart =(id,data,set)=>{
 }
 
 const ClearCart =(set)=>{
-    set({items: [], total: 0})
+    set(initialStore)
 }
 
 

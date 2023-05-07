@@ -8,27 +8,42 @@ import Radio from "@material-ui/core/Radio";
 import {GetCountFeesValue, GetFeeValue} from "../../Utils";
 import {purchaseStates} from "../General/constants/strings";
 import NavButtons from '../General/NavButtons/NavButtons'
+import { UserSaleTypes } from "./BuyTypes";
+import { FirebaseUserInterface } from "../interfaces/FirebaseUser.interface";
+import { SaleInterface } from "../interfaces/Sale.interface";
 
+type PayFormTypes = {
+    buy: (data: SaleInterface)=>void,
+    user: FirebaseUserInterface,
+    clickBack: ()=>void,
+    userdata: UserSaleTypes
+}
 
-
-const PayForm =({buy,user,clickBack,userdata, setCompleted})=>{
+const PayForm =({buy,user,clickBack,userdata}:PayFormTypes)=>{
 
     const [dataCont] = useContext(Store);
 
-    const {register, handleSubmit, errors,watch, control} = useForm();
+    const {register, handleSubmit, watch} = useForm();
 
     const countFees = watch("countFees", "one")
 
-    const onSubmit = data => {
-        data.items = dataCont.items
-        data.total = dataCont.total
-        data.countFees = GetCountFeesValue(countFees)
-        data.fee = GetFeeValue(dataCont.total,countFees)
-        data.date = Date.now()
-        data.state = purchaseStates.generated
-        data.iduser = user.uid
-        data = {...data, ...userdata}
-        buy(data)
+    const onSubmit = () => {
+        const sale: SaleInterface = {
+            items: dataCont.items,
+            total: dataCont.total,
+            countFees: GetCountFeesValue(countFees),
+            fee: GetFeeValue(dataCont.total,countFees),
+            date: Date.now(),
+            state: purchaseStates.generated,
+            iduser: user.uid,
+            card_number: userdata.card_number,
+            confemail: userdata.confemail,
+            email: userdata.email,
+            name: userdata.name,
+            surname: userdata.surname,
+            phone: userdata.phone
+        }
+        buy(sale);
     }
 
     return(

@@ -3,18 +3,22 @@ import {validations} from "../../Validations";
 import {useForm} from "react-hook-form";
 import { AceptButton } from "../General/Buttons";
 import { DarkTextFieldMUI } from "../General/TextField";
+import { UserSaleTypes } from './BuyTypes';
 
+type UserFormTypes = {
+    userdata: UserSaleTypes,
+    next: (data: UserSaleTypes)=> void
+}
 
-
-const UserForm =({userdata, next})=>{
+const UserForm =({userdata, next}:UserFormTypes)=>{
 
     const {register, handleSubmit, errors, watch} = useForm();
 
     const email = watch("email", userdata.confemail)
 
-    const hasError = inputField => (errors && errors[inputField]);
+    const hasError = (inputField: string) => (errors && errors[inputField]);
 
-    const onSubmit = data => {
+    const onSubmit = (data: UserSaleTypes) => {
         next(data)
     }
 
@@ -115,6 +119,7 @@ const UserForm =({userdata, next})=>{
                         <AceptButton
                             text='BUY'
                             type='submit'
+                            onClick={null}
                         />
                     </section>
             </form>

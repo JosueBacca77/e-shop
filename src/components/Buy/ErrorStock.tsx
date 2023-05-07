@@ -1,6 +1,12 @@
 import {errorStrings} from "../General/constants/strings";
+import { ArticleInterface } from "../interfaces/Article.interface";
+import { FirebaseDocumentInterface } from "../interfaces/FirebaseDocument.interface";
 
-const ErrorStock =({articles})=>{
+type ErrorStockTypes = {
+    articles: FirebaseDocumentInterface<ArticleInterface>[]
+}
+
+const ErrorStock =({articles}:ErrorStockTypes)=>{
 
     return(
         <>

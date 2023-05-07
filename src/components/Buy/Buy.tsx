@@ -1,22 +1,23 @@
-import React, {useContext, useEffect, useLayoutEffect, useState} from "react";
+import { useContext, useLayoutEffect, useState} from "react";
 import UserForm from "./UserForm";
 import PayForm from "./PayForm";
 import {getFireStore} from "../../Data";
 import {ClearCart} from "../../Store/ManageContext";
-import {Store} from "../../Store";
 import firebase from 'firebase/app';
 import {useAuth} from "../../AuthContext";
 import CircularIndeterminate from "../General/Progress/Progress";
 import SuccessPurchase from "./SuccessPurchase"
 import ErrorStock from "./ErrorStock"
-import {useHistory} from "react-router-dom";
-
+import {UserSaleTypes} from "./BuyTypes"
+import {SaleInterface} from "../interfaces/Sale.interface"
+import { ArticleInterface } from "../interfaces/Article.interface";
+import { FirebaseDocumentInterface } from "../interfaces/FirebaseDocument.interface";
+import { Store } from "../../Store";
+import { CartArticleInterface } from "../interfaces/CartArticle.interface";
 
 const Buy =()=> {
 
     const db = getFireStore()
-
-    // let history = useHistory();
 
     const [dataCont, setDataCont] = useContext(Store);
 
@@ -34,7 +35,14 @@ const Buy =()=> {
 
     const [step, setStep] = useState('userdata')
 
-    const [dataUser, setDataUser] = useState({})
+    const [dataUser, setDataUser] = useState<UserSaleTypes>({
+        card_number: '',
+        confemail: '',
+        email: '',
+        name: '',
+        surname: '',
+        phone: ''
+    })
 
     const handleBack=()=>{
         if (step==='paydata'){
@@ -42,7 +50,7 @@ const Buy =()=> {
         }
     }
 
-    const handleNext=(data)=>{
+    const handleNext=(data: UserSaleTypes)=>{
         if (step==='userdata'){
             setDataUser(data)
             setStep('paydata')
@@ -53,7 +61,7 @@ const Buy =()=> {
         window.scrollTo(0, 0)
     }, [])
 
-    const validateStock =(ids,data)=> {
+    const makeSelling =(ids: string[], data: SaleInterface)=> {
 
         setWithoutStock([])
         
@@ -61,13 +69,13 @@ const Buy =()=> {
             resolve(
                 db.collection('Articles').where(firebase.firestore.FieldPath.documentId(),'in',ids).get()
                     .then(arts => {
-                        let arr = [];
+                        const arr:FirebaseDocumentInterface<ArticleInterface>[] = [];
                         let validStock = true
-                        let notstock = []
+                        const notstock = []
                         arts.forEach(art => {
                             arr.push({
                                 id: art.id,
-                                data: art.data()
+                                data: art.data() as ArticleInterface
                             })
                         })
                         for (const art of arr){
@@ -103,18 +111,18 @@ const Buy =()=> {
             })
     };
 
-    const GetIdsFromItems =(items)=> {
-        let ids = []
+    const GetIdsFromItems =(items: CartArticleInterface[])=> {
+        const ids = []
         for (const item of items){
             ids.push(item.id)
         }
         return ids
     }
 
-    const buy =(data)=> {
+    const buy =(data:SaleInterface)=> {
         setCompleted(true)
-        let ids = GetIdsFromItems(data.items)
-        validateStock(ids,data)
+        const ids = GetIdsFromItems(data.items)
+        makeSelling(ids,data)
     }
 
     return(
@@ -123,7 +131,7 @@ const Buy =()=> {
             {
                 !completed
                 ?
-                <div class='buy-main'>
+                <div className='buy-main'>
                 {
                     step==='userdata'
                     ?
@@ -137,7 +145,6 @@ const Buy =()=> {
                         user={currentUser}
                         clickBack={handleBack}
                         userdata={dataUser}
-                        setCompleted={setCompleted}
                     />
                 }
                 </div>
@@ -146,24 +153,24 @@ const Buy =()=> {
                     {
                         waiting
                         ?
-                            <CircularIndeterminate />
-                            :
-                                <div>
-                                    {
-                                        approved && purchaseId !== ''
-                                            ?
-                                            <SuccessPurchase purchaseId={purchaseId} />
-                                            :
-                                            null
-                                    }
-                                    {
-                                        withoutStock.length >0
-                                        ?
-                                            <ErrorStock articles={withoutStock}/>
-                                            :
-                                            null
-                                    }
-                                </div>
+                        <CircularIndeterminate />
+                        :
+                        <div>
+                            {
+                                approved && purchaseId !== ''
+                                    ?
+                                    <SuccessPurchase purchaseId={purchaseId} />
+                                    :
+                                    null
+                            }
+                            {
+                                withoutStock.length >0
+                                ?
+                                    <ErrorStock articles={withoutStock}/>
+                                    :
+                                    null
+                            }
+                        </div>
                     }
                 </div>
             }
