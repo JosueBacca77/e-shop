@@ -236,7 +236,7 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired
 };
 
-const SortableTableMUI =({headCells, rows, viewDetail, changePaddingDensity, onClickViewDetail, maxHeight})=> {
+const SortableTableMUI =({headCells, rows, viewDetail, changePaddingDensity=false, onClickViewDetail, maxHeight=''})=> {
   const [order, setOrder] = React.useState(DEFAULT_ORDER);
   const [orderBy, setOrderBy] = React.useState(DEFAULT_ORDER_BY);
   const [selected, setSelected] = React.useState([]);
@@ -384,13 +384,13 @@ const SortableTableMUI =({headCells, rows, viewDetail, changePaddingDensity, onC
             >
               {visibleRows
                 ? visibleRows.map((row, index) => {
-                    const isItemSelected = isSelected(row.name);
+                    const isItemSelected = isSelected(row.data.name);
                     const labelId = `enhanced-table-checkbox-${index}`;
 
                     return (
                       <TableRow
                         // hover
-                        onClick={(event) => handleClick(event, row.name)}
+                        onClick={(event) => handleClick(event, row.data.name)}
                         // role="checkbox"
                         aria-checked={isItemSelected}
                         tabIndex={-1}
@@ -417,13 +417,16 @@ const SortableTableMUI =({headCells, rows, viewDetail, changePaddingDensity, onC
                         </TableCell> */}
                         {
                             headCells.map((cell) => {
-                                let value = row[cell.id];
+                                let value = row.data[cell.id];
                                 if(cell.type === 'date'){
-                                    value = getDateFromTimestamp(row[cell.id])
+                                    value = getDateFromTimestamp(row.data[cell.id])
                                 }
                                 if(cell.id === 'viewDetail'){
                                     value = <AceptButton text={viewDetail} onClick={()=> onClickViewDetail(row)}/>
                                 }
+                                // console.log('value',value)
+                                // console.log('row',row)
+
                                 return(
                                     <TableCell key={row.id+'_'+cell.id} align={cell.align}>{value}</TableCell>
                                 )

@@ -4,21 +4,39 @@ import {getDateFromTimestamp, GetSubtotalItem} from "../../Utils";
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import IconButton from "@material-ui/core/IconButton";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import DarkThemeContainerMUI from '../General/DarkThemeContainerMui';
+import { SaleInterface } from '../interfaces/Sale.interface';
+import { CartArticleInterface } from '../interfaces/CartArticle.interface';
 
+type PurchaseTypes = {
+    purchase:SaleInterface,
+    cleanPurchase:()=>void
+}
 
-const Purchase=({purchase,cleanPurchase})=>{
+interface PurchaseItem {
+    id: string,
+    data:{
+        name: string,
+        heading: string,
+        count: number,
+        price: number,
+        subtotal: string,
+    }
+}
 
-    const formatItemsForTable =(items)=>{
-        let itemsNew = []
+const Purchase=({purchase,cleanPurchase}:PurchaseTypes)=>{
+
+    const formatItemsForTable =(items:CartArticleInterface[])=>{
+        const itemsNew:PurchaseItem[] = []
         items.forEach(item => {
             itemsNew.push({
                 id: item.id,
-                name: item.data.name,
-                heading: item.data.heading,
-                count: item.count,
-                price: item.data.price,
-                subtotal: GetSubtotalItem(item),
+                data:{
+                    name: item.data.name,
+                    heading: item.data.heading,
+                    count: item.count,
+                    price: item.data.price,
+                    subtotal: GetSubtotalItem(item),
+                }
             })
         })
         return itemsNew

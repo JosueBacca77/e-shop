@@ -5,11 +5,36 @@ import {useAuth} from "../../AuthContext"
 import SortableTableMUI from "../General/SortableTableMUI";
 import DarkThemeContainerMUI from "../General/DarkThemeContainerMui";
 import ModalMUI from "../General/ModalMUI";
+import { SaleInterface } from "../interfaces/Sale.interface";
+
+interface purchase {
+    id: string,
+    data: SaleInterface
+}
 
 const PurchaseContainer=()=>{
 
+    const emptyPurchase:purchase = {
+        id:'',
+        data:{
+            card_number: '',
+            confemail: '',
+            countFees: 0,
+            date: 0,
+            email: '',
+            fee: '',
+            iduser: '',
+            items: [],
+            name:'',
+            phone:'',
+            state: '',
+            surname: '',
+            total: ''
+        }
+    }
+
     const db = getFireStore()
-    const [purchase, setPurchase] = useState({})
+    const [purchase, setPurchase] = useState<purchase>(emptyPurchase)
     const [userPurchases, setUserPurchases] = useState([])
 
     const {currentUser} = useAuth()
@@ -62,22 +87,22 @@ const PurchaseContainer=()=>{
 
 
     const cleanPurchase=()=>{
-        setPurchase({})
+        setPurchase(emptyPurchase)
     } 
 
     const userPurchasesData = useMemo(() => {
-        const purchasesData = []
+        const purchasesData:purchase[] = []
         userPurchases.forEach(purchase => {
-            let formattedPurchase = {
+            const formattedPurchase = {
                 id: purchase.id,
-                ...purchase.data()
+                data: purchase.data()
             }
             purchasesData.push(formattedPurchase)
         });
         return purchasesData
     }, [userPurchases.length])
 
-    const GetPurchase = (id) =>{
+    const GetPurchase = () =>{
         db.collection('Sales')
         .where('iduser','==',currentUser.uid)
         .get()
@@ -93,7 +118,7 @@ const PurchaseContainer=()=>{
         });
     }
 
-    const handleSetPurchase = (selectedPurchase) =>{
+    const handleSetPurchase = (selectedPurchase:purchase) =>{
         setPurchase(selectedPurchase)
     };
 
@@ -109,7 +134,6 @@ const PurchaseContainer=()=>{
                 <div className='center'>
                     <DarkThemeContainerMUI>
                         <SortableTableMUI 
-                            title={''}
                             rows={userPurchasesData}
                             headCells={purchasesHeadCells}
                             viewDetail='View purchase'
@@ -118,25 +142,18 @@ const PurchaseContainer=()=>{
                     </DarkThemeContainerMUI>
                 </div>
             }
-            {
-                true 
-                ?
-                <ModalMUI
-                    open={purchase?.id}
-                    handleClose={cleanPurchase}
-                >
-                    <DarkThemeContainerMUI>
 
-                        <Purchase
-                            purchase={purchase}
-                            cleanPurchase={cleanPurchase}
-                        />
-                    </DarkThemeContainerMUI>
-
-                </ModalMUI>
-                :
-                null
-            }
+            <ModalMUI
+                open={!!purchase?.id}
+                handleClose={cleanPurchase}
+            >
+                <DarkThemeContainerMUI>
+                    <Purchase
+                        purchase={purchase.data}
+                        cleanPurchase={cleanPurchase}
+                    />
+                </DarkThemeContainerMUI>
+            </ModalMUI>
         </div>
     )
 }
