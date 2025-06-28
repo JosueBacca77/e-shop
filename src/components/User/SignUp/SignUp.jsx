@@ -1,12 +1,11 @@
+import './SignUp.css'
+import {useNavigate} from "react-router-dom";
+import {useAuth} from "../../../AuthContext";
 import SignUpForm from './SignUpForm'
-import {useAuth} from '../../../AuthContext'
-import {useHistory} from "react-router-dom";
-
 
 const SignUp =()=> {
 
-    let history = useHistory();
-
+    const navigate = useNavigate();
     const {signup} = useAuth()
 
     const signUp =(email,password,setError)=>{
@@ -16,7 +15,7 @@ const SignUp =()=> {
         });
         
         signUp
-        .then(()=>history.push("/"))
+        .then(()=>navigate("/"))
         .catch(error=>setError(error.message))
     }
 

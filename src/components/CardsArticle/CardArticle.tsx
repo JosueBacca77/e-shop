@@ -1,6 +1,6 @@
 import {useContext} from "react";
 import {getArticleAmountInCart, GetPlural, VerifyContains} from "../../Utils";
-import {useHistory} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {Store} from "../../Store";
 import {AddItemToCart, UpdateTotalCart} from "../../Store/ManageContext";
 import {useAuth} from "../../AuthContext";
@@ -13,14 +13,14 @@ const CardArticle =({article}: { article: CartArticleInterface })=> {
     const [data, setData] = useContext(Store)
     const {currentUser} = useAuth()
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const goDetail =()=> {
-        history.push("/detail/"+article.id)
+        navigate("/detail/"+article.id)
     }
 
     const goCart =()=> {
-        history.push("/cart")
+        navigate("/cart")
     }
 
     const handleAddCart =()=>{
@@ -29,7 +29,7 @@ const CardArticle =({article}: { article: CartArticleInterface })=> {
             //actualizo total carrito
             UpdateTotalCart(data,setData)
         }else{
-            history.push("/login")
+            navigate("/login")
         }
     }
 

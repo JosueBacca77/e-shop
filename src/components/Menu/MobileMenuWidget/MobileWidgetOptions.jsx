@@ -1,12 +1,11 @@
 import './MobileWidgetOptions.css';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import ArrowBack from '@material-ui/icons/ArrowBack';
-import { makeStyles } from '@material-ui/core';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ArrowBack from '@mui/icons-material/ArrowBack';
+import { styled } from '@mui/material/styles';
 import MobileNavBarItem from './MobileNavBarItem/MobileNavBarItem';
-import { blue, indigo } from '@material-ui/core/colors';
+import { blue, indigo } from '@mui/material/colors';
 
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = styled('div')(() => ({
     accountIcon: {
         width: '40px',
         height:'40px',
@@ -49,14 +48,23 @@ const useStyles = makeStyles((theme) => ({
 
 const WidgetOptions = ({show, setShow, currentUser, logout, onHandleNav}) => {
 
-    const classes = useStyles()
+    const StyledDiv = useStyles
 
     return (
         <>
             <article className={`widgetOptions ${show ? 'open' : 'close'}`}>
-                <section className={classes.userWidget}>
-                    <div className={classes.userAccount}>
-                        <AccountCircleIcon className={classes.accountIcon}/>
+                <StyledDiv>
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'flex-start',
+                        alignItems:'center',
+                        height:'70px',
+                    }}>
+                        <AccountCircleIcon style={{
+                            width: '40px',
+                            height:'40px',
+                            color: 'white',
+                        }}/>
                         <MobileNavBarItem 
                             name={currentUser ? currentUser.email.split('@',1) : 'Log In'} 
                             url={currentUser ? '' : '/login'}
@@ -65,10 +73,17 @@ const WidgetOptions = ({show, setShow, currentUser, logout, onHandleNav}) => {
                             setMobileWidget={setShow} 
                         />
                     </div>
-                    <ArrowBack className={classes.backIcon} onClick={()=> setShow(false)}/>
-                </section>
+                    <ArrowBack style={{
+                        width: '25px',
+                        height:'25px',
+                        color: 'white',
+                    }} onClick={()=> setShow(false)}/>
+                </StyledDiv>
                 
-                <section className={classes.userOptions}>
+                <section style={{
+                    display: 'flex',
+                    flexDirection:'column',
+                }}>
                     {
                         currentUser
                         ?

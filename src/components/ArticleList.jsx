@@ -1,7 +1,7 @@
 import CardArticle from "./CardsArticle/CardArticle";
 
 
-const ArticleList =({articles,title})=>{
+const ArticleList =({articles})=>{
 
     return(
         <>

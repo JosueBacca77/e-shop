@@ -6,6 +6,7 @@ import SortableTableMUI from "../General/SortableTableMUI";
 import DarkThemeContainerMUI from "../General/DarkThemeContainerMui";
 import ModalMUI from "../General/ModalMUI";
 import { SaleInterface } from "../interfaces/Sale.interface";
+import { collection, query, where, getDocs } from 'firebase/firestore';
 
 interface purchase {
     id: string,
@@ -35,7 +36,7 @@ const PurchaseContainer=()=>{
 
     const db = getFireStore()
     const [purchase, setPurchase] = useState<purchase>(emptyPurchase)
-    const [userPurchases, setUserPurchases] = useState([])
+    const [userPurchases, setUserPurchases] = useState([]);
 
     const {currentUser} = useAuth()
 
@@ -85,7 +86,6 @@ const PurchaseContainer=()=>{
         },
     ];
 
-
     const cleanPurchase=()=>{
         setPurchase(emptyPurchase)
     } 
@@ -95,27 +95,31 @@ const PurchaseContainer=()=>{
         userPurchases.forEach(purchase => {
             const formattedPurchase = {
                 id: purchase.id,
-                data: purchase.data()
+                data: purchase.data
             }
             purchasesData.push(formattedPurchase)
         });
         return purchasesData
-    }, [userPurchases.length])
+    }, [userPurchases])
 
-    const GetPurchase = () =>{
-        db.collection('Sales')
-        .where('iduser','==',currentUser.uid)
-        .get()
-            .then(function(doc) {
-                if (doc.docs.length>0) {
-                    setUserPurchases(doc.docs)
-                } else {
-                    console.log("El ID de compra no corresponde");
-
-                }
-            }).catch(function(error) {
+    const GetPurchase = async () => {
+        try {
+            const salesRef = collection(db, 'Sales');
+            const q = query(salesRef, where('iduser', '==', currentUser.uid));
+            const querySnapshot = await getDocs(q);
+            
+            if (!querySnapshot.empty) {
+                const purchases = querySnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    data: doc.data()
+                }));
+                setUserPurchases(purchases);
+            } else {
+                console.log("No se encontraron compras para este usuario");
+            }
+        } catch (error) {
             console.log("Error en búsqueda de la compra: ", error);
-        });
+        }
     }
 
     const handleSetPurchase = (selectedPurchase:purchase) =>{
@@ -130,7 +134,7 @@ const PurchaseContainer=()=>{
     return(
         <div className='main-view'>
             {
-                userPurchases.length &&
+                userPurchases.length > 0 &&
                 <div className='center'>
                     <DarkThemeContainerMUI>
                         <SortableTableMUI 

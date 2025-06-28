@@ -1,13 +1,12 @@
-import Toolbar from "@material-ui/core/Toolbar";
-import InputBase from "@material-ui/core/InputBase";
-import { fade, makeStyles } from "@material-ui/core/styles";
-import SearchIcon from "@material-ui/icons/Search";
+import Toolbar from "@mui/material/Toolbar";
+import InputBase from "@mui/material/InputBase";
+import { alpha, styled } from "@mui/material/styles";
+import SearchIcon from "@mui/icons-material/Search";
 import { useArticleFilter } from "../ArticleFilterContext";
 import { useEffect, useState } from "react";
 import useDeferredValue from "../Hooks/useDeferredValue";
 
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = styled('div')(({ theme }) => ({
     root: {
         display:'flex',
         justifyContent: "left",
@@ -17,9 +16,9 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: theme.shape.borderRadius,
         width: "100%",
         color: "white",
-        backgroundColor: fade(theme.palette.common.white, 0.15),
+        backgroundColor: alpha(theme.palette.common.white, 0.15),
         '&:hover': {
-            backgroundColor: fade(theme.palette.common.white, 0.25),
+            backgroundColor: alpha(theme.palette.common.white, 0.25),
         },
     },
     searchIcon: {
@@ -51,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchAppBar() {
 
-    const classes = useStyles();
+    const StyledDiv = useStyles;
     const {setArticleFlter} = useArticleFilter();
 
     const [inputValue, setInputValue] = useState('');
@@ -65,7 +64,6 @@ export default function SearchAppBar() {
         writeSearch(deferredInputValue);
     }, [deferredInputValue])
 
-
     const writeSearch =(value)=>{
 
         const find = new Promise((resolve) => {
@@ -77,23 +75,50 @@ export default function SearchAppBar() {
     }
 
     return (
-        <div className={classes.root}>
+        <StyledDiv>
             <Toolbar >
-                <div className={classes.search}>
+                <div style={{
+                    position: "relative",
+                    borderRadius: (theme) => theme.shape.borderRadius,
+                    width: "100%",
+                    color: "white",
+                    backgroundColor: (theme) => alpha(theme.palette.common.white, 0.15),
+                    '&:hover': {
+                        backgroundColor: (theme) => alpha(theme.palette.common.white, 0.25),
+                    },
+                }}>
                     <div >
-                        <SearchIcon className={classes.searchIcon}/>
+                        <SearchIcon style={{
+                            padding: (theme) => theme.spacing(0, 2),
+                            height: "100%",
+                            position: "absolute",
+                            pointerEvents: "none",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            color: "white"
+                        }}/>
                     </div>
                     <InputBase
                         placeholder="What are you looking for?"
-                        classes={{
-                            root: classes.inputRoot,
-                            input: classes.inputInput
+                        sx={{
+                            color: "inherit",
+                            borderRadius:'5px',
+                            paddingLeft: (theme) => `calc(1em + ${theme.spacing(4)}px)`,
+                            transition: (theme) => theme.transitions.create("width"),
+                            width: "100%",
+                            [theme.breakpoints.up("sm")]: {
+                                width: "40ch",
+                            },
+                            [theme.breakpoints.down("sm")]: {
+                                width: "35ch",
+                            }
                         }}
                         inputProps={{ "aria-label": "search" }}
                         onChange={handleChange}
                     />
                 </div>
             </Toolbar>
-        </div>
+        </StyledDiv>
     );
 }

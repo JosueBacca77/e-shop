@@ -1,5 +1,5 @@
-import Badge from "@material-ui/core/Badge";
-import IconButton from "@material-ui/core/IconButton";
+import Badge from "@mui/material/Badge";
+import IconButton from "@mui/material/IconButton";
 
 
 const IconBadge =({icon,count,action})=>{

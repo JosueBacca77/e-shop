@@ -10,16 +10,34 @@ type UserFormTypes = {
     next: (data: UserSaleTypes)=> void
 }
 
+type FormData = {
+    name: string;
+    surname: string;
+    email: string;
+    confemail: string;
+    phone: string;
+    card_number: string;
+}
+
 const UserForm =({userdata, next}:UserFormTypes)=>{
 
-    const {register, handleSubmit, errors, watch} = useForm();
+    const {register, handleSubmit, formState: { errors }, watch} = useForm<FormData>({
+        defaultValues: {
+            name: userdata.name,
+            surname: userdata.surname,
+            email: userdata.email,
+            confemail: userdata.confemail,
+            phone: userdata.phone,
+            card_number: userdata.card_number
+        }
+    });
 
-    const email = watch("email", userdata.confemail)
+    const email = watch("email", userdata.email)
 
-    const hasError = (inputField: string) => (errors && errors[inputField]);
+    const hasError = (inputField: keyof FormData) => !!errors[inputField];
 
-    const onSubmit = (data: UserSaleTypes) => {
-        next(data)
+    const onSubmit = (data: FormData) => {
+        next(data as UserSaleTypes)
     }
 
     return(
@@ -32,87 +50,71 @@ const UserForm =({userdata, next}:UserFormTypes)=>{
                             name='name'
                             id='name'
                             className='field name'
-                            inputRef={register({
+                            {...register("name", {
                                 maxLength: validations.max_name,
                                 required: validations.req
                             })}
-                            defaultValue={userdata.name}
                             error={hasError("name")}
-                            helperText={hasError("name") && errors.name.message}
+                            helperText={hasError("name") && errors.name?.message}
                         />
                         <DarkTextFieldMUI
-                            variant="outlined"
-                            margin="normal"
                             label='Last name'
                             className='field surname'
                             name='surname'
-                            inputRef={register({
+                            {...register("surname", {
                                 maxLength: validations.max_name,
                                 required: validations.req
                             })}
-                            defaultValue={userdata.surname}
                             error={hasError("surname")}
-                            helperText={hasError("surname") && errors.surname.message}
+                            helperText={hasError("surname") && errors.surname?.message}
                         />
                         <DarkTextFieldMUI
-                            variant="outlined"
-                            margin="normal"
                             label='Email'
                             className='field email'
                             name='email'
-                            inputRef={register({
+                            {...register("email", {
                                 pattern: validations.email,
-                                required: validations.req,
+                                required: validations.req
                             })}
-                            defaultValue={userdata.email}
                             error={hasError("email")}
-                            helperText={hasError("email") && errors.email.message}
+                            helperText={hasError("email") && errors.email?.message}
                         />
                         <DarkTextFieldMUI
-                            variant="outlined"
-                            margin="normal"
                             label='Confirm Email'
-                            className='field dni'
+                            className='field conf-email'
                             name='confemail'
                             autoComplete='off'
-                            inputRef={register({
+                            {...register("confemail", {
                                 pattern: validations.email,
                                 required: validations.req,
                                 validate: value => value === email || validations.email_no_match
                             })}
-                            defaultValue={userdata.confemail}
                             error={hasError("confemail")}
-                            helperText={hasError("confemail") && errors.confemail.message}
+                            helperText={hasError("confemail") && errors.confemail?.message}
                         />
                         <DarkTextFieldMUI
                             type='number'
-                            variant="outlined"
-                            margin="normal"
                             label='Phone'
-                            className='field conf-email'
+                            className='field phone'
                             name='phone'
-                            inputRef={register({
+                            {...register("phone", {
                                 maxLength: validations.max_phone,
                                 required: validations.req
                             })}
-                            defaultValue={userdata.phone}
                             error={hasError("phone")}
-                            helperText={hasError("phone") && errors.phone.message}
+                            helperText={hasError("phone") && errors.phone?.message}
                         />
                         <DarkTextFieldMUI
                             type='number'
-                            variant="outlined"
-                            margin="normal"
                             label='Card number'
                             className='field card'
                             name='card_number'
-                            inputRef={register({
+                            {...register("card_number", {
                                 required: validations.req,
                                 validate: value => value.length === 7 || validations.count_digits_card
                             })}
-                            defaultValue={userdata.card_number}
                             error={hasError("card_number")}
-                            helperText={hasError("card_number") && errors.card_number.message}
+                            helperText={hasError("card_number") && errors.card_number?.message}
                         />
                     </section>
                     <section className='padding-10 accept-btn'>

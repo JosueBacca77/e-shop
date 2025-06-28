@@ -2,9 +2,9 @@ import {useContext} from "react";
 import './UserForm.css'
 import {useForm} from "react-hook-form";
 import {Store} from "../../Store";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Radio from "@mui/material/Radio";
 import {GetCountFeesValue, GetFeeValue} from "../../Utils";
 import {purchaseStates} from "../General/constants/strings";
 import NavButtons from '../General/NavButtons/NavButtons'
@@ -19,20 +19,28 @@ type PayFormTypes = {
     userdata: UserSaleTypes
 }
 
+type FormData = {
+    countFees: string;
+}
+
 const PayForm =({buy,user,clickBack,userdata}:PayFormTypes)=>{
 
     const [dataCont] = useContext(Store);
 
-    const {register, handleSubmit, watch} = useForm();
+    const {register, handleSubmit, watch} = useForm<FormData>({
+        defaultValues: {
+            countFees: "one"
+        }
+    });
 
     const countFees = watch("countFees", "one")
 
-    const onSubmit = () => {
+    const onSubmit = (data: FormData) => {
         const sale: SaleInterface = {
             items: dataCont.items,
             total: dataCont.total,
-            countFees: GetCountFeesValue(countFees),
-            fee: GetFeeValue(dataCont.total,countFees),
+            countFees: GetCountFeesValue(data.countFees),
+            fee: GetFeeValue(dataCont.total, data.countFees),
             date: Date.now(),
             state: purchaseStates.generated,
             iduser: user.uid,
@@ -51,19 +59,32 @@ const PayForm =({buy,user,clickBack,userdata}:PayFormTypes)=>{
             onSubmit={handleSubmit(onSubmit)}>
             <div className='height-60 payment-section'>
                 <span className='label'>Amount of fees: </span>
-                <RadioGroup aria-label="gender" defaultValue={countFees} >
+                <RadioGroup 
+                    aria-label="payment-fees" 
+                    defaultValue={countFees}
+                    {...register("countFees")}
+                >
                     <div>
-                        <FormControlLabel inputRef={register} name="countFees" value="one"
-                            control={<Radio/>} label="One payment"/>
-                        <FormControlLabel inputRef={register} name="countFees" value="three"
+                        <FormControlLabel 
+                            value="one"
+                            control={<Radio/>} 
+                            label="One payment"
+                        />
+                        <FormControlLabel 
+                            value="three"
                             control={<Radio/>}
-                            label="3"/>
-                        <FormControlLabel inputRef={register} name="countFees" value="six"
+                            label="3"
+                        />
+                        <FormControlLabel 
+                            value="six"
                             control={<Radio/>}
-                            label="6"/>
-                        <FormControlLabel inputRef={register} name="countFees" value="twelve"
+                            label="6"
+                        />
+                        <FormControlLabel 
+                            value="twelve"
                             control={<Radio/>}
-                            label="12"/>
+                            label="12"
+                        />
                     </div>
                 </RadioGroup>
             </div>

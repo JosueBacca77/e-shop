@@ -1,13 +1,14 @@
-const firebase = require('firebase');
-require("firebase/firestore");
+const { initializeApp } = require('firebase/app');
+const { getFirestore, collection, addDoc, query, where, getDocs, doc, getDoc, documentId } = require('firebase/firestore');
 
-firebase.initializeApp({
+const firebaseConfig = {
     apiKey: process.env.API_KEY,
     authDomain: process.env.AUTH_DOMAIN,
     projectId: "electronic-shop-5d783",
-});
+};
 
-const db = firebase.firestore();
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 const headings = [
     {
@@ -189,20 +190,19 @@ const articles = [
 ];
 
 articles.forEach((obj) => {
-    db.collection("Articles")
-        .add({
-            name: obj.name,
-            heading: obj.heading,
-            description: obj.description,
-            images: obj.images,
-            price: obj.price,
-            unit: obj.unit,
-            stock: obj.stock,
-        })
-        .then((docRef) => {
-            console.log("Articulo registrado con ID: ", docRef.id);
-        })
-        .catch((error) => {
-            console.error("Error al agregar un documento: ", error);
-        });
+    addDoc(collection(db, "Articles"), {
+        name: obj.name,
+        heading: obj.heading,
+        description: obj.description,
+        images: obj.images,
+        price: obj.price,
+        unit: obj.unit,
+        stock: obj.stock,
+    })
+    .then((docRef) => {
+        console.log("Articulo registrado con ID: ", docRef.id);
+    })
+    .catch((error) => {
+        console.error("Error al agregar un documento: ", error);
+    });
 });

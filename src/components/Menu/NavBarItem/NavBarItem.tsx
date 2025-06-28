@@ -1,7 +1,7 @@
 import './NavBarItem.css'
-import {useHistory} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {BlueButton} from "../../General/Buttons";
-import PersonIcon from '@material-ui/icons/Person';
+import PersonIcon from "@mui/icons-material/Person";
 
 type NavBarItemProps = {
     name: string, 
@@ -14,10 +14,10 @@ type NavBarItemProps = {
 
 const NavBarItem = ({name, myclass, url = "#", onHandleNav, currentLocation=''}: NavBarItemProps) => {
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const goHeading =()=> {
-        history.push(url)
+        navigate(url);
     }
 
     return (

@@ -4,13 +4,12 @@ import {CircularIndeterminate} from "../../General/Progress/Progress";
 import {useParams} from 'react-router-dom'
 import {errorStrings} from "../../General/constants/strings";
 import ErrorPage from "../../General/ErrorPage/ErrorPage";
-import { RouteParams } from "../../interfaces/RouteParams.interface";
 import useGetArticlesById from "../../../Hooks/useGetArticlesById";
 
 
 const ArticleDetailContainer =()=>{
 
-    const {id} = useParams<RouteParams>();
+    const {id} = useParams();
     const {article, isLoading} = useGetArticlesById({id});
 
     useLayoutEffect(() => {

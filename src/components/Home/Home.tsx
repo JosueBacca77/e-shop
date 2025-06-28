@@ -25,7 +25,6 @@ const Home =()=> {
                 ?
                 <ArticleList
                     articles={articles.slice(0,8)}
-                    title='Most searched'
                 />
                 :
                 <>

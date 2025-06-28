@@ -3,48 +3,24 @@ import SearchAppBar from "../Search";
 import NavBarItem from "./NavBarItem/NavBarItem";
 import {useContext, useState} from "react";
 import WidgetCart from "../WidgetCart/WidgetCart";
-import {useHistory, useLocation} from "react-router-dom";
+import {useNavigate, useLocation} from "react-router-dom";
 import {pageName} from "../General/constants/strings";
 import {IconBadge} from "../General/Icons";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import {Store} from "../../Store";
 import {useAuth} from "../../AuthContext"
 import { useWindowSize } from '../../Hooks/SizeScreenHook';
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from '@material-ui/icons/Menu';
-import { makeStyles } from '@material-ui/core';
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from '@mui/icons-material/Menu';
 import MobileWidgetOptions from './MobileMenuWidget/MobileWidgetOptions';
 import { ClearCart } from '../../Store/ManageContext';
 import useGetHeadings from "../../Hooks/useGetHeadings"
 
-
-const useStyles = makeStyles((theme) => ({
-    menuIcon: {
-        width: '40px',
-        height:'40px',
-        color: 'white',
-    },
-    mainOptions:{
-        display:'flex',
-        alignItems:'center',
-        justifyContent:'left',
-    },
-    mainOptionsWithCart:{
-        display:'flex',
-        alignItems:'center',
-        justifyContent:'space-between',
-        marginRight:'15px',
-    }
-}));
-
-
 const Menu =()=> {
-
-    const classes = useStyles()
 
     const [data] = useContext(Store);
 
-    const [dataCont, setDataCont] = useContext(Store);
+    const [setDataCont] = useContext(Store);
 
     const {currentUser, logout} = useAuth()
 
@@ -58,7 +34,7 @@ const Menu =()=> {
     
     const size = useWindowSize();
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const openWidgetCart = () => {
         setShowWidgetCart(!showWidgetCart);
@@ -72,16 +48,16 @@ const Menu =()=> {
         if (myclass ==='logout'){
             ClearCart(setDataCont)
             logout()
-            history.push('/')
+            navigate('/')
         }else{
             if(url){
-                history.push(url)
+                navigate(url)
             }
         }
     }
 
     const goHome =()=> {
-        history.push("/")
+        navigate("/")
     }
 
     return(
@@ -187,9 +163,18 @@ const Menu =()=> {
                 </article>
                 :
                 <article className='dark-background'>
-                    <section className={data.items.length >0?classes.mainOptionsWithCart:classes.mainOptions}>
+                    <section style={{
+                        display:'flex',
+                        alignItems:'center',
+                        justifyContent: data.items.length > 0 ? 'space-between' : 'left',
+                        marginRight: data.items.length > 0 ? '15px' : '0',
+                    }}>
                         <IconButton>
-                            <MenuIcon className={classes.menuIcon} onClick={openWidgetUser}/>
+                            <MenuIcon style={{
+                                width: '40px',
+                                height:'40px',
+                                color: 'white',
+                            }} onClick={openWidgetUser}/>
                         </IconButton>
                         <span className='mobile-title' onClick={goHome}>{pageName}</span>
                         {

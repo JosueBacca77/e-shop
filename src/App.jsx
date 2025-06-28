@@ -2,7 +2,7 @@ import './App.css';
 import Menu from './components/Menu/Menu'
 import Home from "./components/Home/Home";
 import ArticleDetailContainer from "./components/Article/ArticleContainer/ArticleDetailContainer";
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Heading from "./components/Headings/Heading";
 import ErrorPage from "./components/General/ErrorPage/ErrorPage";
 import {errorStrings} from "./components/General/constants/strings";
@@ -35,35 +35,27 @@ const [cart, setCart] = useState(initialStore)
 
                   <div id="body">
 
-                        <Switch>
+                        <Routes>
                             
-                            <Route exact path='/'>
-                                <Home />
-                            </Route>
+                            <Route path='/' element={<Home />} />
 
-                            <Route path="/heading/:name?">
-                                <Heading />
-                            </Route>
+                            <Route path="/heading/:name?" element={<Heading />} />
 
-                            <Route path='/detail/:id'>
-                                <ArticleDetailContainer />
-                            </Route>
+                            <Route path='/detail/:id' element={<ArticleDetailContainer />} />
 
-                            <PrivateRoute component={Cart} path='/cart' exact/>
+                            <Route path='/cart' element={<PrivateRoute component={Cart} />} />
 
-                            <PrivateRoute component={Buy} path='/buy' exact/>
+                            <Route path='/buy' element={<PrivateRoute component={Buy} />} />
 
-                            <PrivateRoute component={PurchaseContainer} path='/purchases' exact/>
+                            <Route path='/purchases' element={<PrivateRoute component={PurchaseContainer} />} />
 
-                            <PublicRoute restricted={true} component={SignUp} path="/signup" exact />
+                            <Route path="/signup" element={<PublicRoute restricted={true} component={SignUp} />} />
                             
-                            <PublicRoute restricted={true} component={LogIn} path="/login" exact />
+                            <Route path="/login" element={<PublicRoute restricted={true} component={LogIn} />} />
 
-                            <Route path='*'>
-                                <ErrorPage text={errorStrings.pageNotFound}/>
-                            </Route>
+                            <Route path='*' element={<ErrorPage text={errorStrings.pageNotFound}/>} />
 
-                        </Switch>
+                        </Routes>
 
                   </div>
                   <Footer />

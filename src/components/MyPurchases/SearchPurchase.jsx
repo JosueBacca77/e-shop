@@ -1,12 +1,12 @@
-import TextField from "@material-ui/core/TextField";
+import TextField from "@mui/material/TextField";
 import React, {useEffect, useState} from "react";
-import {Search} from "@material-ui/icons";
-import IconButton from "@material-ui/core/IconButton";
+import {Search} from "@mui/icons-material";
+import IconButton from "@mui/material/IconButton";
 import "./SearchPurchase.css"
-import makeStyles from "@material-ui/core/styles/makeStyles";
+import { styled } from '@mui/material/styles';
 import { ErrorLabel } from "../General/Labels";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = styled('div')(({ theme }) => ({
     root: {
         '& > *': {
             margin: theme.spacing(2),
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchPurchase=({GetPurchase, show, waiting})=>{
 
-    const classes = useStyles();
+    const StyledDiv = useStyles;
 
     const [id, setId]= useState("")
 
@@ -39,13 +39,13 @@ const SearchPurchase=({GetPurchase, show, waiting})=>{
                     margin="normal"
                     label='Ingrese su código de compra'
                     onChange={handleChange}
-                    className={classes.purchCode}
+                    sx={{ width: '90%' }}
                 />
-                <div className={classes.root}>
+                <StyledDiv>
                     <IconButton color="primary" onClick={handleSearch}>
                         <Search />
                     </IconButton>
-                </div>
+                </StyledDiv>
             </article>
             {
                 show && !waiting

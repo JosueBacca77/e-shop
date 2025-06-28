@@ -1,5 +1,5 @@
 import { getFireStore } from "../Data";
-import firebase from 'firebase/app';
+import { doc, getDoc } from 'firebase/firestore';
 import { useEffect, useState } from "react";
 import { FirebaseDocumentInterface } from "../components/interfaces/FirebaseDocument.interface";
 import { ArticleInterface } from "../components/interfaces/Article.interface";
@@ -19,30 +19,25 @@ const useGetArticlesById=({id=''}:useGetArticlesByIdTypes): useGetArticlesByIdRe
   const [article, setArticle] = useState<FirebaseDocumentInterface<ArticleInterface> | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-
-    const getArticles = (id:string): void => {
-        db.collection('Articles')
-          .doc(id)
-          .get()
-          .then((doc: firebase.firestore.DocumentSnapshot<firebase.firestore.DocumentData>) => {            
-            if (doc.exists) {
-              setArticle(
-                  {
-                      id: doc.id,
-                      data: doc.data() as ArticleInterface
-                  }
-              );
-          } else {
+    const getArticles = async (id:string): Promise<void> => {
+        try {
+            const docRef = doc(db, 'Articles', id);
+            const docSnap = await getDoc(docRef);
+            
+            if (docSnap.exists()) {
+              setArticle({
+                  id: docSnap.id,
+                  data: docSnap.data() as ArticleInterface
+              });
+            } else {
               setArticle(null)
-          }  
-          setIsLoading(false);
-
-        })
-        .catch((error: Error) => {
+            }  
+            setIsLoading(false);
+        } catch (error) {
             console.log(`Error in products searching: ${error}`)
             setIsLoading(false);
-        })
-      }
+        }
+    }
 
     useEffect(() => {
       getArticles(id)

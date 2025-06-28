@@ -4,7 +4,7 @@ import {validations} from '../../../Validations'
 import {ErrorLabel} from "../../General/Labels";
 import {AceptButton} from "../../General/Buttons";
 import './Login.css'
-import {useHistory} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Form from "../../General/Form/Form";
 import { DarkTextFieldMUI } from "../../General/TextField";
 import { IconEShop } from "../../General/Icons";
@@ -14,15 +14,19 @@ type LogInFormProps = {
     logIn: (email:string, password:string, setError:Dispatch<SetStateAction<string>>)=> void
 }
 
-const LogInForm = ({logIn}: LogInFormProps) => {
-    const {register, handleSubmit, errors} = useForm();
+const LoginForm = ({logIn}: LogInFormProps) => {
+    const {
+      register,
+      handleSubmit,
+      formState: { errors },
+    } = useForm();
     const hasError = (inputField:string) => !!errors[inputField];
     const [error, setError] = useState('')
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const goSignUp=()=>{
-        history.push("/signup")
+        navigate("/signup")
     }
 
     return (
@@ -36,7 +40,7 @@ const LogInForm = ({logIn}: LogInFormProps) => {
                     name="email"
                     label="Email"
                     autoComplete="email"
-                    inputRef={register({
+                    inputRef={register("email", {
                         required: validations.req,
                         pattern: validations.email
                     })}
@@ -50,7 +54,7 @@ const LogInForm = ({logIn}: LogInFormProps) => {
                     id="password"
                     autoComplete="current-password"
 
-                    inputRef={register({
+                    inputRef={register( "password", {
                         required: validations.req,
                     })}
                     error={hasError("password")}
@@ -77,4 +81,4 @@ const LogInForm = ({logIn}: LogInFormProps) => {
     )
 };
 
-export default LogInForm;
+export default LoginForm;

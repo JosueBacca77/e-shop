@@ -6,13 +6,12 @@ import ErrorPage from "../General/ErrorPage/ErrorPage";
 import {errorStrings} from "../General/constants/strings";
 import './../../General.css'
 import { useArticleFilter } from "../../ArticleFilterContext";
-import { RouteParams } from "../interfaces/RouteParams.interface";
 import useGetArticlesByName from "../../Hooks/useGetArticlesByName";
 
 
 const Heading =()=> {
 
-    const {name} = useParams<RouteParams>();
+    const {name} = useParams();
     const {filter} = useArticleFilter()
     const {articles} = useGetArticlesByName(filter,{field:'heading',value:name});
 
@@ -26,7 +25,6 @@ const Heading =()=> {
                 ?
                 <ArticleList
                     articles={articles}
-                    title={name}
                 />
                 :
                 <>

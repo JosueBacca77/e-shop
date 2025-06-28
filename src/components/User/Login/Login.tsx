@@ -1,12 +1,13 @@
+import './Login.css'
 import LogInForm from './LoginForm'
 import {useAuth} from '../../../AuthContext'
-import {useHistory} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {Dispatch, SetStateAction} from "react";
 
 
-const LogIn =()=> {
+const Login =()=> {
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const {signin} = useAuth()
 
@@ -17,7 +18,7 @@ const LogIn =()=> {
         });
         
         logIn
-        .then(()=>history.push("/"))
+        .then(()=>navigate("/"))
         .catch(error=>setError(error.message))
     }
 
@@ -28,4 +29,4 @@ const LogIn =()=> {
     )
 }
 
-export default LogIn
+export default Login

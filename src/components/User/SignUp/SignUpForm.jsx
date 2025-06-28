@@ -1,6 +1,6 @@
 import {useForm} from "react-hook-form";
 import {useState} from "react";
-import {useHistory} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {validations} from "../../../Validations";
 import {ErrorLabel} from "../../General/Labels";
 import {AceptButton} from "../../General/Buttons";
@@ -12,16 +12,21 @@ import { IconEShop } from "../../General/Icons";
 
 
 const SignUpForm = ({signUp}) => {
-    const {register, handleSubmit, errors, watch} = useForm();
+    const {
+      register,
+      handleSubmit,
+      formState: { errors },
+      watch,
+    } = useForm();
     const hasError = inputField => (errors && errors[inputField]);
     const pass = watch("password")
 
     const [error, setError ] = useState('')
 
-    let history = useHistory();
+    let navigate = useNavigate();
 
-    const goSignUp=()=>{
-        history.push("/login")
+    const goLogin=()=>{
+        navigate("/login")
     }
 
     const onSubmit = data =>{
@@ -85,7 +90,7 @@ const SignUpForm = ({signUp}) => {
                     />
                 </DarkThemeContainerMUI>
                 </div>
-                <span>Have an account?&nbsp;&nbsp;<span className="underline-when-hover" onClick={goSignUp}>Log in</span></span>
+                <span>Have an account?&nbsp;&nbsp;<span className="underline-when-hover" onClick={goLogin}>Log in</span></span>
             </Form>
         </div>
     )

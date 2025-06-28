@@ -1,19 +1,14 @@
-import { Route, Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import {useAuth} from "../../AuthContext"
 
-function PublicRoute ({component: Component, restricted, ...rest}){
+function PublicRoute ({component: Component, restricted}){
     
     const {currentUser} = useAuth()
 
     return (
-
         // restricted = false meaning public route
         // restricted = true meaning restricted route
-        <Route {...rest} render={props => (
-            currentUser && restricted ?
-                <Redirect to="/" />
-            : <Component {...props} />
-        )} />
+        currentUser && restricted ? <Navigate to="/" /> : <Component />
     );
 }
 

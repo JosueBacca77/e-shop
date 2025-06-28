@@ -1,13 +1,12 @@
-import TextField from "@material-ui/core/TextField";
-import makeStyles from "@material-ui/core/styles/makeStyles";
+import TextField from "@mui/material/TextField";
+import { styled } from '@mui/material/styles';
 import DarkThemeContainerMUI from "../DarkThemeContainerMui";
-
 
 const DarkTextFieldMUI=({...props})=>{
     const { id, name, label, autoComplete, inputRef,
         error, helperText, defaultValue, noSelect, type='text', onChange} = props;
 
-    const useStyles = makeStyles((theme) => ({
+    const useStyles = styled(TextField)(() => ({
         input: {
             color:'#ffffff',
             "&:-webkit-autofill": {
@@ -18,11 +17,11 @@ const DarkTextFieldMUI=({...props})=>{
         },
     }));
 
-    const classes = useStyles();
+    const StyledTextField = useStyles;
 
     return(
         <DarkThemeContainerMUI>
-            <TextField
+            <StyledTextField
                 type={type}
                 variant="outlined"
                 margin="normal"
@@ -34,7 +33,12 @@ const DarkTextFieldMUI=({...props})=>{
                 label={label}
                 autoComplete={autoComplete}
                 autoFocus
-                inputProps={{ className: classes.input} }
+                inputProps={{ 
+                    style: {
+                        color:'#ffffff',
+                        userSelect:noSelect?'none':'auto'
+                    }
+                }}
                 inputRef={inputRef}
                 error={error}
                 helperText={helperText}

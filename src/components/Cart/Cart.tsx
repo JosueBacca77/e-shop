@@ -4,14 +4,14 @@ import './Cart.css';
 import {Store} from "../../Store/index";
 import ItemCart from "./ItemCart";
 import {DeleteItemCart, UpdateTotalCart} from "../../Store/ManageContext";
-import {useHistory} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {GreenButton} from "../General/Buttons";
 import { CartArticleInterface } from "../interfaces/CartArticle.interface";
 
 
 const Cart =()=>{
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const [data, setData] = useContext(Store);
 
@@ -21,7 +21,7 @@ const Cart =()=>{
     };
 
     const handleGoBuy =()=>{
-        history.push('/buy')
+        navigate('/buy')
     }
 
     useLayoutEffect(() => {

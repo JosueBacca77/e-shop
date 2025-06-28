@@ -1,65 +1,58 @@
-import {Button} from "@material-ui/core";
-import makeStyles from "@material-ui/core/styles/makeStyles";
-import green from "@material-ui/core/colors/green";
-import {fade} from "@material-ui/core/styles";
-
+import {Button} from "@mui/material";
+import { styled } from '@mui/material/styles';
+import { green } from "@mui/material/colors";
+import { alpha } from "@mui/material/styles";
 
 const GreenButton =({text,type='',onClick})=> {
 
-    const useStyles = makeStyles(() => ({
-        containedGreen: {
-            color: "white",
-            backgroundColor: green[500],
-            "&:hover": {
-                backgroundColor: green[700],
-            },
+    const useStyles = styled(Button)(() => ({
+        color: "white",
+        backgroundColor: green[500],
+        "&:hover": {
+            backgroundColor: green[700],
         },
     }));
 
-    const classes = useStyles();
+    const StyledButton = useStyles;
 
     return(
-        <Button
-            className={classes.containedGreen}
+        <StyledButton
             variant="contained"
             type={type}
             onClick={onClick}
         >
             {text}
-        </Button>
+        </StyledButton>
     )
 }
 
 const AceptButton =({text,type='',width='',onClick})=> {
 
-    const useStyles = makeStyles(() => ({
-        containedAccept: {
-            color: "#000000",
-            backgroundColor: "#ffffff",
-            "&:hover": {
-                backgroundColor: "#CAC9C3"
-            },
-            width:width
+    const useStyles = styled(Button)(() => ({
+        color: "#000000",
+        backgroundColor: "#ffffff",
+        "&:hover": {
+            backgroundColor: "#CAC9C3"
         },
+        width:width
     }));
 
-    const classes = useStyles();
+    const StyledButton = useStyles;
 
     return(
-        <Button
-            className={classes.containedAccept}
+        <StyledButton
             variant="contained"
             type={type}
             onClick={onClick}
         >
             {text}
-        </Button>
+        </StyledButton>
     )
 }
 
 const BlueButton =({text,type='',onClick})=> {
 
-    const useStyles = makeStyles((theme) => ({
+    const useStyles = styled('div')(({ theme }) => ({
         search: {
             position: "relative",
             borderRadius: theme.shape.borderRadius,
@@ -68,29 +61,37 @@ const BlueButton =({text,type='',onClick})=> {
             fontWeight: "bold",
         },
         color:{
-            color: fade(theme.palette.info.light, 0.90),
-            backgroundColor:  fade(theme.palette.common.black, 0.55),
+            color: alpha(theme.palette.info.light, 0.90),
+            backgroundColor:  alpha(theme.palette.common.black, 0.55),
             '&:hover': {
-                backgroundColor: fade(theme.palette.common.black, 0.40),
-                color: fade(theme.palette.info.light, 0.50),
+                backgroundColor: alpha(theme.palette.common.black, 0.40),
+                color: alpha(theme.palette.info.light, 0.50),
             },
             fontWeight:'bold'
         }
     }));
 
-    const classes = useStyles();
+    const StyledDiv = useStyles;
 
     return(
-        <div className={classes.search}>
+        <StyledDiv>
             <Button
-                className={classes.color}
+                sx={{
+                    color: (theme) => alpha(theme.palette.info.light, 0.90),
+                    backgroundColor: (theme) => alpha(theme.palette.common.black, 0.55),
+                    '&:hover': {
+                        backgroundColor: (theme) => alpha(theme.palette.common.black, 0.40),
+                        color: (theme) => alpha(theme.palette.info.light, 0.50),
+                    },
+                    fontWeight:'bold'
+                }}
                 variant="contained"
                 type={type}
                 onClick={onClick}
             >
             {text}
             </Button>
-        </div>
+        </StyledDiv>
     )
 }
 

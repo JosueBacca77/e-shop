@@ -1,5 +1,5 @@
 import { getFireStore } from "../Data";
-import firebase from 'firebase/app';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 import { useEffect, useState } from "react";
 import { FirebaseDocumentInterface } from "../components/interfaces/FirebaseDocument.interface";
 import { ArticleInterface } from "../components/interfaces/Article.interface";
@@ -15,34 +15,35 @@ const useGetArticlesByName=(filter:string, whereClousure?:FirebaseGetWhereClosur
 
   const [articles, setArticles] = useState<FirebaseDocumentInterface<ArticleInterface>[]>([])
 
-    const getArticles = (filter:string, whereClousure: FirebaseGetWhereClosureInterface | undefined): void => {
-      const query = whereClousure
-      ? db.collection('Articles').where(whereClousure.field, '==', whereClousure.value)
-      : db.collection('Articles');
-  
-      query
-          .get()
-          .then((arts: firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>) => {
-            const arr:FirebaseDocumentInterface<ArticleInterface>[] = [];
-            arts.forEach((art: firebase.firestore.QueryDocumentSnapshot<firebase.firestore.DocumentData>) => {
-              if (filter.length>0){
-                    if (art.data().name.toLowerCase().includes(filter.toLowerCase())){
-                        arr.push({
-                            id: art.id,
-                            data: art.data() as ArticleInterface
-                        })
-                    }
-              }else{
-                      arr.push({
-                      id: art.id,
-                      data: art.data() as ArticleInterface
-                  })
-              }
-            })
-            setArticles(arr);
-          })
-          .catch((error: Error) => console.log(`Error in products searching: ${error}`))
+    const getArticles = async (filter:string, whereClousure: FirebaseGetWhereClosureInterface | undefined): Promise<void> => {
+      try {
+        const articlesRef = collection(db, 'Articles');
+        const q = whereClousure
+          ? query(articlesRef, where(whereClousure.field, '==', whereClousure.value))
+          : query(articlesRef);
+    
+        const querySnapshot = await getDocs(q);
+        const arr:FirebaseDocumentInterface<ArticleInterface>[] = [];
+        querySnapshot.forEach((doc) => {
+          if (filter.length>0){
+                if (doc.data().name.toLowerCase().includes(filter.toLowerCase())){
+                    arr.push({
+                        id: doc.id,
+                        data: doc.data() as ArticleInterface
+                    })
+                }
+          }else{
+                  arr.push({
+                  id: doc.id,
+                  data: doc.data() as ArticleInterface
+              })
+          }
+        })
+        setArticles(arr);
+      } catch (error) {
+        console.log(`Error in products searching: ${error}`)
       }
+    }
 
     useEffect(() => {
       getArticles(filter, whereClousure)

@@ -13,7 +13,6 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -23,32 +22,6 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 import { getDateFromTimestamp } from '../../Utils';
 import { AceptButton } from './Buttons';
-
-// function createData(name, calories, fat, carbs, protein) {
-//   return {
-//     name,
-//     calories,
-//     fat,
-//     carbs,
-//     protein,
-//   };
-// }
-
-// const rows = [
-//   createData('Cupcake', 305, 3.7, 67, 4.3),
-//   createData('Donut', 452, 25.0, 51, 4.9),
-//   createData('Eclair', 262, 16.0, 24, 6.0),
-//   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-//   createData('Gingerbread', 356, 16.0, 49, 3.9),
-//   createData('Honeycomb', 408, 3.2, 87, 6.5),
-//   createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-//   createData('Jelly Bean', 375, 0.0, 94, 0.0),
-//   createData('KitKat', 518, 26.0, 65, 7.0),
-//   createData('Lollipop', 392, 0.2, 98, 0.0),
-//   createData('Marshmallow', 318, 0, 81, 2.0),
-//   createData('Nougat', 360, 19.0, 9, 37.0),
-//   createData('Oreo', 437, 18.0, 63, 4.0),
-// ];
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -82,45 +55,12 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-// const headCells = [
-//   {
-//     id: 'name',
-//     numeric: false,
-//     disablePadding: true,
-//     label: 'Dessert (100g serving)',
-//   },
-//   {
-//     id: 'calories',
-//     numeric: true,
-//     disablePadding: false,
-//     label: 'Calories',
-//   },
-//   {
-//     id: 'fat',
-//     numeric: true,
-//     disablePadding: false,
-//     label: 'Fat (g)',
-//   },
-//   {
-//     id: 'carbs',
-//     numeric: true,
-//     disablePadding: false,
-//     label: 'Carbs (g)',
-//   },
-//   {
-//     id: 'protein',
-//     numeric: true,
-//     disablePadding: false,
-//     label: 'Protein (g)',
-//   },
-// ];
-
 const DEFAULT_ORDER = 'asc';
 const DEFAULT_ORDER_BY = 'calories';
 const DEFAULT_ROWS_PER_PAGE = 5;
 
 function EnhancedTableHead(props) {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, headCells } =
+  const { order, orderBy, onRequestSort, headCells } =
     props;
   const createSortHandler = (newOrderBy) => (event) => {
     onRequestSort(event, newOrderBy);
@@ -129,17 +69,6 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        {/* <TableCell padding="checkbox">
-          <Checkbox
-            color="primary"
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
-            inputProps={{
-              'aria-label': 'select all desserts',
-            }}
-          />
-        </TableCell> */}
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -204,14 +133,6 @@ function EnhancedTableToolbar(props) {
           {numSelected} selected
         </Typography>
       ) : (
-        // <Typography
-        //     sx={{ flex: '1 1 100%' }}
-        //     variant="h6"
-        //     id="tableTitle"
-        //     component="div"
-        // >
-        // Nutrition
-        // </Typography>
         null
       )}
 
@@ -308,7 +229,7 @@ const SortableTableMUI =({headCells, rows, viewDetail, changePaddingDensity=fals
   };
 
   const handleChangePage = React.useCallback(
-    (event, newPage) => {
+    (_event, newPage) => {
       setPage(newPage);
 
       const sortedRows = stableSort(rows, getComparator(order, orderBy));
@@ -359,8 +280,6 @@ const SortableTableMUI =({headCells, rows, viewDetail, changePaddingDensity=fals
   return (
     <Box sx={{ width: '100%',  }}>
       <Paper sx={{ width: '100%'}}>
-        {/* <EnhancedTableToolbar numSelected={selected.length} title={title}/> */}
-
         <TableContainer
           style={{ maxHeight: maxHeight }}
 
@@ -383,38 +302,17 @@ const SortableTableMUI =({headCells, rows, viewDetail, changePaddingDensity=fals
             <TableBody
             >
               {visibleRows
-                ? visibleRows.map((row, index) => {
+                ? visibleRows.map((row) => {
                     const isItemSelected = isSelected(row.data.name);
-                    const labelId = `enhanced-table-checkbox-${index}`;
 
                     return (
                       <TableRow
-                        // hover
                         onClick={(event) => handleClick(event, row.data.name)}
-                        // role="checkbox"
                         aria-checked={isItemSelected}
                         tabIndex={-1}
                         selected={false}//{isItemSelected}
-                        // sx={{ cursor: 'pointer' }}
                         key={row.id}
                       >
-                        {/* <TableCell padding="checkbox">
-                          <Checkbox
-                            color="primary"
-                            checked={isItemSelected}
-                            inputProps={{
-                              'aria-labelledby': labelId,
-                            }}
-                          />
-                        </TableCell> */}
-                        {/* <TableCell
-                          component="th"
-                          id={labelId}
-                          scope="row"
-                          padding="none"
-                        >
-                          {row.name}
-                        </TableCell> */}
                         {
                             headCells.map((cell) => {
                                 let value = row.data[cell.id];
@@ -424,8 +322,6 @@ const SortableTableMUI =({headCells, rows, viewDetail, changePaddingDensity=fals
                                 if(cell.id === 'viewDetail'){
                                     value = <AceptButton text={viewDetail} onClick={()=> onClickViewDetail(row)}/>
                                 }
-                                // console.log('value',value)
-                                // console.log('row',row)
 
                                 return(
                                     <TableCell key={row.id+'_'+cell.id} align={cell.align}>{value}</TableCell>

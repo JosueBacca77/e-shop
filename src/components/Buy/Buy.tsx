@@ -1,9 +1,8 @@
-import { useContext, useLayoutEffect, useState} from "react";
+import {useLayoutEffect, useState} from "react";
 import UserForm from "./UserForm";
 import PayForm from "./PayForm";
 import {getFireStore} from "../../Data";
-import {ClearCart} from "../../Store/ManageContext";
-import firebase from 'firebase/app';
+import { collection, query, where, getDocs, addDoc, documentId } from 'firebase/firestore';
 import {useAuth} from "../../AuthContext";
 import CircularIndeterminate from "../General/Progress/Progress";
 import SuccessPurchase from "./SuccessPurchase"
@@ -12,14 +11,11 @@ import {UserSaleTypes} from "./BuyTypes"
 import {SaleInterface} from "../interfaces/Sale.interface"
 import { ArticleInterface } from "../interfaces/Article.interface";
 import { FirebaseDocumentInterface } from "../interfaces/FirebaseDocument.interface";
-import { Store } from "../../Store";
 import { CartArticleInterface } from "../interfaces/CartArticle.interface";
 
 const Buy =()=> {
 
     const db = getFireStore()
-
-    const [dataCont, setDataCont] = useContext(Store);
 
     const {currentUser} = useAuth()
     
@@ -61,54 +57,47 @@ const Buy =()=> {
         window.scrollTo(0, 0)
     }, [])
 
-    const makeSelling =(ids: string[], data: SaleInterface)=> {
+    const makeSelling = async (ids: string[], data: SaleInterface) => {
 
         setWithoutStock([])
         
-        const GetArticles = new Promise((resolve) => {
-            resolve(
-                db.collection('Articles').where(firebase.firestore.FieldPath.documentId(),'in',ids).get()
-                    .then(arts => {
-                        const arr:FirebaseDocumentInterface<ArticleInterface>[] = [];
-                        let validStock = true
-                        const notstock = []
-                        arts.forEach(art => {
-                            arr.push({
-                                id: art.id,
-                                data: art.data() as ArticleInterface
-                            })
-                        })
-                        for (const art of arr){
-                            const item = data.items.find(elem=> elem.id == art.id)
-                            if (art.data.stock < item.data.stock){
-                                notstock.push(art)
-                                validStock = false
-                            }
-                        }
-                        if (validStock){
-                            db.collection('Sales').add(data)
-                                .then(({id})=>{
-                                    setPurchaseId(id)
-                                    ClearCart(setDataCont)
-                                    setApproved(true)
-                                })
-                                .catch(error=> console.log(`Error al cargar la compra: ${error}`))
-                        }else{
-                            setWithoutStock(notstock)
-                        }
-                    })
-                    .catch(error => console.log(`Los items seleccionados para la compra no son correctos ${error}`))
-            )
-    })
-
-        GetArticles
-            .then(()=>{
-                setWaiting(false)
+        try {
+            const articlesRef = collection(db, 'Articles');
+            const q = query(articlesRef, where(documentId(), 'in', ids));
+            const querySnapshot = await getDocs(q);
+            
+            const arr: FirebaseDocumentInterface<ArticleInterface>[] = [];
+            let validStock = true;
+            const notstock = [];
+            
+            querySnapshot.forEach((doc) => {
+                arr.push({
+                    id: doc.id,
+                    data: doc.data() as ArticleInterface
+                })
             })
-            .catch(error=>{
-                console.log(error)
-                setWaiting(false)
-            })
+            
+            for (const art of arr){
+                const item = data.items.find(elem=> elem.id == art.id)
+                if (art.data.stock < item.data.stock){
+                    notstock.push(art)
+                    validStock = false
+                }
+            }
+            
+            if (validStock){
+                const docRef = await addDoc(collection(db, 'Sales'), data);
+                setPurchaseId(docRef.id)
+                // ClearCart(setDataCont)
+                setApproved(true)
+            } else {
+                setWithoutStock(notstock)
+            }
+        } catch (error) {
+            console.log(`Error al procesar la compra: ${error}`)
+        } finally {
+            setWaiting(false)
+        }
     };
 
     const GetIdsFromItems =(items: CartArticleInterface[])=> {

@@ -1,4 +1,4 @@
-import Alert from '@material-ui/lab/Alert';
+import Alert from '@mui/material/Alert';
 import './Notify.css';
 import {articlesAdded} from "./constants/strings";
 import {useState} from "react";

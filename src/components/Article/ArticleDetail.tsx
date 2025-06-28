@@ -1,7 +1,7 @@
 import './ArticleDetail.css'
 import React, {useContext, useState} from "react";
 import {GetPlural, VerifyContains} from "../../Utils";
-import {useHistory} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {Store} from "../../Store";
 import ModifyCountCart from "../ModifyCountCart/ModifyCountCart";
 import {AddItemToCart, ModifyCountItem, UpdateTotalCart} from "../../Store/ManageContext";
@@ -10,7 +10,7 @@ import { CartArticleInterface } from '../interfaces/CartArticle.interface';
 
 const ArticleDetail =({article}:{article: CartArticleInterface})=> {
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const [selectedImage, setSelectedImage] = useState(article.data.images[0])
 
@@ -36,7 +36,7 @@ const ArticleDetail =({article}:{article: CartArticleInterface})=> {
                 //actualizo total carrito
                 UpdateTotalCart(data,setData)
             }
-            history.push("/cart")
+            navigate("/cart")
         }
     }
 

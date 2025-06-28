@@ -1,12 +1,12 @@
 import './ItemCart.css'
-import DeleteIcon from '@material-ui/icons/Delete';
-import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from "@mui/material/IconButton";
 import {useContext, useEffect, useState} from "react";
 import '../../General.css'
 import {Store} from "../../Store";
 import {ReplaceItemCart, UpdateTotalCart} from "../../Store/ManageContext";
-import {useHistory} from "react-router-dom";
-import { CardMedia } from '@material-ui/core';
+import {useNavigate} from "react-router-dom";
+import { CardMedia } from '@mui/material';
 import Counter from '../Counter';
 import { CartArticleInterface } from '../interfaces/CartArticle.interface';
 
@@ -20,7 +20,7 @@ const ItemCart =({article, onDelete}: ItemCartTypes)=> {
 
     const [data, setData] = useContext(Store);
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(countAdded >0 && countAdded <= article.data.stock ){
@@ -33,7 +33,7 @@ const ItemCart =({article, onDelete}: ItemCartTypes)=> {
 
 
     const goDetail =()=> {
-        history.push("/detail/"+article.id)
+        navigate("/detail/"+article.id)
     }
 
     return(

@@ -1,9 +1,8 @@
 import './Purchase.css'
 import ItemsPurchaseTable from "./ItemsPurchase";
 import {getDateFromTimestamp, GetSubtotalItem} from "../../Utils";
-import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
-import IconButton from "@material-ui/core/IconButton";
-import makeStyles from "@material-ui/core/styles/makeStyles";
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import IconButton from "@mui/material/IconButton";
 import { SaleInterface } from '../interfaces/Sale.interface';
 import { CartArticleInterface } from '../interfaces/CartArticle.interface';
 
@@ -42,21 +41,13 @@ const Purchase=({purchase,cleanPurchase}:PurchaseTypes)=>{
         return itemsNew
     }
 
-    const useStyles = makeStyles({
-        icon:{
-            color: "white",
-        }
-    });
-
-    const classes = useStyles();
-
     return(
         <>
         <form noValidate className='info-purchase-form card'>
             <section className='space-between'>
                 <span ><b>Date:&nbsp;&nbsp;</b><span>{getDateFromTimestamp(purchase.date)}</span></span>
                 <div className='close-purchase'>
-                    <IconButton className={classes.icon} onClick={cleanPurchase}>
+                    <IconButton sx={{ color: "white" }} onClick={cleanPurchase}>
                         <KeyboardBackspaceIcon  />
                     </IconButton>
                 </div>

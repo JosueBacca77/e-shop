@@ -9,7 +9,6 @@ export function useAuth(){
 
 export const AuthProvider=({children})=>{
     const [currentUser, setCurrentUser] = useState()
-    const [loading, setLoading] = useState()
 
     const value = {
         currentUser,
@@ -33,7 +32,6 @@ export const AuthProvider=({children})=>{
     useEffect(() => {
         const unsuscribe = auth.onAuthStateChanged(user=>{
            setCurrentUser(user)
-           setLoading(false)
         })
 
         return unsuscribe
