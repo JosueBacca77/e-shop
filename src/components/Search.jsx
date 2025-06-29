@@ -48,6 +48,42 @@ const useStyles = styled('div')(({ theme }) => ({
     }
 }));
 
+const SearchContainer = styled('div')(({ theme }) => ({
+    position: "relative",
+    borderRadius: theme.shape.borderRadius,
+    width: "100%",
+    color: "white",
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    '&:hover': {
+        backgroundColor: alpha(theme.palette.common.white, 0.25),
+    },
+}));
+
+const StyledSearchIcon = styled(SearchIcon)(({ theme }) => ({
+    padding: theme.spacing(0, 1),
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "white"
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: "inherit",
+  borderRadius: "5px",
+  paddingLeft: "2.25rem",
+  transition: theme.transitions.create("width"),
+  width: "100%",
+  [theme.breakpoints.up("sm")]: {
+    width: "40ch",
+  },
+  [theme.breakpoints.down("sm")]: {
+    width: "35ch",
+  },
+}));
+
 export default function SearchAppBar() {
 
     const StyledDiv = useStyles;
@@ -77,47 +113,16 @@ export default function SearchAppBar() {
     return (
         <StyledDiv>
             <Toolbar >
-                <div style={{
-                    position: "relative",
-                    borderRadius: (theme) => theme.shape.borderRadius,
-                    width: "100%",
-                    color: "white",
-                    backgroundColor: (theme) => alpha(theme.palette.common.white, 0.15),
-                    '&:hover': {
-                        backgroundColor: (theme) => alpha(theme.palette.common.white, 0.25),
-                    },
-                }}>
-                    <div >
-                        <SearchIcon style={{
-                            padding: (theme) => theme.spacing(0, 2),
-                            height: "100%",
-                            position: "absolute",
-                            pointerEvents: "none",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            color: "white"
-                        }}/>
+                <SearchContainer>
+                    <div>
+                        <StyledSearchIcon />
                     </div>
-                    <InputBase
+                    <StyledInputBase
                         placeholder="What are you looking for?"
-                        sx={{
-                            color: "inherit",
-                            borderRadius:'5px',
-                            paddingLeft: (theme) => `calc(1em + ${theme.spacing(4)}px)`,
-                            transition: (theme) => theme.transitions.create("width"),
-                            width: "100%",
-                            [theme.breakpoints.up("sm")]: {
-                                width: "40ch",
-                            },
-                            [theme.breakpoints.down("sm")]: {
-                                width: "35ch",
-                            }
-                        }}
                         inputProps={{ "aria-label": "search" }}
                         onChange={handleChange}
                     />
-                </div>
+                </SearchContainer>
             </Toolbar>
         </StyledDiv>
     );
