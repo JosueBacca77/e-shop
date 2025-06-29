@@ -19,7 +19,14 @@ const Login =()=> {
         
         logIn
         .then(()=>navigate("/"))
-        .catch(error=>setError(error.message))
+        .catch(error=>{
+            const code = error.code
+            if (code === "auth/wrong-password") {
+              setError("Credenciales inválidas");
+            } else {
+              setError("Ocurrió un error al ingresar");
+            }
+        })
     }
 
     return(

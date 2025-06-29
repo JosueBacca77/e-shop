@@ -10,7 +10,6 @@ import { DarkTextFieldMUI } from "../../General/TextField";
 import DarkThemeContainerMUI from "../../General/DarkThemeContainerMui";
 import { IconEShop } from "../../General/Icons";
 
-
 const SignUpForm = ({signUp}) => {
     const {
       register,
@@ -18,7 +17,7 @@ const SignUpForm = ({signUp}) => {
       formState: { errors },
       watch,
     } = useForm();
-    const hasError = inputField => (errors && errors[inputField]);
+    const hasError = (inputField) => !!errors[inputField];
     const pass = watch("password")
 
     const [error, setError ] = useState('')
@@ -45,34 +44,34 @@ const SignUpForm = ({signUp}) => {
                     name="email"
                     label="Email"
                     autoComplete="email"
-                    inputRef={register({
+                    {...register("email", {
                         required: validations.req,
                     })}
                     error={hasError("email")}
-                    helperText={hasError("email") && errors.email.message}
+                    helperText={hasError("email") && errors.email?.message}
                 />
                 <DarkTextFieldMUI 
                     name="password"
                     label="Contraseña"
                     type="password"
                     id="password"
-                    inputRef={register({
+                    {...register("password", {
                         required: validations.req,
                     })}
                     error={hasError("password")}
-                    helperText={hasError("password") && errors.password.message}
+                    helperText={hasError("password") && errors.password?.message}
                 />
                 <DarkTextFieldMUI 
                     name="password_repeat"
                     label="Repetir contraseña"
                     type="password"
                     id="password_repeat"
-                    inputRef={register({
+                    {...register("password_repeat", {
                         required: validations.req,
                         validate: value => value === pass || validations.pass_no_match
                     })}
                     error={hasError("password_repeat")}
-                    helperText={hasError("password_repeat") && errors.password_repeat.message}
+                    helperText={hasError("password_repeat") && errors.password_repeat?.message}
                 />
                 {
                     error !== ''

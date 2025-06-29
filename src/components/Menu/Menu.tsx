@@ -20,7 +20,7 @@ const Menu =()=> {
 
     const [data] = useContext(Store);
 
-    const [setDataCont] = useContext(Store);
+    const [, setDataCont] = useContext(Store);
 
     const {currentUser, logout} = useAuth()
 

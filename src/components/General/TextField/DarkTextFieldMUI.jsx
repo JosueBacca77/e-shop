@@ -4,7 +4,7 @@ import DarkThemeContainerMUI from "../DarkThemeContainerMui";
 
 const DarkTextFieldMUI=({...props})=>{
     const { id, name, label, autoComplete, inputRef,
-        error, helperText, defaultValue, noSelect, type='text', onChange} = props;
+        error, helperText, defaultValue, noSelect, type='text', onChange, ref} = props;
 
     const useStyles = styled(TextField)(() => ({
         input: {
@@ -39,7 +39,7 @@ const DarkTextFieldMUI=({...props})=>{
                         userSelect:noSelect?'none':'auto'
                     }
                 }}
-                inputRef={inputRef}
+                inputRef={inputRef || ref}
                 error={error}
                 helperText={helperText}
                 onChange={onChange}
